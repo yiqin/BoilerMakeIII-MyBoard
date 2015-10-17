@@ -21,7 +21,7 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
         menuCollectionView.delegate = self
         menuCollectionView.dataSource = self
         
-        let path = NSBundle.mainBundle().pathForResource("iOSDevice", ofType: "plist")
+        let path = NSBundle.mainBundle().pathForResource(deviceFileName, ofType: plistType)
         let dict = NSDictionary(contentsOfFile: path!)
         
         collectionData = dict!.objectForKey("iOSDevice") as! [String]
@@ -35,7 +35,7 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BMMainMenuCell", forIndexPath: indexPath) as! BMMenuCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(mainCellReuseIdentifier, forIndexPath: indexPath) as! BMMenuCollectionViewCell
         
         cell.cellTextLabel.text = collectionData[indexPath.row]
         cell.cellImage.image = UIImage(named: "\(collectionData[indexPath.row]).png")
