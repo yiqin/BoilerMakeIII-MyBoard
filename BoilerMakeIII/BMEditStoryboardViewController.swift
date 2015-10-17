@@ -12,72 +12,24 @@ class BMEditStoryboardViewController: UIViewController {
     
     let viewControllersScrollView: JT3DScrollView = JT3DScrollView()
     
+    let libraryView: UIView = UIView()
     
-    var scrollView:UIScrollView = UIScrollView()
-    var scrollViewContainer:ScrollViewContainer = ScrollViewContainer()
+    var availableComponents = [UILibraryComponent]()
     
+    var currentIndex = 0
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        
     }
     
     func createUILibrary() {
-        
-        
-        let viewsToRemove = scrollView.subviews
-        for v in viewsToRemove {
-            v.removeFromSuperview()
-        }
-        
         let label = UILibraryComponent(title:"Label")
         let button = UILibraryComponent(title:"Button")
         let imageView = UILibraryComponent(title:"Image View")
         let label1 = UILibraryComponent(title: "Label1")
         
-        let components = [label, label1, button, imageView, label1]
-        
-        
-        let tempWidth = screenWidth/2
-        let imageHeight:CGFloat = 64
-        
-        let componentCount:CGFloat = 4.0
-        
-        scrollView.contentSize = CGSizeMake(CGRectGetWidth(scrollView.frame)*componentCount, imageHeight)
-        print(imageHeight)
-        
-        var xPosition: CGFloat = xPadding*0.25
-        
-        for component in components {
-            let tempView = UIView(frame: CGRectMake(xPosition, 0, CGRectGetWidth(scrollView.frame), imageHeight))
-            
-            tempView.backgroundColor = UIColor.redColor()// UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
-            tempView.clipsToBounds = true
-            tempView.layer.cornerRadius = 2.0
-            
-            let tempTitleLabel = UILabel(frame: CGRectMake(0, 0, CGRectGetWidth(tempView.frame), imageHeight))
-            tempTitleLabel.text = component.title
-            
-            
-            
-            scrollView.addSubview(tempView)
-            
-            tempView.addSubview(tempTitleLabel)
-            
-            
-            // Add a empty Button....
-            let tempButton = BMAddLibraryButton(frame: CGRectMake(0, 0, CGRectGetWidth(tempView.frame), imageHeight))
-            tempView.addSubview(tempButton)
-            
-            tempButton.addTarget(self, action: "pressedEmptyButton:", forControlEvents: UIControlEvents.TouchDown)
-            
-            tempButton.addTarget(self, action: "dragOutsideEmptyButton:", forControlEvents: UIControlEvents.TouchDragExit)
-            
-            xPosition = xPosition+xPadding*0.5+CGRectGetWidth(scrollView.frame)
-        }
-        scrollView.setContentOffset(CGPointMake(0, 0), animated: false)
-        
+        availableComponents = [label, label1, button, imageView, label1]
     }
     
     
@@ -89,14 +41,14 @@ class BMEditStoryboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createUILibrary()
+        
         view.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)
         
         let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "pressedSaveButton")
         navigationItem.rightBarButtonItem = saveButton
         
-        
-
-        
+        setupLibraryView()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -110,25 +62,6 @@ class BMEditStoryboardViewController: UIViewController {
         createCard()
         createCard()
         createCard()
-        
-        
-        //
-        
-        let tempWidth = screenWidth / 2
-        let imageHeight:CGFloat = 64
-        
-        scrollView.frame = CGRectMake(xPadding, 0, tempWidth-xPadding*2, imageHeight)
-        scrollView.clipsToBounds = false
-        scrollView.pagingEnabled = true
-        scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, +15, 0)
-        
-        scrollViewContainer.frame = CGRectMake(0, screenHeight - (64+10), screenWidth,  imageHeight)
-        scrollViewContainer.scrollView = scrollView
-        scrollViewContainer.addSubview(scrollView)
-        view.addSubview(scrollViewContainer)
-        
-        
-        createUILibrary()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -192,5 +125,42 @@ class BMEditStoryboardViewController: UIViewController {
         viewControllersScrollView.contentSize = CGSizeMake(x+width, height)
     }
     
+    
+    // MARK: - LibraryView
+    
+    func setupLibraryView() {
+        
+        libraryView.frame = CGRectMake(0, CGRectGetHeight(view.frame)-64, CGRectGetWidth(view.frame), 64)
+        libraryView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleTopMargin]
+        libraryView.backgroundColor = UIColor.redColor()
+        
+        view.addSubview(libraryView)
 
+        // Left previous button
+        
+        let image1 = UIImage(named: "name") as UIImage?
+        let previousButton   = UIButton(type: .System)
+        previousButton.frame = CGRectMake(0, 0, 64, 64)
+        previousButton.setImage(image1, forState: .Normal)
+        previousButton.addTarget(self, action: "tappedPreviousButton:", forControlEvents:.TouchUpInside)
+        libraryView.addSubview(previousButton)
+        
+        // Right next button
+        
+        let image2 = UIImage(named: "name") as UIImage?
+        let nextButton   = UIButton(type: .System)
+        nextButton.frame = CGRectMake(screenWidth-64, 0, 64, 64)
+        nextButton.setImage(image2, forState: .Normal)
+        nextButton.addTarget(self, action: "tappedNextButton:", forControlEvents:.TouchUpInside)
+        libraryView.addSubview(nextButton)
+    }
+    
+    func tappedPreviousButton(sender:UIButton!) {
+        print("previous button")
+    }
+    
+    func tappedNextButton(sender:UIButton!) {
+        print("next button")
+    }
+    
 }
