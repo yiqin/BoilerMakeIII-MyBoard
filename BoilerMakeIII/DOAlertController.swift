@@ -65,9 +65,9 @@ class DOAlertAnimation : NSObject, UIViewControllerAnimatedTransitioning {
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         if (isPresenting) {
-            return 0.45
+            return 0.15
         } else {
-            return 0.25
+            return 0.05
         }
     }
     
@@ -94,7 +94,7 @@ class DOAlertAnimation : NSObject, UIViewControllerAnimatedTransitioning {
         }
         containerView!.addSubview(alertController.view)
         
-        UIView.animateWithDuration(0.25,
+        UIView.animateWithDuration(0.15,
             animations: {
                 alertController.overlayView.alpha = 1.0
                 if (alertController.isAlert()) {
@@ -106,7 +106,7 @@ class DOAlertAnimation : NSObject, UIViewControllerAnimatedTransitioning {
                 }
             },
             completion: { finished in
-                UIView.animateWithDuration(0.2,
+                UIView.animateWithDuration(0.1,
                     animations: {
                         alertController.alertView.transform = CGAffineTransformIdentity
                     },

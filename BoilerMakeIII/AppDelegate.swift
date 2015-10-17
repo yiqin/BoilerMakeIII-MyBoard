@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         BMStoryboardDataManager.sharedInstance.saveData()
-
+        application.applicationSupportsShakeToEdit = true
+        
         if let font = UIFont(name: "Avenir Next", size: 14) {
             UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
         }
