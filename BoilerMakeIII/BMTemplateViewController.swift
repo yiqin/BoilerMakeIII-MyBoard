@@ -8,10 +8,24 @@
 
 import UIKit
 
-class BMTemplateViewController: UIViewController {
+class BMTemplateViewController: UIViewController, BMComponentProtocol {
     
-    convenience init(appID: Int, vcID: Int) {
-        self.init(nibName: nil, bundle: nil)
+    var type = BMComponentType.ViewController
+    var dictionary: NSDictionary {
+        let dict: NSMutableDictionary = NSMutableDictionary()
+        for case let component as BMComponentProtocol in self.view.subviews {
+            let compDict: NSDictionary = component.dictionary
+            dict.setObject(compDict, forKey: String(compDict.objectForKey("id")!))
+        }
+        return NSDictionary(dictionary: dict)
+    }
+    
+    var id: Int
+    
+    // Reconstructor.
+    init(appID: Int, vcID: Int) {
+        self.id = vcID
+        super.init(nibName: nil, bundle: nil)
 
         if let dict = BMStoryboardDataManager.sharedInstance.getComponentsData(appID, vcID: vcID) {
             for (_, comp) in dict {
@@ -39,15 +53,18 @@ class BMTemplateViewController: UIViewController {
                 }
             }
             
+            print(self.dictionary)
+            
         } else {
             print("WARNING: Couldn't create dictionary from UIData.plist! Default values will be used!")
         }
     }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
 
+    // New ViewController
+    convenience init(appID: Int) {
+        self.init(appID: appID, vcID: BMStoryboardDataManager.sharedInstance.getNextID())
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

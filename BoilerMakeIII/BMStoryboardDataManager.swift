@@ -92,7 +92,8 @@ class BMStoryboardDataManager: NSObject {
                 "viewControllers":
                     ["8": viewControllerData,
                         "9": viewControllerData1,
-                    ]
+                    ],
+                "title": "I Love Design"
             ]
         
         let dict: NSDictionary = ["10": appData]
@@ -102,6 +103,8 @@ class BMStoryboardDataManager: NSObject {
         let resultArray = NSArray(contentsOfFile: path)
         print("Saved UIData.plist file is --> \(resultArray)")
     }
+    
+    // MARK: Fake Data goes here.
     
     func saveUIData() -> NSDictionary {
         
@@ -217,9 +220,12 @@ class BMStoryboardDataManager: NSObject {
     
     
     func getComponentsData(appID: Int, vcID: Int) -> NSDictionary? {
-        let appDict: NSDictionary = data.objectForKey(String(appID)) as! NSDictionary
-        let vcDict: NSDictionary = (appDict.objectForKey("viewControllers") as! NSDictionary).objectForKey(String(vcID)) as! NSDictionary
-        return vcDict.objectForKey("UIData") as? NSDictionary
+        if let appDict: NSDictionary = data.objectForKey(String(appID)) as? NSDictionary {
+            if let vcDict: NSDictionary = (appDict.objectForKey("viewControllers") as! NSDictionary).objectForKey(String(vcID)) as? NSDictionary {
+                return vcDict.objectForKey("UIData") as? NSDictionary
+            }
+        }
+        return nil
     }
     
     func testData() -> UIViewController {

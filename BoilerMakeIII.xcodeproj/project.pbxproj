@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D4E9BC91BD2F754000E73BA /* BMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4E9BC81BD2F754000E73BA /* BMApplication.swift */; settings = {ASSET_TAGS = (); }; };
 		2DD8A84B1BD25D6900E9B6F2 /* BMLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8A8471BD25D6900E9B6F2 /* BMLabel.swift */; settings = {ASSET_TAGS = (); }; };
 		2DD8A84C1BD25D6900E9B6F2 /* BMComponentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8A8481BD25D6900E9B6F2 /* BMComponentProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		2DD8A84D1BD25D6900E9B6F2 /* BMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8A8491BD25D6900E9B6F2 /* BMButton.swift */; settings = {ASSET_TAGS = (); }; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D4E9BC81BD2F754000E73BA /* BMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMApplication.swift; sourceTree = "<group>"; };
 		2DD8A8471BD25D6900E9B6F2 /* BMLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMLabel.swift; sourceTree = "<group>"; };
 		2DD8A8481BD25D6900E9B6F2 /* BMComponentProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMComponentProtocol.swift; sourceTree = "<group>"; };
 		2DD8A8491BD25D6900E9B6F2 /* BMButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMButton.swift; sourceTree = "<group>"; };
@@ -127,6 +129,8 @@
 				2DD8A8491BD25D6900E9B6F2 /* BMButton.swift */,
 				2DD8A84A1BD25D6900E9B6F2 /* BMImageView.swift */,
 				2DD8A84F1BD25D8800E9B6F2 /* TestSerializeViewController.swift */,
+				8DDA3F5E1BD28E4400323A48 /* BMTemplateViewController.swift */,
+				2D4E9BC81BD2F754000E73BA /* BMApplication.swift */,
 			);
 			name = BMComponents;
 			sourceTree = "<group>";
@@ -227,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				8DDA3F551BD2871300323A48 /* BMStoryboardDataManager.swift */,
-				8DDA3F5E1BD28E4400323A48 /* BMTemplateViewController.swift */,
 			);
 			name = BMStoryboard;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				8D9080A01BD2F584006E1111 /* UILibraryLabel.swift in Sources */,
 				8D90809C1BD2D852006E1111 /* BMEditStoryboardViewController.swift in Sources */,
 				2DD8A84E1BD25D6900E9B6F2 /* BMImageView.swift in Sources */,
+				2D4E9BC91BD2F754000E73BA /* BMApplication.swift in Sources */,
 				2DD8A8501BD25D8800E9B6F2 /* TestSerializeViewController.swift in Sources */,
 				2DD8A84B1BD25D6900E9B6F2 /* BMLabel.swift in Sources */,
 				8DDA3F5D1BD2878900323A48 /* BMViewControllerProtocol.swift in Sources */,
