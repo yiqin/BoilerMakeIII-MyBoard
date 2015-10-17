@@ -10,13 +10,12 @@ import Foundation
 
 protocol BMViewControllerProtocol {
     
-    var identifier: String { get }
+    //var identifier: String { get }
     
 }
 
-
-enum BMViewControllerType {
-    case ViewController
-    case TableViewController
-    case WebViewController
+enum BMViewControllerType: String {
+    case ViewController = "BMViewController"
+    case TableViewController = "BMTableViewController"
+    case WebViewController = "BMWebViewController"
 }

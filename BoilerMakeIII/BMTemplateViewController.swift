@@ -10,13 +10,13 @@ import UIKit
 
 class BMTemplateViewController: UIViewController {
     
+    var appID: Int = 0
+    var vcID: Int = 0
     
-    convenience init(identifier: String) {
+    convenience init(appID: Int, vcID: Int) {
         self.init(nibName: nil, bundle: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "tapButton:", name: "WhatHappen", object: nil)
 
-        if let arr = loadData(identifier) {
+        if let dict = loadData(identifier) {
             for var i = 0; i < arr.count; i++ {
                 let dict = arr.objectAtIndex(i) as! NSDictionary
                 let frame = rectFromDict(dict)
@@ -78,33 +78,31 @@ class BMTemplateViewController: UIViewController {
     
     // MARK: Data Load/Save
     
-    func loadData(identifier: String) -> NSArray? {
-        
-        //
-        // This is broken...
-        //
-        
-        // getting path to UIData.plist
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-        let documentsDirectory = paths.objectAtIndex(0) as! NSString
-        let path = documentsDirectory.stringByAppendingPathComponent("UIData.plist")
-        print(path)
-        let resultArray = NSArray(contentsOfFile: path)
-        print("Loaded UIData.plist file is --> \(resultArray)")
-        
-        var myArr = NSArray(contentsOfFile: path)
-        
-        // myArr is nil
-        
-        myArr = BMStoryboardDataManager.sharedInstance.getViewControllerData(identifier)
-        
-        
-        return myArr
-    }
+//    func loadData(identifier: String) -> NSArray? {
+//        
+//        //
+//        // This is broken...
+//        //
+//        
+//        // getting path to UIData.plist
+//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
+//        let documentsDirectory = paths.objectAtIndex(0) as! NSString
+//        let path = documentsDirectory.stringByAppendingPathComponent("UIData.plist")
+//        print(path)
+//        let resultArray = NSArray(contentsOfFile: path)
+//        print("Loaded UIData.plist file is --> \(resultArray)")
+//        
+//        var myArr = NSArray(contentsOfFile: path)
+//        
+//        // myArr is nil
+//        
+//        myArr = BMStoryboardDataManager.sharedInstance.getViewControllerData(identifier)
+//        
+//        
+//        return myArr
+//    }
     
     @IBAction func tapButton(sender:UIButton!) {
-        
-        print("receive notification....")
         
         let vc = BMTemplateViewController(identifier: "viewController2")
         

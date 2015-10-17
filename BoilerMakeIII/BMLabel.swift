@@ -1,8 +1,9 @@
 import UIKit
 
-class BMLabel: UILabel, BMComponent{
+class BMLabel: UILabel, BMComponentProtocol{
     
     var type = BMComponentType.Label
+    //var id;
     
     var dictionary: NSDictionary {
         let x: CGFloat = self.frame.origin.x / screenWidth
@@ -13,7 +14,6 @@ class BMLabel: UILabel, BMComponent{
         let dict: NSMutableDictionary = NSMutableDictionary()
         
         dict.setObject(type.rawValue, forKey: "type")
-        
         dict.setObject(x, forKey: "x")
         dict.setObject(y, forKey: "y")
         dict.setObject(width, forKey: "width")
@@ -24,6 +24,7 @@ class BMLabel: UILabel, BMComponent{
         return NSDictionary(dictionary: dict)
     }
     
+    // Reconstruct init.
     init(frame: CGRect, dict: NSDictionary) {
         super.init(frame: frame)
         

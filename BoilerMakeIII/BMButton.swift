@@ -5,7 +5,7 @@ enum BMButtonActionType {
 }
 
 
-class BMButton: UIButton, BMComponent {
+class BMButton: UIButton, BMComponentProtocol {
     
     var type = BMComponentType.Button
     
@@ -18,7 +18,6 @@ class BMButton: UIButton, BMComponent {
         let dict: NSMutableDictionary = NSMutableDictionary()
         
         dict.setObject(type.rawValue, forKey: "type")
-        
         dict.setObject(x, forKey: "x")
         dict.setObject(y, forKey: "y")
         dict.setObject(width, forKey: "width")
@@ -27,6 +26,7 @@ class BMButton: UIButton, BMComponent {
         return NSDictionary(dictionary: dict)
     }
     
+    // Reconstruct init.
     init(frame: CGRect, dict: NSDictionary) {
         super.init(frame: frame)
         

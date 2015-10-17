@@ -16,11 +16,56 @@ enum NavigationControllerType {
 
 class BMStoryboardDataManager: NSObject {
     
-    var data: Dictionary = [String: AnyObject]()
+    var data: NSMutableDictionary = NSMutableDictionary()
     
     var viewControllers = [BMViewControllerProtocol]()
     
     static let sharedInstance = BMStoryboardDataManager()
+    
+    var currentID: Int = 0
+    
+    override init() {
+        super.init()
+        self.loadData()
+        self.updateID()
+    }
+    
+    func updateID() {
+        for (appId, appDict) in self.data {
+            currentID = max(currentID, appId.integerValue)
+            let vcDict: NSDictionary = appDict.objectForKey("viewControllers") as! NSDictionary
+            for (vcID, viewControllers) in vcDict {
+                currentID = max(currentID, vcID.integerValue)
+                let compDict: NSDictionary = viewControllers.objectForKey("UIData") as! NSDictionary
+                for (compID, _) in compDict {
+                    currentID = max(currentID, compID.integerValue)
+                }
+            }
+        }
+        currentID++;
+    }
+    
+    func getNextID() -> Int{
+        return currentID++;
+    }
+    
+    func loadData() {
+        
+        // getting path to UIData.plist
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
+        let documentsDirectory = paths.objectAtIndex(0) as! NSString
+        let path = documentsDirectory.stringByAppendingPathComponent("UIData.plist")
+        print(path)
+        let resultArray = NSDictionary(contentsOfFile: path)
+        print("Loaded UIData.plist file is --> \(resultArray)")
+        
+        if let dict = NSDictionary(contentsOfFile: path) as? NSMutableDictionary {
+            self.data = dict
+            print(data)
+        } else {
+            print("Cannot load UIData.plist")
+        }
+    }
     
     func saveData() {
         //
@@ -31,35 +76,41 @@ class BMStoryboardDataManager: NSObject {
         
         // Another bug ???
         
-        var viewControllerData: Dictionary = [String: AnyObject]()
+        let viewControllerData: NSDictionary =
+            ["UIData": saveUIData(),
+                "title": "view controller 1",
+                "id": 8,
+                "type": BMViewControllerType.ViewController.rawValue,
+            ]
         
-        viewControllerData["UIData"] = saveUIData()
-        viewControllerData["title"] = "view controller 1"
-        data["viewController1"] = viewControllerData
+        let viewControllerData1: NSDictionary =
+            ["UIData": saveUIData2(),
+                "title": "view controller 2",
+                "id": 9,
+                "type": BMViewControllerType.ViewController.rawValue,
+            ]
         
-        var viewControllerData1: Dictionary = [String: AnyObject]()
-        viewControllerData1["UIData"] = saveUIData2()
-        viewControllerData1["title"] = "2"
-        data["viewController2"] = viewControllerData1
+        let appData: NSDictionary =
+            ["id": 10,
+                "viewControllers":
+                    ["8": viewControllerData,
+                        "9": viewControllerData1,
+                    ]
+            ]
         
-        // FIXME:
-        // I don't know how to add to UIData.plist
-        let arr: NSMutableArray = []
-        arr.addObject(viewControllerData)
-        arr.addObject(viewControllerData1)
+        let dict: NSDictionary = ["10": appData]
         
         //writing to UIData.plist
-        arr.writeToFile(path, atomically: false)
+        dict.writeToFile(path, atomically: false)
         let resultArray = NSArray(contentsOfFile: path)
         print("Saved UIData.plist file is --> \(resultArray)")
     }
     
-    func saveUIData() -> NSArray {
-        
-        let arr: NSMutableArray = []
+    func saveUIData() -> NSDictionary {
         
         let label1Dict: NSDictionary =
         ["type": BMComponentType.Label.rawValue,
+            "id": 0,
             "x": 0,
             "y": 0 + 64.0/screenHeight,
             "width": 100.0/screenWidth,
@@ -68,10 +119,10 @@ class BMStoryboardDataManager: NSObject {
             "fontName": "Futura-CondensedMedium",
             "fontSize": 15,
         ]
-        arr.addObject(label1Dict)
         
         let label2Dict: NSDictionary =
         ["type": BMComponentType.Label.rawValue,
+            "id": 1,
             "x": 150/screenWidth,
             "y": 0 + 64.0/screenHeight,
             "width": 100.0/screenWidth,
@@ -80,37 +131,42 @@ class BMStoryboardDataManager: NSObject {
             "fontName": "Futura-Medium",
             "fontSize": 12
         ]
-        arr.addObject(label2Dict)
         
         let button1Dict: NSDictionary =
         ["type": BMComponentType.Button.rawValue,
+            "id": 2,
             "x": 100/screenWidth,
             "y": 30.0/screenHeight + 64.0/screenHeight,
             "width": 100.0/screenWidth,
             "height": 30.0/screenHeight,
             "title": "Click me!",
         ]
-        arr.addObject(button1Dict)
         
         let image1Dict: NSDictionary =
         ["type": BMComponentType.ImageView.rawValue,
+            "id": 3,
             "x": 100/screenWidth,
             "y": 100/screenHeight + 64.0/screenHeight,
             "width": 50/screenWidth,
             "height": 50/screenHeight,
             "filename": "background.png",
         ]
-        arr.addObject(image1Dict)
         
-        return arr as NSArray
+        let dict: NSDictionary =
+            ["0": label1Dict,
+                "1": label2Dict,
+                "2": button1Dict,
+                "3": image1Dict,
+            ]
+        
+        return dict
     }
 
-    func saveUIData2() -> NSArray {
-        
-        let arr: NSMutableArray = []
+    func saveUIData2() -> NSDictionary {
         
         let label1Dict: NSDictionary =
         ["type": BMComponentType.Label.rawValue,
+            "id": 4,
             "x": 0,
             "y": 0 + 64.0/screenHeight,
             "width": 100.0/screenWidth,
@@ -119,10 +175,10 @@ class BMStoryboardDataManager: NSObject {
             "fontName": "Futura-CondensedMedium",
             "fontSize": 15,
         ]
-        arr.addObject(label1Dict)
         
         let label2Dict: NSDictionary =
         ["type": BMComponentType.Label.rawValue,
+            "id": 5,
             "x": 150/screenWidth,
             "y": 0 + 64.0/screenHeight,
             "width": 100.0/screenWidth,
@@ -131,37 +187,43 @@ class BMStoryboardDataManager: NSObject {
             "fontName": "Futura-Medium",
             "fontSize": 12
         ]
-        arr.addObject(label2Dict)
         
         let button1Dict: NSDictionary =
         ["type": BMComponentType.Button.rawValue,
+            "id": 6,
             "x": 100/screenWidth,
             "y": 30.0/screenHeight + 64.0/screenHeight,
             "width": 100.0/screenWidth,
             "height": 30.0/screenHeight,
             "title": "Click me!",
         ]
-        arr.addObject(button1Dict)
         
         let image1Dict: NSDictionary =
         ["type": BMComponentType.ImageView.rawValue,
+            "id": 7,
             "x": 100/screenWidth,
             "y": 100/screenHeight + 64.0/screenHeight,
             "width": 50/screenWidth,
             "height": 50/screenHeight,
             "filename": "background.png",
         ]
-        arr.addObject(image1Dict)
         
-        return arr as NSArray
+        let dict: NSDictionary =
+        ["4": label1Dict,
+            "5": label2Dict,
+            "6": button1Dict,
+            "7": image1Dict,
+        ]
+        
+        return dict
     }
     
     
-    func getViewControllerData(identifier: String) -> NSArray {
-        var viewControllerData: [String: AnyObject] = data[identifier] as! [String: AnyObject]
-        return viewControllerData["UIData"] as! NSArray
+    func getComponentsData(appID: Int, vcID: Int) -> NSDictionary {
+        let appDict: NSDictionary = data.objectForKey(appID) as! NSDictionary
+        let vcDict: NSDictionary = (appDict.objectForKey("viewControllers") as! NSDictionary).objectForKey(vcID) as! NSDictionary
+        return vcDict.objectForKey("UIData") as! NSDictionary
     }
-
     
     func testData() -> UIViewController {
         

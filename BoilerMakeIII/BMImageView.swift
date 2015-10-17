@@ -1,6 +1,6 @@
 import UIKit
 
-class BMImageView: UIImageView, BMComponent {
+class BMImageView: UIImageView, BMComponentProtocol {
 
     var filename: String
     
@@ -15,7 +15,6 @@ class BMImageView: UIImageView, BMComponent {
         let dict: NSMutableDictionary = NSMutableDictionary()
         
         dict.setObject(type.rawValue, forKey: "type")
-        
         dict.setObject(x, forKey: "x")
         dict.setObject(y, forKey: "y")
         dict.setObject(width, forKey: "width")
@@ -24,6 +23,7 @@ class BMImageView: UIImageView, BMComponent {
         return NSDictionary(dictionary: dict)
     }
     
+    // Reconstruct init.
     init(frame: CGRect, dict: NSDictionary) {
         self.filename = dict["filename"] as! String
         super.init(frame: frame)
