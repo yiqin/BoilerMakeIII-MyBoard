@@ -120,7 +120,7 @@ class BMEditStoryboardViewController: UIViewController {
         
         // MARK: - update TemplateViewController...
         
-        let firstVC = BMTemplateViewController(appID: 10, vcID: 8)
+        let firstVC = BMTemplateViewController(appID: 10, vcID: 8, state:.Edit)
         firstVC.view.frame = CGRectMake(x, CGRectGetMinY(viewControllersScrollView.frame), width, height)
         
         addChildViewController(firstVC)

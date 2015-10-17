@@ -10,6 +10,11 @@ import UIKit
 
 class BMTemplateViewController: UIViewController, BMComponentProtocol {
     
+    enum State {
+        case Play
+        case Edit
+    }
+    
     var type = BMComponentType.ViewController
     var dictionary: NSDictionary {
         let dict: NSMutableDictionary = NSMutableDictionary()
@@ -23,7 +28,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     var id: Int
     
     // Reconstructor.
-    init(appID: Int, vcID: Int) {
+    init(appID: Int, vcID: Int, state: State = .Play) {
         self.id = vcID
         super.init(nibName: nil, bundle: nil)
 
@@ -35,18 +40,37 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                 switch compDict["type"] as! NSString {
                 case BMComponentType.Label.rawValue:
                     let label = BMLabel(frame: frame, dict: compDict)
+                    
+                    if state == .Play {
+                        
+                    } else {
+                        
+                    }
+                    
                     self.view.addSubview(label)
                     print(label.dictionary)
                     break
                 case BMComponentType.Button.rawValue:
                     let button = BMButton(frame: frame, dict: compDict)
-                    button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
+                    if state == .Play {
+                        button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
+                    } else {
+                        
+                    }
+                    
                     self.view.addSubview(button)
                     print(button.dictionary)
                     break;
                 case BMComponentType.ImageView.rawValue:
                     let imageView = BMImageView(frame: frame, dict: compDict)
                     self.view.addSubview(imageView)
+                    
+                    if state == .Play {
+                        
+                    } else {
+                        
+                    }
+                    
                     break;
                 default:
                     break

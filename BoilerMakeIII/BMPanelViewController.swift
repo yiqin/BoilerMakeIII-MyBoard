@@ -8,12 +8,7 @@
 import UIKit
 
 class BMPanelViewController: UIViewController {
-    
-    enum State {
-        case Play
-        case Edit
-    }
-    
+
     // Play or Edit
     // let state: State!
     
