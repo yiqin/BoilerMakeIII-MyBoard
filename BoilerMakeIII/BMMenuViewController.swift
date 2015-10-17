@@ -97,7 +97,7 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
             
             alertCotroller.dismissViewControllerAnimated(true, completion: { () -> Void in
                 
-                let vc = BMPanelViewController()
+                let vc = BMEditStoryboardViewController()
 //                UIApplication.sharedApplication().delegate?.window!?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
 
                 self.presentViewController(vc, animated: true, completion: nil)
