@@ -35,24 +35,18 @@ class BMStoryboardDataManager: NSObject {
         
         viewControllerData["UIData"] = saveUIData()
         viewControllerData["title"] = "view controller 1"
-        
         data["viewController1"] = viewControllerData
-        
         
         var viewControllerData1: Dictionary = [String: AnyObject]()
         viewControllerData1["UIData"] = saveUIData2()
         viewControllerData1["title"] = "2"
-        
         data["viewController2"] = viewControllerData1
-        
         
         // FIXME:
         // I don't know how to add to UIData.plist
         let arr: NSMutableArray = []
-        
-        
-        saveUIData()
-        
+        arr.addObject(viewControllerData)
+        arr.addObject(viewControllerData1)
         
         //writing to UIData.plist
         arr.writeToFile(path, atomically: false)
