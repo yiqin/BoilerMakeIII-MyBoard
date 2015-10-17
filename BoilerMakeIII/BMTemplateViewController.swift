@@ -10,11 +10,6 @@ import UIKit
 
 class BMTemplateViewController: UIViewController {
     
-    let leftMargin: CGFloat = 0.04
-    let rightMargin: CGFloat = 0.04
-    let topMargin: CGFloat = 0.044
-    let bottomMargin: CGFloat = 0.022
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -93,8 +88,8 @@ class BMTemplateViewController: UIViewController {
         
         let label1Dict: NSDictionary =
         ["type": "BMLabel",
-            "x": leftMargin,
-            "y": topMargin,
+            "x": 0,
+            "y": 0,
             "width": 0.2,
             "height": 0.2,
             "text": "Label1",
@@ -105,8 +100,8 @@ class BMTemplateViewController: UIViewController {
         
         let label2Dict: NSDictionary =
         ["type": "BMLabel",
-            "x": 1 - rightMargin - 0.2,
-            "y": topMargin,
+            "x": 1 - 0.2,
+            "y": 0,
             "width": 0.2,
             "height": 0.2,
             "text": "Label2",
@@ -117,8 +112,8 @@ class BMTemplateViewController: UIViewController {
         
         let button1Dict: NSDictionary =
         ["type": "BMButton",
-            "x": 0.5 - 0.1 - leftMargin ,
-            "y": 1 - bottomMargin - 0.1,
+            "x": 0.5 - 0.1 ,
+            "y": 1 - 0.1,
             "width": 0.2,
             "height": 0.1,
             "title": "Click me!",
@@ -127,9 +122,9 @@ class BMTemplateViewController: UIViewController {
         
         let image1Dict: NSDictionary =
         ["type": "BMImageView",
-            "x": leftMargin ,
-            "y": 0.2 + topMargin,
-            "width": 1 - leftMargin - rightMargin,
+            "x": 0 ,
+            "y": 0.2,
+            "width": 1,
             "height": 0.3,
             "filename": "background.png",
         ]
