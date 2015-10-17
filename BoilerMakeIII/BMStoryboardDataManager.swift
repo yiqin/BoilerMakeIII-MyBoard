@@ -68,13 +68,10 @@ class BMStoryboardDataManager: NSObject {
     }
     
     func saveData() {
-        //
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
         let documentsDirectory = paths.objectAtIndex(0) as! NSString
         let path = documentsDirectory.stringByAppendingPathComponent("UIData.plist")
         print(path)
-        
-        // Another bug ???
         
         let viewControllerData: NSDictionary =
             ["UIData": saveUIData(),
@@ -219,17 +216,17 @@ class BMStoryboardDataManager: NSObject {
     }
     
     
-    func getComponentsData(appID: Int, vcID: Int) -> NSDictionary {
-        let appDict: NSDictionary = data.objectForKey(appID) as! NSDictionary
-        let vcDict: NSDictionary = (appDict.objectForKey("viewControllers") as! NSDictionary).objectForKey(vcID) as! NSDictionary
-        return vcDict.objectForKey("UIData") as! NSDictionary
+    func getComponentsData(appID: Int, vcID: Int) -> NSDictionary? {
+        let appDict: NSDictionary = data.objectForKey(String(appID)) as! NSDictionary
+        let vcDict: NSDictionary = (appDict.objectForKey("viewControllers") as! NSDictionary).objectForKey(String(vcID)) as! NSDictionary
+        return vcDict.objectForKey("UIData") as? NSDictionary
     }
     
     func testData() -> UIViewController {
         
         let navigationController = UINavigationController(nibName: nil, bundle: nil)
         
-        let firstVC = BMTemplateViewController(identifier: "viewController1")
+        let firstVC = BMTemplateViewController(appID: 10, vcID: 8)
         firstVC.title = "Hello world"
         
         

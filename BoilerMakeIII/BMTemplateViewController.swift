@@ -10,29 +10,28 @@ import UIKit
 
 class BMTemplateViewController: UIViewController {
     
-    
-    convenience init(identifier: String) {
+    convenience init(appID: Int, vcID: Int) {
         self.init(nibName: nil, bundle: nil)
 
-        if let arr = loadData(identifier) {
-            for var i = 0; i < arr.count; i++ {
-                let dict = arr.objectAtIndex(i) as! NSDictionary
-                let frame = rectFromDict(dict)
+        if let dict = BMStoryboardDataManager.sharedInstance.getComponentsData(appID, vcID: vcID) {
+            for (_, comp) in dict {
+                let compDict: NSDictionary = comp as! NSDictionary
+                let frame = rectFromDict(compDict)
                 
-                switch dict["type"] as! NSString {
+                switch compDict["type"] as! NSString {
                 case BMComponentType.Label.rawValue:
-                    let label = BMLabel(frame: frame, dict: dict)
+                    let label = BMLabel(frame: frame, dict: compDict)
                     self.view.addSubview(label)
                     print(label.dictionary)
                     break
                 case BMComponentType.Button.rawValue:
-                    let button = BMButton(frame: frame, dict: dict)
+                    let button = BMButton(frame: frame, dict: compDict)
                     button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
                     self.view.addSubview(button)
                     print(button.dictionary)
                     break;
                 case BMComponentType.ImageView.rawValue:
-                    let imageView = BMImageView(frame: frame, dict: dict)
+                    let imageView = BMImageView(frame: frame, dict: compDict)
                     self.view.addSubview(imageView)
                     break;
                 default:
@@ -74,35 +73,9 @@ class BMTemplateViewController: UIViewController {
         return CGRect(x: x, y: y, width: width, height: height)
     }
     
-    // MARK: Data Load/Save
-    
-    func loadData(identifier: String) -> NSArray? {
-        
-        //
-        // This is broken...
-        //
-        
-        // getting path to UIData.plist
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-        let documentsDirectory = paths.objectAtIndex(0) as! NSString
-        let path = documentsDirectory.stringByAppendingPathComponent("UIData.plist")
-        print(path)
-        let resultArray = NSArray(contentsOfFile: path)
-        print("Loaded UIData.plist file is --> \(resultArray)")
-        
-        var myArr = NSArray(contentsOfFile: path)
-        
-        // myArr is nil
-        
-        //myArr = BMStoryboardDataManager.sharedInstance.getViewControllerData(identifier)
-        
-        
-        return myArr
-    }
-    
     @IBAction func tapButton(sender:UIButton!) {
         
-        let vc = BMTemplateViewController(identifier: "viewController2")
+        let vc = BMTemplateViewController(appID: 10, vcID: 9)
         
         navigationController?.pushViewController(vc, animated: true)
     }
