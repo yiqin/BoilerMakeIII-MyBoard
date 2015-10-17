@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "66371AEC60710F79763FBD05"
-               BuildableName = "libpop.a"
-               BlueprintName = "pop"
+               BlueprintIdentifier = "5E5DEC25D8819250E9556139"
+               BuildableName = "libJT3DScrollView.a"
+               BlueprintName = "JT3DScrollView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

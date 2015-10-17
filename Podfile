@@ -5,6 +5,7 @@ target 'BoilerMakeIII' do
     
 pod 'pop', '~> 1.0'
 pod 'SVProgressHUD'
+pod 'JT3DScrollView', '~> 1.0'
 
 end
 

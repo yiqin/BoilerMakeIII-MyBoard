@@ -97,10 +97,10 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
             
             alertCotroller.dismissViewControllerAnimated(true, completion: { () -> Void in
                 
+                // FIXEDME: Push or pop?
+                
                 let vc = BMEditStoryboardViewController()
-//                UIApplication.sharedApplication().delegate?.window!?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
-
-                self.presentViewController(vc, animated: true, completion: nil)
+                self.navigationController?.pushViewController(vc, animated: true)
                 
             })
         
