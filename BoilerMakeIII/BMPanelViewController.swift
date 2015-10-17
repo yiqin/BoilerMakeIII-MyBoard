@@ -42,6 +42,7 @@ class BMPanelViewController: UIViewController {
         
         let firstOne = BMStoryboardDataManager.sharedInstance.testData()
         firstOne.view.frame = CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))
+        self.addChildViewController(firstOne)
         view.addSubview(firstOne.view)
     }
     

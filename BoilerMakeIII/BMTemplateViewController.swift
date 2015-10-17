@@ -14,6 +14,8 @@ class BMTemplateViewController: UIViewController {
     convenience init(identifier: String) {
         self.init(nibName: nil, bundle: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "tapButton:", name: "WhatHappen", object: nil)
+
         if let arr = loadData(identifier) {
             for var i = 0; i < arr.count; i++ {
                 let dict = arr.objectAtIndex(i) as! NSDictionary
@@ -27,6 +29,7 @@ class BMTemplateViewController: UIViewController {
                     break
                 case BMComponentType.Button.rawValue:
                     let button = BMButton(frame: frame, dict: dict)
+                    button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
                     self.view.addSubview(button)
                     print(button.dictionary)
                     break;
@@ -42,20 +45,7 @@ class BMTemplateViewController: UIViewController {
         } else {
             print("WARNING: Couldn't create dictionary from UIData.plist! Default values will be used!")
         }
-        
-        
     }
-    
-    func tapButton(notification: NSNotification) {
-        
-        print("receive notification....")
-        
-        
-        let vc = BMTemplateViewController(identifier: "viewController2")
-        
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -69,10 +59,6 @@ class BMTemplateViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.whiteColor()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "tapButton:", name: "WhatHappen", object: nil)
-        
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -116,6 +102,12 @@ class BMTemplateViewController: UIViewController {
         return myArr
     }
     
-    
-
+    @IBAction func tapButton(sender:UIButton!) {
+        
+        print("receive notification....")
+        
+        let vc = BMTemplateViewController(identifier: "viewController2")
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

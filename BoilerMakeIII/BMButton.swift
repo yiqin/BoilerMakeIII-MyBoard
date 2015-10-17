@@ -34,17 +34,9 @@ class BMButton: UIButton, BMComponent {
         self.setTitleColor(iosBlue, forState: .Normal)
         self.setTitleColor(iosSelectedBlue, forState: .Selected)
         self.setTitleColor(iosSelectedBlue, forState: .Highlighted)
-        
-        addTarget(self, action: "tapButton", forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func tapButton() {
-        print("You tapped a button.")
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("WhatHappen", object: self, userInfo: nil)
     }
 }
