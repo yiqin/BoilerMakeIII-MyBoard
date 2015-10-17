@@ -10,5 +10,5 @@ import Foundation
 
 struct UILibraryComponent {
     var title: String
-    
+    var type: BMComponentType
 }

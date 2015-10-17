@@ -29,12 +29,11 @@ class BMEditStoryboardViewController: UIViewController {
     }
     
     func createUILibrary() {
-        let label = UILibraryComponent(title:"Label")
-        let button = UILibraryComponent(title:"Button")
-        let imageView = UILibraryComponent(title:"Image View")
-        let label1 = UILibraryComponent(title: "Label1")
+        let label = UILibraryComponent(title:"Label", type: .Label)
+        let button = UILibraryComponent(title:"Button", type: .Button)
+        let imageView = UILibraryComponent(title:"Image View", type: .ImageView)
         
-        availableComponents = [label, label1, button, imageView, label1]
+        availableComponents = [label, button, imageView]
     }
     
     
@@ -135,7 +134,7 @@ class BMEditStoryboardViewController: UIViewController {
     
     func setupLibraryView() {
         
-        libraryView.frame = CGRectMake(0, CGRectGetHeight(view.frame)-64, CGRectGetWidth(view.frame), 64)
+        libraryView.frame = CGRectMake(0, CGRectGetHeight(view.frame)-64, screenWidth, 64)
         libraryView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleTopMargin]
         libraryView.backgroundColor = UIColor.redColor()
         
@@ -143,7 +142,7 @@ class BMEditStoryboardViewController: UIViewController {
 
         // Left previous button
         
-        let image1 = UIImage(named: "name") as UIImage?
+        let image1 = UIImage(named: "back") as UIImage?
         let previousButton   = UIButton(type: .System)
         previousButton.frame = CGRectMake(0, 0, 64, 64)
         previousButton.setImage(image1, forState: .Normal)
@@ -152,20 +151,39 @@ class BMEditStoryboardViewController: UIViewController {
         
         // Right next button
         
-        let image2 = UIImage(named: "name") as UIImage?
+        let image2 = UIImage(named: "forward") as UIImage?
         let nextButton   = UIButton(type: .System)
         nextButton.frame = CGRectMake(screenWidth-64, 0, 64, 64)
         nextButton.setImage(image2, forState: .Normal)
         nextButton.addTarget(self, action: "tappedNextButton:", forControlEvents:.TouchUpInside)
         libraryView.addSubview(nextButton)
+        
+        // Add currentLabel
+        
+        currentLabel.text = availableComponents[currentIndex].title
+        currentLabel.textAlignment = NSTextAlignment.Center
+        currentLabel.frame = CGRectMake(64, 0, screenWidth-64*2, 64)
+        
+        libraryView.addSubview(currentLabel)
+        
     }
     
     func tappedPreviousButton(sender:UIButton!) {
         print("previous button")
+        currentIndex--
+        if currentIndex < 0 {
+            currentIndex = 0
+        }
+        currentLabel.text = availableComponents[currentIndex].title
     }
     
     func tappedNextButton(sender:UIButton!) {
         print("next button")
+        currentIndex++
+        if currentIndex > availableComponents.count-1 {
+            currentIndex = availableComponents.count-1
+        }
+        currentLabel.text = availableComponents[currentIndex].title
     }
     
 }
