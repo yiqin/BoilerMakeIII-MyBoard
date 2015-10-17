@@ -98,8 +98,9 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
             alertCotroller.dismissViewControllerAnimated(true, completion: { () -> Void in
                 
                 let vc = BMPanelViewController()
-                UIApplication.sharedApplication().delegate?.window!?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
-                
+//                UIApplication.sharedApplication().delegate?.window!?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+
+                self.presentViewController(vc, animated: true, completion: nil)
                 
             })
         
@@ -111,7 +112,8 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
             alertCotroller.dismissViewControllerAnimated(true, completion: { () -> Void in
                
                 let vc = BMPanelViewController()
-                UIApplication.sharedApplication().delegate?.window!?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+                self.presentViewController(vc, animated: true, completion: nil)
+
                 
                 
             })
