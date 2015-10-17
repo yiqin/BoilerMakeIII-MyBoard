@@ -220,9 +220,12 @@ class BMStoryboardDataManager: NSObject {
     
     
     func getComponentsData(appID: Int, vcID: Int) -> NSDictionary? {
-        let appDict: NSDictionary = data.objectForKey(String(appID)) as! NSDictionary
-        let vcDict: NSDictionary = (appDict.objectForKey("viewControllers") as! NSDictionary).objectForKey(String(vcID)) as! NSDictionary
-        return vcDict.objectForKey("UIData") as? NSDictionary
+        if let appDict: NSDictionary = data.objectForKey(String(appID)) as? NSDictionary {
+            if let vcDict: NSDictionary = (appDict.objectForKey("viewControllers") as! NSDictionary).objectForKey(String(vcID)) as? NSDictionary {
+                return vcDict.objectForKey("UIData") as? NSDictionary
+            }
+        }
+        return nil
     }
     
     func testData() -> UIViewController {

@@ -22,6 +22,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     
     var id: Int
     
+    // Reconstructor.
     init(appID: Int, vcID: Int) {
         self.id = vcID
         super.init(nibName: nil, bundle: nil)
@@ -59,6 +60,11 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         }
     }
 
+    // New ViewController
+    convenience init(appID: Int) {
+        self.init(appID: appID, vcID: BMStoryboardDataManager.sharedInstance.getNextID())
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
