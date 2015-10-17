@@ -56,20 +56,31 @@ class BMEditStoryboardViewController: UIViewController {
             tempView.clipsToBounds = true
             tempView.layer.cornerRadius = 2.0
             
-            let tempTitleLabel = UILabel(frame: CGRectMake(xPosition, 0, CGRectGetWidth(tempView.frame), imageHeight))
+            let tempTitleLabel = UILabel(frame: CGRectMake(0, 0, CGRectGetWidth(tempView.frame), imageHeight))
             tempTitleLabel.text = component.title
             
             
             
             scrollView.addSubview(tempView)
             
-            scrollView.addSubview(tempTitleLabel)
+            tempView.addSubview(tempTitleLabel)
+            
+            
+            // Add a empty Button....
+            let tempButton = BMAddLibraryButton(frame: CGRectMake(0, 0, CGRectGetWidth(tempView.frame), imageHeight))
+            tempView.addSubview(tempButton)
+            
+            tempButton.addTarget(self, action: "pressedEmptyButton:", forControlEvents: UIControlEvents.TouchDown)
+            
+            tempButton.addTarget(self, action: "dragOutsideEmptyButton:", forControlEvents: UIControlEvents.TouchDragExit)
             
             xPosition = xPosition+xPadding*0.5+CGRectGetWidth(scrollView.frame)
         }
         scrollView.setContentOffset(CGPointMake(0, 0), animated: false)
         
     }
+    
+    
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -139,6 +150,17 @@ class BMEditStoryboardViewController: UIViewController {
         
         // FIXEDME: - test create the card.
         createCard()
+    }
+    
+    func pressedEmptyButton(sender:UIButton!) {
+        sender.backgroundColor = UIColor.blueColor()
+        print("press")
+    }
+    
+    
+    func dragOutsideEmptyButton(sender:UIButton!) {
+        sender.backgroundColor = UIColor.yellowColor()
+        print("drag outside")
     }
     
     // MARK: setup viewControllers
