@@ -31,7 +31,9 @@ class BMButton: UIButton, BMComponent {
         super.init(frame: frame)
         
         self.setTitle(dict["title"] as? String, forState: UIControlState.Normal)
-        self.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        self.setTitleColor(iosBlue, forState: .Normal)
+        self.setTitleColor(iosSelectedBlue, forState: .Selected)
+        self.setTitleColor(iosSelectedBlue, forState: .Highlighted)
         
         addTarget(self, action: "tapButton", forControlEvents: UIControlEvents.TouchUpInside)
     }
@@ -41,10 +43,6 @@ class BMButton: UIButton, BMComponent {
     }
     
     func tapButton() {
-        
         print("You tapped a button.")
-        
-        
-        
     }
 }

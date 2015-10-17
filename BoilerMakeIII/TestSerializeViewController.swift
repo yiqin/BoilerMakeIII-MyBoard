@@ -1,11 +1,12 @@
 import UIKit
 
-class TestSerializeViewController: UIViewController {
+class TestSerializeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let leftMargin: CGFloat = 0.04
     let rightMargin: CGFloat = 0.04
     let topMargin: CGFloat = 0.044
     let bottomMargin: CGFloat = 0.022
+    var currentImageView: UIImageView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,14 @@ class TestSerializeViewController: UIViewController {
                     break;
                 case "BMImageView":
                     let imageView = BMImageView(frame: frame, dict: dict)
+                    
+                    // Bind gesture recognizer.
+                    imageView.userInteractionEnabled = true
+                    let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "showGallery:")
+                    tapRecognizer.numberOfTapsRequired = 1
+                    imageView.addGestureRecognizer(tapRecognizer)
+                    self.view.addSubview(imageView)
+                    
                     self.view.addSubview(imageView)
                     break;
                 default:
@@ -60,6 +69,41 @@ class TestSerializeViewController: UIViewController {
         let width: CGFloat = dict["width"] as! CGFloat * bound.width
         let height: CGFloat = dict["height"] as! CGFloat * bound.height
         return CGRect(x: x, y: y, width: width, height: height)
+    }
+    
+    // MARK: Image Picker
+    func showGallery(sender: UIGestureRecognizer) {
+        currentImageView = sender.view as? UIImageView
+        
+        let picker: UIImagePickerController = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = .PhotoLibrary
+        
+        self.presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let chosenImage: UIImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            let pngData: NSData = UIImagePNGRepresentation(chosenImage)!
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd-HH-mm-ss"
+            let imageFilename = "\(dateFormatter.stringFromDate(NSDate())).png"
+            
+            // Update filename and image.
+            let imageView: BMImageView = currentImageView as! BMImageView
+            imageView.image = UIImage(data: pngData)
+            imageView.filename = imageFilename
+            
+            // Write image data to file.
+            let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
+            let documentsDirectory = paths.objectAtIndex(0) as! NSString
+            let path = documentsDirectory.stringByAppendingPathComponent(imageFilename)
+            print("Svae image: \(path)")
+            pngData.writeToFile(path, atomically: false)
+        }
+        
+        picker .dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: Data Load/Save
