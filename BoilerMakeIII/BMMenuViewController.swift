@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     
@@ -39,6 +40,11 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
         cell.cellTextLabel.text = collectionData[indexPath.row]
         cell.cellImage.image = UIImage(named: "\(collectionData[indexPath.row]).png")
         
+        cell.contentView.layer.cornerRadius = 12.0
+        cell.contentView.layer.borderWidth = 1.0
+        cell.contentView.layer.borderColor = UIColor.clearColor().CGColor
+        cell.contentView.layer.masksToBounds = true
+        
         return cell;
     }
     
@@ -56,9 +62,24 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 50.0, left: 10.0, bottom: 50.0, right: 10.0)
+        return UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+            let scaleDownAnimation = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+            scaleDownAnimation.fromValue = NSValue(CGSize: CGSizeMake(0.95, 0.95))
+            scaleDownAnimation.springBounciness = 18;
+            scaleDownAnimation.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
+            let selectedCell = collectionView.cellForItemAtIndexPath(indexPath) as! BMMenuCollectionViewCell
+            self.view.userInteractionEnabled = false
+            selectedCell.cellImage.layer.pop_addAnimation(scaleDownAnimation, forKey: "scaleAnimation")
+        
+            scaleDownAnimation.completionBlock = {(animation, finished) in
+
+                self.view.userInteractionEnabled = true
+            }
+        
+    }
 
     /*
     // MARK: - Navigation
