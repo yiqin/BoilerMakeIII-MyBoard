@@ -17,6 +17,9 @@
 		DD005DD51BD21B7600CEE3D8 /* BMMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD005DD41BD21B7600CEE3D8 /* BMMenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DD005DD71BD224F200CEE3D8 /* BMMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD005DD61BD224F200CEE3D8 /* BMMenuCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		DD005DD91BD2369500CEE3D8 /* iOSDevice.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD005DD81BD2369500CEE3D8 /* iOSDevice.plist */; settings = {ASSET_TAGS = (); }; };
+		DD005DDF1BD258A200CEE3D8 /* DOAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD005DDE1BD258A200CEE3D8 /* DOAlertController.swift */; settings = {ASSET_TAGS = (); }; };
+		DD005DE51BD25C1500CEE3D8 /* BMPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD005DE31BD25C1500CEE3D8 /* BMPanelViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DD005DE81BD25C3000CEE3D8 /* Panel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD005DE71BD25C3000CEE3D8 /* Panel.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		DD005DD61BD224F200CEE3D8 /* BMMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD005DD81BD2369500CEE3D8 /* iOSDevice.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = iOSDevice.plist; sourceTree = "<group>"; };
 		DD005DDA1BD2443F00CEE3D8 /* BoilerMakeIII-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BoilerMakeIII-Bridging-Header.h"; sourceTree = "<group>"; };
+		DD005DDE1BD258A200CEE3D8 /* DOAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOAlertController.swift; sourceTree = "<group>"; };
+		DD005DE31BD25C1500CEE3D8 /* BMPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPanelViewController.swift; sourceTree = "<group>"; };
+		DD005DE71BD25C3000CEE3D8 /* Panel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Panel.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,7 @@
 		8DDA3F261BD211AD00323A48 /* BoilerMakeIII */ = {
 			isa = PBXGroup;
 			children = (
+				DD005DDE1BD258A200CEE3D8 /* DOAlertController.swift */,
 				8DDA3F271BD211AD00323A48 /* AppDelegate.swift */,
 				8DDA3F2B1BD211AD00323A48 /* Main.storyboard */,
 				DD005DD41BD21B7600CEE3D8 /* BMMenuViewController.swift */,
@@ -135,6 +142,8 @@
 				8DDA3F301BD211AD00323A48 /* LaunchScreen.storyboard */,
 				8DDA3F331BD211AD00323A48 /* Info.plist */,
 				DD005DDA1BD2443F00CEE3D8 /* BoilerMakeIII-Bridging-Header.h */,
+				DD005DE31BD25C1500CEE3D8 /* BMPanelViewController.swift */,
+				DD005DE71BD25C3000CEE3D8 /* Panel.storyboard */,
 			);
 			path = BoilerMakeIII;
 			sourceTree = "<group>";
@@ -264,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD005DD91BD2369500CEE3D8 /* iOSDevice.plist in Resources */,
+				DD005DE81BD25C3000CEE3D8 /* Panel.storyboard in Resources */,
 				8DDA3F321BD211AD00323A48 /* LaunchScreen.storyboard in Resources */,
 				8DDA3F2F1BD211AD00323A48 /* Assets.xcassets in Resources */,
 				8DDA3F2D1BD211AD00323A48 /* Main.storyboard in Resources */,
@@ -325,6 +335,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD005DD51BD21B7600CEE3D8 /* BMMenuViewController.swift in Sources */,
+				DD005DDF1BD258A200CEE3D8 /* DOAlertController.swift in Sources */,
+				DD005DE51BD25C1500CEE3D8 /* BMPanelViewController.swift in Sources */,
 				DD005DD71BD224F200CEE3D8 /* BMMenuCollectionViewCell.swift in Sources */,
 				8DDA3F281BD211AD00323A48 /* AppDelegate.swift in Sources */,
 			);

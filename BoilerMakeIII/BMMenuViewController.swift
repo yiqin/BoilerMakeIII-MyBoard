@@ -79,8 +79,58 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
             scaleDownAnimation.completionBlock = {(animation, finished) in
 
                 self.view.userInteractionEnabled = true
+                
+                self.showOkayCancelAlert(indexPath)
             }
         
+    }
+    
+    func showOkayCancelAlert(_: NSIndexPath) {
+        let title = "Select the action"
+        let editButtonTitle = "Edit"
+        let playButtonTitle = "Play"
+        let cancelButtonTitle = "Cancel"
+        
+        let alertCotroller = DOAlertController(title: title, message: nil, preferredStyle: .Alert)
+        
+        let editAction = DOAlertAction(title: editButtonTitle, style: .Default) { action in
+            
+            alertCotroller.dismissViewControllerAnimated(true, completion: { () -> Void in
+                
+                let storyboard = UIStoryboard(name: "Panel", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("panelViewController")
+                UIApplication.sharedApplication().delegate?.window!?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+                
+                
+            })
+        
+            
+        }
+        
+        let playAction = DOAlertAction(title: playButtonTitle, style: .Default) { action in
+            
+            alertCotroller.dismissViewControllerAnimated(true, completion: { () -> Void in
+               
+                let storyboard = UIStoryboard(name: "Panel", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("panelViewController")
+                UIApplication.sharedApplication().delegate?.window!?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+                
+                
+            })
+            
+            
+        }
+        
+        let cancelAction = DOAlertAction(title: cancelButtonTitle, style: .Cancel) { action in
+            alertCotroller.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        // Add the actions.
+        alertCotroller.addAction(editAction)
+        alertCotroller.addAction(playAction)
+        alertCotroller.addAction(cancelAction)
+        
+        presentViewController(alertCotroller, animated: true, completion: nil)
     }
 
     /*
