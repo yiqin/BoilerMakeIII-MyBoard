@@ -4,6 +4,7 @@
 target 'BoilerMakeIII' do
     
 pod 'pop', '~> 1.0'
+pod 'SVProgressHUD'
 
 end
 
