@@ -12,8 +12,36 @@ class BMEditStoryboardViewController: UIViewController {
     
     let viewControllersScrollView: JT3DScrollView = JT3DScrollView()
     
+    
+    var scrollView:UIScrollView = UIScrollView()
+    var scrollViewContainer:ScrollViewContainer = ScrollViewContainer()
+    
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        
+        let tempWidth = screenWidth/3
+        let xPadding1 = xPadding*0.5
+        let xPadding2 = xPadding
+        let yPadding1 = yPadding
+        
+        let imageWidth = (tempWidth-3*xPadding1)
+        let imageHeight = imageWidth*0.58
+        
+        scrollView.frame = CGRectMake(xPadding1*1, yPadding1, tempWidth-xPadding1*2, imageHeight+2*yPadding1)
+        scrollView.clipsToBounds = false
+        scrollView.pagingEnabled = true
+        scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, +15, 0)
+        
+        scrollViewContainer.frame = CGRectMake(0, 0, screenWidth,  imageHeight+2*yPadding1)
+        scrollViewContainer.scrollView = scrollView
+        scrollViewContainer.addSubview(scrollView)
+        view.addSubview(scrollViewContainer)
+    }
+    
+    func createUILibrary() {
+        
         
         
     }
