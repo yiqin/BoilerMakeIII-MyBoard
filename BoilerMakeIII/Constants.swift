@@ -25,6 +25,12 @@ let navigationHeight : CGFloat = 44.0
 let statubarHeight : CGFloat = 20.0
 let navigationHeaderAndStatusbarHeight : CGFloat = navigationHeight + statubarHeight
 
+// In Edit mode, the card view size
+let cardViewWidth = screenWidth - 54.0*2.0
+let cardViewHeight = cardViewWidth/screenshotRatio
+
+let scaleDownRatio = cardViewWidth/screenWidth
+
 
 let xPadding:CGFloat = 10.0
 let yPadding:CGFloat = 10.0

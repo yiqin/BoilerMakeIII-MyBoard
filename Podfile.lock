@@ -1,12 +1,15 @@
 PODS:
+  - JT3DScrollView (1.0.2)
   - pop (1.0.8)
   - SVProgressHUD (1.1.3)
 
 DEPENDENCIES:
+  - JT3DScrollView (~> 1.0)
   - pop (~> 1.0)
   - SVProgressHUD
 
 SPEC CHECKSUMS:
+  JT3DScrollView: 863773b53a2fd9b6599835ea4202843ad60535fd
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
 
