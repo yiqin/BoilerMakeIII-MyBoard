@@ -18,6 +18,11 @@ class BMEditStoryboardViewController: UIViewController {
     
     var currentIndex = 0
     
+    var previousLabel = UILabel()
+    var currentLabel = UILabel()
+    var nextLabel = UILabel()
+    
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
