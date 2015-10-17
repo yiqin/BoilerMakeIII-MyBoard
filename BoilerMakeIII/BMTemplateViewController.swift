@@ -42,8 +42,19 @@ class BMTemplateViewController: UIViewController {
         } else {
             print("WARNING: Couldn't create dictionary from UIData.plist! Default values will be used!")
         }
+        
+        
     }
     
+    func tapButton(notification: NSNotification) {
+        
+        print("receive notification....")
+        
+        
+        let vc = BMTemplateViewController(identifier: "viewController2")
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -59,8 +70,8 @@ class BMTemplateViewController: UIViewController {
         
         view.backgroundColor = UIColor.whiteColor()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "tapButton:", name: "WhatHappen", object: nil)
         
-        // Do any additional setup after loading the view, typically from a nib.
 
     }
     

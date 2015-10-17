@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BoilerMakeIII/BMTemplateViewController.swift"
-            timestampString = "466791578.843039"
+            timestampString = "466793314.719181"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "init(identifier:)"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "tapButton(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

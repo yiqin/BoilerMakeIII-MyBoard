@@ -44,5 +44,7 @@ class BMButton: UIButton, BMComponent {
     
     func tapButton() {
         print("You tapped a button.")
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("WhatHappen", object: self, userInfo: nil)
     }
 }
