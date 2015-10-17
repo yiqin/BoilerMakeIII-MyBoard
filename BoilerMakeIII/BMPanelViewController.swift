@@ -66,16 +66,52 @@ class BMPanelViewController: UIViewController {
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
         if (motion == UIEventSubtype.MotionShake)
         {
-            SVProgressHUD.show()
-            self.performSelector("removeHUD", withObject: nil, afterDelay: 1.0)
-            //When shake is detected, after 1 sec, call the removeHUD method
+
+            let title = "More"
+            let preButtonTitle = "Last"
+            let nextButtonTitle  = "Next"
+            let backButtonTitle = "Back"
+            
+            let alertController = DOAlertController(title: title, message: nil, preferredStyle: .Alert)
+            
+            let preAction = DOAlertAction(title: preButtonTitle, style: .Default) { action in
+                
+                alertController.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    
+                    //TO-DO: to add the code lead to last view controller
+                    
+                })
+            }
+            
+            let nextAction = DOAlertAction(title: nextButtonTitle, style: .Default) { action in
+                
+                alertController.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    
+                    //TO-DO: to add the code lead to next view controller
+                    
+                })
+                
+                
+            }
+            
+            let backAction = DOAlertAction(title: backButtonTitle, style: .Cancel) { action in
+                
+                alertController.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    
+                    self.removeViewController()
+                })
+                
+            }
+            
+            alertController.addAction(preAction)
+            alertController.addAction(nextAction)
+            alertController.addAction(backAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+            
         }
     }
     
-    func removeHUD(){
-        SVProgressHUD.dismiss()
-        //dismiss the HUD, and will shoot the notification which triggers removeViewController method
-    }
     
     func removeViewController(){
 

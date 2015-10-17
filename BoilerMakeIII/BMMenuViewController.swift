@@ -113,9 +113,7 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
                
                 let vc = BMPanelViewController()
                 self.presentViewController(vc, animated: true, completion: nil)
-
-                
-                
+         
             })
             
             
