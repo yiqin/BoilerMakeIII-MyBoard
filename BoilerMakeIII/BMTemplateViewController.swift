@@ -15,7 +15,6 @@ class BMTemplateViewController: UIViewController {
         
         view.backgroundColor = UIColor.whiteColor()
         
-        saveData()
         
         // Do any additional setup after loading the view, typically from a nib.
         if let arr = loadData() {
@@ -77,62 +76,6 @@ class BMTemplateViewController: UIViewController {
         return myArr
     }
     
-    func saveData() {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-        let documentsDirectory = paths.objectAtIndex(0) as! NSString
-        let path = documentsDirectory.stringByAppendingPathComponent("UIData.plist")
-        print(path)
-        let arr: NSMutableArray = []
-        
-        let label1Dict: NSDictionary =
-        ["type": "BMLabel",
-            "x": 0,
-            "y": 0 + 64.0/screenHeight,
-            "width": 100.0/screenWidth,
-            "height": 30.0/screenHeight,
-            "text": "Label1",
-            "fontName": "Futura-CondensedMedium",
-            "fontSize": 15,
-        ]
-        arr.addObject(label1Dict)
-        
-        let label2Dict: NSDictionary =
-        ["type": "BMLabel",
-            "x": 150/screenWidth,
-            "y": 0 + 64.0/screenHeight,
-            "width": 100.0/screenWidth,
-            "height": 30.0/screenHeight,
-            "text": "Label2",
-            "fontName": "Futura-Medium",
-            "fontSize": 12
-        ]
-        arr.addObject(label2Dict)
-        
-        let button1Dict: NSDictionary =
-        ["type": "BMButton",
-            "x": 100/screenWidth,
-            "y": 30.0/screenHeight + 64.0/screenHeight,
-            "width": 100.0/screenWidth,
-            "height": 30.0/screenHeight,
-            "title": "Click me!",
-        ]
-        arr.addObject(button1Dict)
-        
-        let image1Dict: NSDictionary =
-        ["type": "BMImageView",
-            "x": 100/screenWidth,
-            "y": 100/screenHeight + 64.0/screenHeight,
-            "width": 50/screenWidth,
-            "height": 50/screenHeight,
-            "filename": "background.png",
-        ]
-        arr.addObject(image1Dict)
-        
-        //writing to UIData.plist
-        arr.writeToFile(path, atomically: false)
-        let resultArray = NSArray(contentsOfFile: path)
-        print("Saved UIData.plist file is --> \(resultArray)")
-    }
     
 
 }

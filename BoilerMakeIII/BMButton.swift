@@ -1,5 +1,10 @@
 import UIKit
 
+enum BMButtonActionType {
+    case pushNextView
+}
+
+
 class BMButton: UIButton, BMComponent {
     
     var type = BMComponentType.Button
@@ -27,11 +32,17 @@ class BMButton: UIButton, BMComponent {
         
         self.setTitle(dict["title"] as? String, forState: UIControlState.Normal)
         self.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        
+        addTarget(self, action: "tapButton", forControlEvents: UIControlEvents.TouchUpInside)
     }
-    
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func tapButton() {
+        
+        print("You tapped a button.")
+        
     }
 }
