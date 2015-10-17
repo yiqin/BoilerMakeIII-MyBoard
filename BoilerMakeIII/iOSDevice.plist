@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>iOSDevice</key>
+	<array>
+		<string>iPhone 6plus</string>
+		<string>iPhone 6</string>
+		<string>iPhone 5s</string>
+		<string>iPhone 5</string>
+		<string>iPhone 4s</string>
+	</array>
+</dict>
+</plist>

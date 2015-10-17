@@ -38,12 +38,15 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f81-3w-qw4">
                                                     <rect key="frame" x="13" y="153" width="143" height="20.5"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20.5" id="pHV-q7-hAY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wUQ-Zr-363">
-                                                    <rect key="frame" x="8" y="13" width="153" height="130.5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wUQ-Zr-363">
+                                                    <rect key="frame" x="53" y="10" width="63" height="138"/>
                                                     <animations/>
                                                 </imageView>
                                             </subviews>
@@ -54,14 +57,20 @@
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="f81-3w-qw4" firstAttribute="leading" secondItem="0ej-PC-vkt" secondAttribute="leadingMargin" constant="5" id="1zG-Hk-x44"/>
-                                            <constraint firstItem="f81-3w-qw4" firstAttribute="top" secondItem="wUQ-Zr-363" secondAttribute="bottom" constant="10" id="Qls-oT-2av"/>
+                                            <constraint firstAttribute="bottom" secondItem="f81-3w-qw4" secondAttribute="bottom" constant="4" id="Drn-pi-uKP"/>
+                                            <constraint firstItem="f81-3w-qw4" firstAttribute="top" secondItem="wUQ-Zr-363" secondAttribute="bottom" constant="5" id="Qls-oT-2av"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="f81-3w-qw4" secondAttribute="trailing" constant="5" id="Ve0-6h-ntQ"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="wUQ-Zr-363" secondAttribute="trailing" id="Zth-wH-bqp"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="wUQ-Zr-363" secondAttribute="trailing" constant="45" id="Zth-wH-bqp"/>
                                             <constraint firstItem="wUQ-Zr-363" firstAttribute="centerX" secondItem="0ej-PC-vkt" secondAttribute="centerX" id="cpX-or-Bm7"/>
                                             <constraint firstItem="f81-3w-qw4" firstAttribute="bottom" secondItem="0ej-PC-vkt" secondAttribute="bottomMargin" constant="5" id="l5a-nE-Ypo"/>
-                                            <constraint firstItem="wUQ-Zr-363" firstAttribute="leading" secondItem="0ej-PC-vkt" secondAttribute="leadingMargin" id="npy-lk-8j9"/>
-                                            <constraint firstItem="wUQ-Zr-363" firstAttribute="top" secondItem="0ej-PC-vkt" secondAttribute="topMargin" constant="5" id="r2c-DF-WuK"/>
+                                            <constraint firstItem="wUQ-Zr-363" firstAttribute="leading" secondItem="0ej-PC-vkt" secondAttribute="leadingMargin" constant="45" id="npy-lk-8j9"/>
+                                            <constraint firstItem="wUQ-Zr-363" firstAttribute="top" secondItem="0ej-PC-vkt" secondAttribute="topMargin" constant="2" id="r2c-DF-WuK"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="l5a-nE-Ypo"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <outlet property="cellImage" destination="wUQ-Zr-363" id="Yxe-pN-dVh"/>
                                             <outlet property="cellTextLabel" destination="f81-3w-qw4" id="avJ-Df-T3c"/>
