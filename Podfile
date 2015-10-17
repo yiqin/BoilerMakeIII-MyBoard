@@ -2,6 +2,8 @@
 # platform :ios, '6.0'
 
 target 'BoilerMakeIII' do
+    
+pod 'pop', '~> 1.0'
 
 end
 
