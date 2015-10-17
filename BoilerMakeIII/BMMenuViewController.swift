@@ -71,6 +71,8 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
             scaleDownAnimation.springBounciness = 18;
             scaleDownAnimation.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
             let selectedCell = collectionView.cellForItemAtIndexPath(indexPath) as! BMMenuCollectionViewCell
+        
+            selectedCell.highlighted = true
             self.view.userInteractionEnabled = false
             selectedCell.cellImage.layer.pop_addAnimation(scaleDownAnimation, forKey: "scaleAnimation")
         
