@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6F5A1794A3122C6BC1E1669E"
-               BuildableName = "libPods-BoilerMakeIII.a"
-               BlueprintName = "Pods-BoilerMakeIII"
+               BlueprintIdentifier = "BC0A6E9C3D742EC78749ED93"
+               BuildableName = "libSVProgressHUD.a"
+               BlueprintName = "SVProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

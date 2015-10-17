@@ -5,7 +5,6 @@
 //  Created by Yifan Xiao on 10/17/15.
 //  Copyright © 2015 Yi Qin. All rights reserved.
 //
-
 import UIKit
 
 class BMPanelViewController: UIViewController {
@@ -27,6 +26,8 @@ class BMPanelViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "removeViewController", name: SVProgressHUDDidDisappearNotification, object: nil)
         
     }
 
@@ -64,8 +65,20 @@ class BMPanelViewController: UIViewController {
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
         if (motion == UIEventSubtype.MotionShake)
         {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            SVProgressHUD.show()
+            self.performSelector("removeHUD", withObject: nil, afterDelay: 1.0)
+            //When shake is detected, after 1 sec, call the removeHUD method
         }
+    }
+    
+    func removeHUD(){
+        SVProgressHUD.dismiss()
+        //dismiss the HUD, and will shoot the notification which triggers removeViewController method
+    }
+    
+    func removeViewController(){
+
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 
