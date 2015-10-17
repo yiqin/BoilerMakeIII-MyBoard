@@ -9,6 +9,28 @@
 import UIKit
 
 class BMPanelViewController: UIViewController {
+    
+    enum State {
+        case Play
+        case Edit
+    }
+    
+    // Play or Edit
+    // let state: State!
+    
+    // Identifier which page or which view in the storyboard.
+    // let identifier: String
+    
+    
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        view.backgroundColor = UIColor.redColor()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +43,5 @@ class BMPanelViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
