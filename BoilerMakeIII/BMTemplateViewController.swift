@@ -13,9 +13,7 @@ class BMTemplateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("width: \(self.view.frame.width), height: \(self.view.frame.height)")
-        
-        let bound = self.view.frame
+        view.backgroundColor = UIColor.whiteColor()
         
         saveData()
         
@@ -23,21 +21,21 @@ class BMTemplateViewController: UIViewController {
         if let arr = loadData() {
             for var i = 0; i < arr.count; i++ {
                 let dict = arr.objectAtIndex(i) as! NSDictionary
-                let frame = rectFromDict(bound, dict: dict)
+                let frame = rectFromDict(dict)
                 
                 switch dict["type"] as! NSString {
                 case BMComponentType.Label.rawValue:
-                    let label = BMLabel(bound: bound, frame: frame, dict: dict)
+                    let label = BMLabel(frame: frame, dict: dict)
                     self.view.addSubview(label)
                     print(label.dictionary)
                     break
                 case BMComponentType.Button.rawValue:
-                    let button = BMButton(bound: bound, frame: frame, dict: dict)
+                    let button = BMButton(frame: frame, dict: dict)
                     self.view.addSubview(button)
                     print(button.dictionary)
                     break;
                 case BMComponentType.ImageView.rawValue:
-                    let imageView = BMImageView(bound: bound, frame: frame, dict: dict)
+                    let imageView = BMImageView(frame: frame, dict: dict)
                     self.view.addSubview(imageView)
                     break;
                 default:
@@ -57,11 +55,11 @@ class BMTemplateViewController: UIViewController {
     
     // MARK: Helper Functions
     
-    func rectFromDict(bound: CGRect, dict: NSDictionary) -> CGRect {
-        let x: CGFloat = dict["x"] as! CGFloat * bound.width
-        let y: CGFloat = dict["y"] as! CGFloat * bound.height
-        let width: CGFloat = dict["width"] as! CGFloat * bound.width
-        let height: CGFloat = dict["height"] as! CGFloat * bound.height
+    func rectFromDict(dict: NSDictionary) -> CGRect {
+        let x: CGFloat = dict["x"] as! CGFloat * screenWidth
+        let y: CGFloat = dict["y"] as! CGFloat * screenHeight
+        let width: CGFloat = dict["width"] as! CGFloat * screenWidth
+        let height: CGFloat = dict["height"] as! CGFloat * screenHeight
         return CGRect(x: x, y: y, width: width, height: height)
     }
     
@@ -89,9 +87,9 @@ class BMTemplateViewController: UIViewController {
         let label1Dict: NSDictionary =
         ["type": "BMLabel",
             "x": 0,
-            "y": 0,
-            "width": 0.2,
-            "height": 0.2,
+            "y": 0 + 64.0/screenHeight,
+            "width": 100.0/screenWidth,
+            "height": 30.0/screenHeight,
             "text": "Label1",
             "fontName": "Futura-CondensedMedium",
             "fontSize": 15,
@@ -100,10 +98,10 @@ class BMTemplateViewController: UIViewController {
         
         let label2Dict: NSDictionary =
         ["type": "BMLabel",
-            "x": 1 - 0.2,
-            "y": 0,
-            "width": 0.2,
-            "height": 0.2,
+            "x": 150/screenWidth,
+            "y": 0 + 64.0/screenHeight,
+            "width": 100.0/screenWidth,
+            "height": 30.0/screenHeight,
             "text": "Label2",
             "fontName": "Futura-Medium",
             "fontSize": 12
@@ -112,20 +110,20 @@ class BMTemplateViewController: UIViewController {
         
         let button1Dict: NSDictionary =
         ["type": "BMButton",
-            "x": 0.5 - 0.1 ,
-            "y": 1 - 0.1,
-            "width": 0.2,
-            "height": 0.1,
+            "x": 100/screenWidth,
+            "y": 30.0/screenHeight + 64.0/screenHeight,
+            "width": 100.0/screenWidth,
+            "height": 30.0/screenHeight,
             "title": "Click me!",
         ]
         arr.addObject(button1Dict)
         
         let image1Dict: NSDictionary =
         ["type": "BMImageView",
-            "x": 0 ,
-            "y": 0.2,
-            "width": 1,
-            "height": 0.3,
+            "x": 100/screenWidth,
+            "y": 100/screenHeight + 64.0/screenHeight,
+            "width": 50/screenWidth,
+            "height": 50/screenHeight,
             "filename": "background.png",
         ]
         arr.addObject(image1Dict)

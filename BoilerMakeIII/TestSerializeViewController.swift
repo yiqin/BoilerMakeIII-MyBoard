@@ -24,17 +24,17 @@ class TestSerializeViewController: UIViewController {
                 
                 switch dict["type"] as! NSString {
                 case "BMLabel":
-                    let label = BMLabel(bound: bound, frame: frame, dict: dict)
+                    let label = BMLabel(frame: frame, dict: dict)
                     self.view.addSubview(label)
                     print(label.dictionary)
                     break
                 case "BMButton":
-                    let button = BMButton(bound: bound, frame: frame, dict: dict)
+                    let button = BMButton(frame: frame, dict: dict)
                     self.view.addSubview(button)
                     print(button.dictionary)
                     break;
                 case "BMImageView":
-                    let imageView = BMImageView(bound: bound, frame: frame, dict: dict)
+                    let imageView = BMImageView(frame: frame, dict: dict)
                     self.view.addSubview(imageView)
                     break;
                 default:
