@@ -1,7 +1,15 @@
+//
+//  BMTemplateViewController.swift
+//  BoilerMakeIII
+//
+//  Created by Yi Qin on 10/17/15.
+//  Copyright © 2015 Yi Qin. All rights reserved.
+//
+
 import UIKit
 
-class TestSerializeViewController: UIViewController {
-
+class BMTemplateViewController: UIViewController {
+    
     let leftMargin: CGFloat = 0.04
     let rightMargin: CGFloat = 0.04
     let topMargin: CGFloat = 0.044
@@ -23,17 +31,17 @@ class TestSerializeViewController: UIViewController {
                 let frame = rectFromDict(bound, dict: dict)
                 
                 switch dict["type"] as! NSString {
-                case "BMLabel":
+                case BMComponentType.Label.rawValue:
                     let label = BMLabel(bound: bound, frame: frame, dict: dict)
                     self.view.addSubview(label)
                     print(label.dictionary)
                     break
-                case "BMButton":
+                case BMComponentType.Button.rawValue:
                     let button = BMButton(bound: bound, frame: frame, dict: dict)
                     self.view.addSubview(button)
                     print(button.dictionary)
                     break;
-                case "BMImageView":
+                case BMComponentType.ImageView.rawValue:
                     let imageView = BMImageView(bound: bound, frame: frame, dict: dict)
                     self.view.addSubview(imageView)
                     break;
@@ -46,12 +54,12 @@ class TestSerializeViewController: UIViewController {
             print("WARNING: Couldn't create dictionary from UIData.plist! Default values will be used!")
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: Helper Functions
     
     func rectFromDict(bound: CGRect, dict: NSDictionary) -> CGRect {
@@ -84,47 +92,47 @@ class TestSerializeViewController: UIViewController {
         let arr: NSMutableArray = []
         
         let label1Dict: NSDictionary =
-            ["type": "BMLabel",
-                "x": leftMargin,
-                "y": topMargin,
-                "width": 0.2,
-                "height": 0.1,
-                "text": "Label1",
-                "fontName": "Futura-CondensedMedium",
-                "fontSize": 15,
-            ]
+        ["type": "BMLabel",
+            "x": leftMargin,
+            "y": topMargin,
+            "width": 0.2,
+            "height": 0.2,
+            "text": "Label1",
+            "fontName": "Futura-CondensedMedium",
+            "fontSize": 15,
+        ]
         arr.addObject(label1Dict)
         
         let label2Dict: NSDictionary =
-            ["type": "BMLabel",
-                "x": 1 - rightMargin - 0.2,
-                "y": topMargin,
-                "width": 0.2,
-                "height": 0.1,
-                "text": "Label2",
-                "fontName": "Futura-Medium",
-                "fontSize": 12
-            ]
+        ["type": "BMLabel",
+            "x": 1 - rightMargin - 0.2,
+            "y": topMargin,
+            "width": 0.2,
+            "height": 0.2,
+            "text": "Label2",
+            "fontName": "Futura-Medium",
+            "fontSize": 12
+        ]
         arr.addObject(label2Dict)
-
+        
         let button1Dict: NSDictionary =
-            ["type": "BMButton",
-                "x": 0.5 - 0.1 - leftMargin ,
-                "y": 1 - bottomMargin - 0.1,
-                "width": 0.2,
-                "height": 0.1,
-                "title": "Click me!",
-            ]
+        ["type": "BMButton",
+            "x": 0.5 - 0.1 - leftMargin ,
+            "y": 1 - bottomMargin - 0.1,
+            "width": 0.2,
+            "height": 0.1,
+            "title": "Click me!",
+        ]
         arr.addObject(button1Dict)
         
         let image1Dict: NSDictionary =
-            ["type": "BMImageView",
-                "x": leftMargin ,
-                "y": 0.2 + topMargin,
-                "width": 1 - leftMargin - rightMargin,
-                "height": 0.3,
-                "filename": "background.png",
-            ]
+        ["type": "BMImageView",
+            "x": leftMargin ,
+            "y": 0.2 + topMargin,
+            "width": 1 - leftMargin - rightMargin,
+            "height": 0.3,
+            "filename": "background.png",
+        ]
         arr.addObject(image1Dict)
         
         //writing to UIData.plist
@@ -132,5 +140,6 @@ class TestSerializeViewController: UIViewController {
         let resultArray = NSArray(contentsOfFile: path)
         print("Saved UIData.plist file is --> \(resultArray)")
     }
-}
+    
 
+}

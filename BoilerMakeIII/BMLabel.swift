@@ -3,9 +3,7 @@ import UIKit
 class BMLabel: UILabel, BMComponent{
     var bound: CGRect
     
-    var identifier: String {
-        return "BMLabel";
-    }
+    var type = BMComponentType.Label
     
     var dictionary: NSDictionary {
         let x: CGFloat = self.frame.origin.x / self.bound.width
@@ -13,7 +11,9 @@ class BMLabel: UILabel, BMComponent{
         let width: CGFloat = self.frame.width / self.bound.width
         let height: CGFloat = self.frame.height / self.bound.height
         let dict: NSMutableDictionary = NSMutableDictionary()
-        dict.setObject(identifier, forKey: "type")
+        
+        dict.setObject(type.rawValue, forKey: "type")
+        
         dict.setObject(x, forKey: "x")
         dict.setObject(y, forKey: "y")
         dict.setObject(width, forKey: "width")

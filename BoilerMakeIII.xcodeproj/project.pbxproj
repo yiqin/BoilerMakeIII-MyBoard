@@ -22,6 +22,7 @@
 		8DDA3F591BD2874C00323A48 /* UIFont+CustomizedFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDA3F571BD2874C00323A48 /* UIFont+CustomizedFont.swift */; settings = {ASSET_TAGS = (); }; };
 		8DDA3F5A1BD2874C00323A48 /* UIImage+AssetCatalogIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDA3F581BD2874C00323A48 /* UIImage+AssetCatalogIdentifier.swift */; settings = {ASSET_TAGS = (); }; };
 		8DDA3F5D1BD2878900323A48 /* BMViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDA3F5C1BD2878900323A48 /* BMViewControllerProtocol.swift */; settings = {ASSET_TAGS = (); }; };
+		8DDA3F5F1BD28E4400323A48 /* BMTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDA3F5E1BD28E4400323A48 /* BMTemplateViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		C06A557C6D8CD530734A5741 /* libPods-BoilerMakeIII.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7320D0BE0449CB0C1BC3DA0B /* libPods-BoilerMakeIII.a */; };
 		DD005DD51BD21B7600CEE3D8 /* BMMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD005DD41BD21B7600CEE3D8 /* BMMenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DD005DD71BD224F200CEE3D8 /* BMMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD005DD61BD224F200CEE3D8 /* BMMenuCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -72,6 +73,7 @@
 		8DDA3F571BD2874C00323A48 /* UIFont+CustomizedFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomizedFont.swift"; sourceTree = "<group>"; };
 		8DDA3F581BD2874C00323A48 /* UIImage+AssetCatalogIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+AssetCatalogIdentifier.swift"; sourceTree = "<group>"; };
 		8DDA3F5C1BD2878900323A48 /* BMViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMViewControllerProtocol.swift; sourceTree = "<group>"; };
+		8DDA3F5E1BD28E4400323A48 /* BMTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMTemplateViewController.swift; sourceTree = "<group>"; };
 		A231CBC6192B33456F19EFDE /* Pods-BoilerMakeIII.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoilerMakeIII.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoilerMakeIII/Pods-BoilerMakeIII.release.xcconfig"; sourceTree = "<group>"; };
 		DD005DD41BD21B7600CEE3D8 /* BMMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMMenuViewController.swift; sourceTree = "<group>"; };
 		DD005DD61BD224F200CEE3D8 /* BMMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMMenuCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -111,8 +113,8 @@
 		2DD8A8461BD25D5100E9B6F2 /* BMComponents */ = {
 			isa = PBXGroup;
 			children = (
-				2DD8A8471BD25D6900E9B6F2 /* BMLabel.swift */,
 				2DD8A8481BD25D6900E9B6F2 /* BMComponent.swift */,
+				2DD8A8471BD25D6900E9B6F2 /* BMLabel.swift */,
 				2DD8A8491BD25D6900E9B6F2 /* BMButton.swift */,
 				2DD8A84A1BD25D6900E9B6F2 /* BMImageView.swift */,
 				2DD8A84F1BD25D8800E9B6F2 /* TestSerializeViewController.swift */,
@@ -175,8 +177,7 @@
 				8DDA3F331BD211AD00323A48 /* Info.plist */,
 				DD005DDA1BD2443F00CEE3D8 /* BoilerMakeIII-Bridging-Header.h */,
 				DD005DE31BD25C1500CEE3D8 /* BMPanelViewController.swift */,
-				8DDA3F551BD2871300323A48 /* BMStoryboardDataManager.swift */,
-				8DDA3F5C1BD2878900323A48 /* BMViewControllerProtocol.swift */,
+				8DDA3F601BD28E5500323A48 /* BMStoryboard */,
 				DD005DE71BD25C3000CEE3D8 /* Panel.storyboard */,
 			);
 			path = BoilerMakeIII;
@@ -207,6 +208,16 @@
 				8DDA3F581BD2874C00323A48 /* UIImage+AssetCatalogIdentifier.swift */,
 			);
 			name = Extension;
+			sourceTree = "<group>";
+		};
+		8DDA3F601BD28E5500323A48 /* BMStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				8DDA3F551BD2871300323A48 /* BMStoryboardDataManager.swift */,
+				8DDA3F5C1BD2878900323A48 /* BMViewControllerProtocol.swift */,
+				8DDA3F5E1BD28E4400323A48 /* BMTemplateViewController.swift */,
+			);
+			name = BMStoryboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,6 +393,7 @@
 				DD005DE51BD25C1500CEE3D8 /* BMPanelViewController.swift in Sources */,
 				DD005DD71BD224F200CEE3D8 /* BMMenuCollectionViewCell.swift in Sources */,
 				8DDA3F561BD2871300323A48 /* BMStoryboardDataManager.swift in Sources */,
+				8DDA3F5F1BD28E4400323A48 /* BMTemplateViewController.swift in Sources */,
 				8DDA3F281BD211AD00323A48 /* AppDelegate.swift in Sources */,
 				2DD8A84C1BD25D6900E9B6F2 /* BMComponent.swift in Sources */,
 				2DD8A84D1BD25D6900E9B6F2 /* BMButton.swift in Sources */,

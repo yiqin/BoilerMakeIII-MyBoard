@@ -4,9 +4,7 @@ class BMImageView: UIImageView, BMComponent {
     var bound: CGRect
     var filename: String
     
-    var identifier: String {
-        return "BMImageView";
-    }
+    var type = BMComponentType.ImageView
     
     var dictionary: NSDictionary {
         let x: CGFloat = self.frame.origin.x / self.bound.width
@@ -14,7 +12,9 @@ class BMImageView: UIImageView, BMComponent {
         let width: CGFloat = self.frame.width / self.bound.width
         let height: CGFloat = self.frame.height / self.bound.height
         let dict: NSMutableDictionary = NSMutableDictionary()
-        dict.setObject(identifier, forKey: "type")
+        
+        dict.setObject(type.rawValue, forKey: "type")
+        
         dict.setObject(x, forKey: "x")
         dict.setObject(y, forKey: "y")
         dict.setObject(width, forKey: "width")

@@ -9,16 +9,29 @@
 import Foundation
 import UIKit
 
+enum NavigationControllerType {
+    case NavigationController
+    case TabBarController
+}
+
 class BMStoryboardDataManager: NSObject {
     
     var viewControllers = [BMViewControllerProtocol]()
     
     static let sharedInstance = BMStoryboardDataManager()
     
-    func testData() {
-    
-    
-    
+    func testData() -> UIViewController {
+        
+        let navigationController = UINavigationController(nibName: nil, bundle: nil)
+        
+        let firstVC = BMTemplateViewController(nibName: nil, bundle: nil)
+        firstVC.title = "Hello world"
+        
+        
+        
+        
+        navigationController.viewControllers = [firstVC]
+        return navigationController
     }
     
 }

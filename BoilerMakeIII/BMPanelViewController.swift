@@ -25,7 +25,7 @@ class BMPanelViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        view.backgroundColor = UIColor.redColor()
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -36,6 +36,10 @@ class BMPanelViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let firstOne = BMStoryboardDataManager.sharedInstance.testData()
+        firstOne.view.frame = CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))
+        view.addSubview(firstOne.view)
     }
 
     override func didReceiveMemoryWarning() {

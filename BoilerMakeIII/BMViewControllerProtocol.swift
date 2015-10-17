@@ -13,3 +13,10 @@ protocol BMViewControllerProtocol {
     var identifier: String { get }
     
 }
+
+
+enum BMViewControllerType {
+    case ViewController
+    case TableViewController
+    case WebViewController
+}
