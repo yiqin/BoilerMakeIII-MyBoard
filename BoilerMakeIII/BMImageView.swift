@@ -5,6 +5,7 @@ class BMImageView: UIImageView, BMComponentProtocol {
     var filename: String
     
     var type = BMComponentType.ImageView
+    var id: Int
     
     var dictionary: NSDictionary {
         let x: CGFloat = self.frame.origin.x / screenWidth
@@ -15,6 +16,7 @@ class BMImageView: UIImageView, BMComponentProtocol {
         let dict: NSMutableDictionary = NSMutableDictionary()
         
         dict.setObject(type.rawValue, forKey: "type")
+        dict.setObject(id, forKey: "id")
         dict.setObject(x, forKey: "x")
         dict.setObject(y, forKey: "y")
         dict.setObject(width, forKey: "width")
@@ -25,15 +27,23 @@ class BMImageView: UIImageView, BMComponentProtocol {
     
     // Reconstruct init.
     init(frame: CGRect, dict: NSDictionary) {
-        self.filename = dict["filename"] as! String
+        filename = dict["filename"] as! String
+        id = (dict["id"]?.integerValue)!
         super.init(frame: frame)
         
         backgroundColor = UIColor.blueColor()
         
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
         let documentsDirectory = paths.objectAtIndex(0) as! NSString
-        let path = documentsDirectory.stringByAppendingPathComponent(self.filename)
-        self.image = UIImage(contentsOfFile: path)
+        let path = documentsDirectory.stringByAppendingPathComponent(filename)
+        image = UIImage(contentsOfFile: path)
+    }
+    
+    override init(frame: CGRect) {
+        id = BMStoryboardDataManager.sharedInstance.getNextID()
+        filename = ""
+        super.init(frame: frame)
+        backgroundColor = UIColor.blueColor()
     }
     
     required init?(coder aDecoder: NSCoder) {
