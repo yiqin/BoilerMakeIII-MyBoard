@@ -16,6 +16,8 @@ enum NavigationControllerType {
 
 class BMStoryboardDataManager: NSObject {
     
+    var data: Dictionary = [String: AnyObject]()
+    
     var viewControllers = [BMViewControllerProtocol]()
     
     static let sharedInstance = BMStoryboardDataManager()
@@ -28,20 +30,20 @@ class BMStoryboardDataManager: NSObject {
         print(path)
         
         // Another bug ???
-        var dataDictionary = [String: AnyObject]()
         
         var viewControllerData: Dictionary = [String: AnyObject]()
         
         viewControllerData["UIData"] = saveUIData()
         viewControllerData["title"] = "view controller 1"
         
-        dataDictionary["viewController1"] = viewControllerData
+        data["viewController1"] = viewControllerData
         
         
         var viewControllerData1: Dictionary = [String: AnyObject]()
         viewControllerData1["UIData"] = saveUIData2()
         viewControllerData1["title"] = "2"
-        dataDictionary["viewController2"] = viewControllerData1
+        
+        data["viewController2"] = viewControllerData1
         
         
         // FIXME:
@@ -159,16 +161,20 @@ class BMStoryboardDataManager: NSObject {
         
         return arr as NSArray
     }
+    
+    
+    func getViewControllerData(identifier: String) -> NSArray {
+        var viewControllerData: [String: AnyObject] = data[identifier] as! [String: AnyObject]
+        return viewControllerData["UIData"] as! NSArray
+    }
 
     
     func testData() -> UIViewController {
         
         let navigationController = UINavigationController(nibName: nil, bundle: nil)
         
-        let firstVC = BMTemplateViewController(nibName: nil, bundle: nil)
+        let firstVC = BMTemplateViewController(identifier: "viewController1")
         firstVC.title = "Hello world"
-        
-        
         
         
         navigationController.viewControllers = [firstVC]

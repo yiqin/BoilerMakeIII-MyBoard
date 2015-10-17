@@ -10,14 +10,11 @@ import UIKit
 
 class BMTemplateViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    convenience init(identifier: String) {
+        self.init(nibName: nil, bundle: nil)
         
-        view.backgroundColor = UIColor.whiteColor()
-        
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        if let arr = loadData() {
+        if let arr = loadData(identifier) {
             for var i = 0; i < arr.count; i++ {
                 let dict = arr.objectAtIndex(i) as! NSDictionary
                 let frame = rectFromDict(dict)
@@ -47,6 +44,26 @@ class BMTemplateViewController: UIViewController {
         }
     }
     
+    
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.whiteColor()
+        
+        
+        // Do any additional setup after loading the view, typically from a nib.
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,7 +81,12 @@ class BMTemplateViewController: UIViewController {
     
     // MARK: Data Load/Save
     
-    func loadData() -> NSArray? {
+    func loadData(identifier: String) -> NSArray? {
+        
+        //
+        // This is broken...
+        //
+        
         // getting path to UIData.plist
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
         let documentsDirectory = paths.objectAtIndex(0) as! NSString
@@ -72,7 +94,14 @@ class BMTemplateViewController: UIViewController {
         print(path)
         let resultArray = NSArray(contentsOfFile: path)
         print("Loaded UIData.plist file is --> \(resultArray)")
-        let myArr = NSArray(contentsOfFile: path)
+        
+        var myArr = NSArray(contentsOfFile: path)
+        
+        // myArr is nil
+        
+        myArr = BMStoryboardDataManager.sharedInstance.getViewControllerData(identifier)
+        
+        
         return myArr
     }
     
