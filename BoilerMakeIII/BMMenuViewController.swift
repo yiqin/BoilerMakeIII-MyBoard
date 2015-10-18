@@ -28,7 +28,7 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         collectionData = dict!.objectForKey("iOSDevice") as! [String]
         
-        let newAPPButton = UIBarButtonItem(title: "New APP", style: .Plain, target: self, action: "pressNewAppButton:")
+        let newAPPButton = UIBarButtonItem(title: "New", style: .Plain, target: self, action: "pressNewAppButton:")
         navigationItem.rightBarButtonItem = newAPPButton
     }
 
