@@ -422,7 +422,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 textField.delegate = self
             }
             
-            let deleteAction = DOAlertAction(title: deleteButtonTitle, style: .Default) { action in
+            let deleteAction = DOAlertAction(title: deleteButtonTitle, style: .Destructive) { action in
                 NSLog("The \"Custom\" alert's other action occured.")
                 
                 view.removeFromSuperview()
