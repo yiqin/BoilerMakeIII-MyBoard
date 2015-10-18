@@ -257,10 +257,34 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         subview.addGestureRecognizer(singleTap)
         subview.userInteractionEnabled = true
         
+        let pan = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        subview.addGestureRecognizer(pan)
+        
         var tmpView = subview as! BMComponentProtocol
         tmpView.isNew = true
         
         self.view.addSubview(subview)
+    }
+    
+    func handlePan(sender: UIPanGestureRecognizer) {
+        if let view = sender.view {
+            switch sender.state {
+            case .Began:
+                print("began")
+                break
+            case .Changed:
+                let offset: CGPoint = sender.translationInView(self.view)
+                view.center = CGPoint(x: view.center.x + offset.x, y: view.center.y + offset.y)
+                sender.setTranslation(CGPoint.zero, inView: self.view)
+                print("changed")
+                break
+            case .Ended:
+                print("ended")
+                break
+            default:
+                break
+            }
+        }
     }
     
     func handleSingleTapElement(tapRecognizer: UITapGestureRecognizer) {
