@@ -79,8 +79,6 @@ class BMStoryboardDataManager: NSObject {
     
     func saveFakeData() {
         
-        let dict: NSMutableDictionary = NSMutableDictionary()
-        
         self.applications.addObject(FakeData.app1())
         
         saveData()
@@ -94,28 +92,6 @@ class BMStoryboardDataManager: NSObject {
         let path = documentsDirectory.stringByAppendingPathComponent("UIData.plist")
         print(path)
         
-//        let viewControllerData: NSDictionary =
-//            ["UIData": saveUIData(),
-//                "title": "view controller 1",
-//                "id": 8,
-//                "type": BMViewControllerType.ViewController.rawValue,
-//            ]
-//        
-//        let viewControllerData1: NSDictionary =
-//            ["UIData": saveUIData2(),
-//                "title": "view controller 2",
-//                "id": 9,
-//                "type": BMViewControllerType.ViewController.rawValue,
-//            ]
-//        
-//        let appData: NSDictionary =
-//            ["id": 10,
-//                "viewControllers":
-//                    ["8": viewControllerData,
-//                        "9": viewControllerData1,
-//                    ],
-//                "title": "I Love Design"
-//            ]
         
         let dict: NSMutableDictionary = NSMutableDictionary()
         

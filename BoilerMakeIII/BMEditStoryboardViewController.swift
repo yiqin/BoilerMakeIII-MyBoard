@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
+class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var customAlertController: DOAlertController!
     weak var textField1: UITextField?
@@ -26,6 +26,8 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     var availableComponents = [UILibraryComponent]()
     
     var currentIndex = 0
+    
+    var currentImageView = UIImageView()
     
     var currentLabel = UILabel()
     
@@ -327,6 +329,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
             let deleteButtonTitle = "Delete"
             let cancelButtonTitle = "Cancel"
             let otherButtonTitle = "Comfirm"
+            let pickPhotoTitle = "Choose Photo"
             
             customAlertController = DOAlertController(title: title, message: message, preferredStyle: .Alert)
             
@@ -427,6 +430,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 
                 view.removeFromSuperview()
                 
+                
             }
             
             // Create the actions.
@@ -439,10 +443,34 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
             }
             customAlertAction = confirmAction
             
-            // Add the actions.
+            let takePictureAction = DOAlertAction(title: pickPhotoTitle, style: .Default) { action in
+                
+                self.currentImageView = (self.selectedView as? UIImageView)!
+                
+                let picker: UIImagePickerController = UIImagePickerController()
+                picker.delegate = self
+                picker.allowsEditing = true
+                picker.sourceType = .PhotoLibrary
+                
+                self.customAlertController.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    
+                    self.presentViewController(picker, animated: true, completion: nil)
+                    
+                })
+                
+            }
+            
+            customAlertController.addAction(confirmAction)
+            
+            
+            if (view.isKindOfClass(UIImageView))
+            {
+             customAlertController.addAction(takePictureAction)
+            }
+            
             customAlertController.addAction(deleteAction)
             customAlertController.addAction(cancelAction)
-            customAlertController.addAction(confirmAction)
+            
             
             presentViewController(customAlertController, animated: true, completion: nil)
             
@@ -480,6 +508,34 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
             }
         }
         
+    }
+    
+
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let chosenImage: UIImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            let pngData: NSData = UIImagePNGRepresentation(chosenImage)!
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd-HH-mm-ss"
+            let imageFilename = "\(dateFormatter.stringFromDate(NSDate())).png"
+            
+            // Update filename and image.
+            let imageView: BMImageView = currentImageView as! BMImageView
+            imageView.image = UIImage(data: pngData)
+            imageView.filename = imageFilename
+            
+            // Write image data to file.
+            let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
+            let documentsDirectory = paths.objectAtIndex(0) as! NSString
+            let path = documentsDirectory.stringByAppendingPathComponent(imageFilename)
+            print("Save image: \(path)")
+            pngData.writeToFile(path, atomically: false)
+        }
+        
+        picker.dismissViewControllerAnimated(true) { () -> Void in
+            
+            self.setupViewControllersScrollView()
+        }
     }
     
 }

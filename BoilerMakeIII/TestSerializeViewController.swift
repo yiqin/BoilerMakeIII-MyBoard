@@ -44,7 +44,6 @@ class TestSerializeViewController: UIViewController, UIImagePickerControllerDele
                     imageView.addGestureRecognizer(tapRecognizer)
                     self.view.addSubview(imageView)
                     
-                    self.view.addSubview(imageView)
                     break;
                 default:
                     break
@@ -99,7 +98,7 @@ class TestSerializeViewController: UIViewController, UIImagePickerControllerDele
             let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
             let documentsDirectory = paths.objectAtIndex(0) as! NSString
             let path = documentsDirectory.stringByAppendingPathComponent(imageFilename)
-            print("Svae image: \(path)")
+            print("Save image: \(path)")
             pngData.writeToFile(path, atomically: false)
         }
         
