@@ -21,49 +21,36 @@ class FakeData {
                 "x": xPadding/screenWidth,
                 "y": (yPadding+64)/screenHeight,
                 "width": (screenWidth-2*xPadding)/screenWidth,
-                "height": 30.0/screenHeight,
+                "height": 44.0/screenHeight,
                 "text": "Label1 - hello world......",
                 "fontName": "Lato-Semibold",
                 "fontSize": 15,
             ]
             
-            let label2Dict: NSDictionary =
-            ["type": BMComponentType.Label.rawValue,
-                "id": 1,
-                "x": 150/screenWidth,
-                "y": 0 + 64.0/screenHeight,
-                "width": 100.0/screenWidth,
-                "height": 30.0/screenHeight,
-                "text": "Label2",
-                "fontName": "Futura-Medium",
-                "fontSize": 12
-            ]
-            
             let button1Dict: NSDictionary =
             ["type": BMComponentType.Button.rawValue,
                 "id": 2,
-                "x": 100/screenWidth,
-                "y": 30.0/screenHeight + 64.0/screenHeight,
-                "width": 100.0/screenWidth,
-                "height": 30.0/screenHeight,
+                "x": xPadding/screenWidth,
+                "y": (screenHeight-64.0)/screenHeight,
+                "width": (screenWidth-2*xPadding)/screenWidth,
+                "height": 44.0/screenHeight,
                 "title": "Click me!",
             ]
             
             let image1Dict: NSDictionary =
             ["type": BMComponentType.ImageView.rawValue,
                 "id": 3,
-                "x": 100/screenWidth,
-                "y": 100/screenHeight + 64.0/screenHeight,
-                "width": 50/screenWidth,
-                "height": 50/screenHeight,
+                "x": xPadding/screenWidth,
+                "y": (yPadding*2+64+44.0)/screenHeight,
+                "width": (screenWidth-2*xPadding)/screenWidth,
+                "height": (screenHeight-(yPadding*2+64)-64.0-64.0)/screenHeight,
                 "filename": "background.png",
             ]
             
             let dict: NSDictionary =
             ["0": label1Dict,
-                "1": label2Dict,
-                "2": button1Dict,
-                "3": image1Dict,
+                "1": button1Dict,
+                "2": image1Dict,
             ]
             
             return dict
