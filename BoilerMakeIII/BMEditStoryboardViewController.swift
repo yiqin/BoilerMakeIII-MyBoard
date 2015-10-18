@@ -64,7 +64,7 @@ class BMEditStoryboardViewController: UIViewController {
         
         let appData = BMStoryboardDataManager.sharedInstance.data
         
-        let vc = BMTemplateViewController(appID: 10, vcID: 8, dict: nil, state:.Edit)
+        let vc = BMTemplateViewController(appID: 10, vcID: 8, dictionary: nil, state:.Edit)
         createCard(vc)
     }
     

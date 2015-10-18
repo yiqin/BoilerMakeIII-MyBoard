@@ -17,8 +17,8 @@ enum NavigationControllerType {
 class BMStoryboardDataManager: NSObject {
     
     var data: NSMutableDictionary = NSMutableDictionary()
-    
-    var viewControllers = [BMViewControllerProtocol]()
+ 
+    var applications: NSMutableArray = NSMutableArray()
     
     static let sharedInstance = BMStoryboardDataManager()
     
@@ -61,6 +61,12 @@ class BMStoryboardDataManager: NSObject {
         
         if let dict = NSDictionary(contentsOfFile: path) as? NSMutableDictionary {
             self.data = dict
+            
+            for (_, value) in self.data {
+                let appDict: NSDictionary = value as! NSDictionary
+                applications.addObject(BMApplication(dict: appDict))
+            }
+            
             print(data)
         } else {
             print("Cannot load UIData.plist")
@@ -232,7 +238,7 @@ class BMStoryboardDataManager: NSObject {
         
         let navigationController = UINavigationController(nibName: nil, bundle: nil)
         
-        let firstVC = BMTemplateViewController(appID: 10, vcID: 8, dict:nil)
+        let firstVC = BMTemplateViewController(appID: 10, vcID: 8, dictionary:nil)
         firstVC.title = "Hello world"
         
         

@@ -21,7 +21,7 @@ class BMApplication: NSObject {
         if let vcDict = dict["viewControllers"] as? NSDictionary {
             for (vcID, singleVCDict) in vcDict {
                 let dictionary: NSDictionary = singleVCDict as! NSDictionary
-                viewControllers.addObject(BMTemplateViewController(appID: self.id, vcID: vcID.integerValue!, dict: dictionary))
+                viewControllers.addObject(BMTemplateViewController(appID: self.id, vcID: vcID.integerValue!, dictionary: dictionary))
             }
         }
     }

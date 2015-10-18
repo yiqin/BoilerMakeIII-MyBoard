@@ -28,12 +28,12 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     var id: Int
     
     // Reconstructor.
-    init(appID: Int, vcID: Int, dict: NSDictionary?, state: State = .Play) {
+    init(appID: Int, vcID: Int, dictionary: NSDictionary?, state: State = .Play) {
         self.id = vcID
         
         super.init(nibName: nil, bundle: nil)
 
-        if let vcDict = dict {
+        if let vcDict = dictionary {
             self.title = vcDict["title"] as? String
         } else {
             self.title = "ViewController-\(vcID)"
@@ -108,7 +108,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
 
     // New ViewController
     convenience init(appID: Int) {
-        self.init(appID: appID, vcID: BMStoryboardDataManager.sharedInstance.getNextID(), dict: nil)
+        self.init(appID: appID, vcID: BMStoryboardDataManager.sharedInstance.getNextID(), dictionary: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -138,7 +138,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     
     @IBAction func tapButton(sender:UIButton!) {
         
-        let vc = BMTemplateViewController(appID: 10, vcID: 9, dict: nil)
+        let vc = BMTemplateViewController(appID: 10, vcID: 9, dictionary: nil)
         
         navigationController?.pushViewController(vc, animated: true)
     }
