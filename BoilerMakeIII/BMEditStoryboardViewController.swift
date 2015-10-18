@@ -15,6 +15,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     weak var textField2: UITextField?
     weak var textField3: UITextField?
     weak var textField4: UITextField?
+    weak var textField5: UITextField?
     weak var customAlertAction: DOAlertAction?
     
     let viewControllersScrollView: JT3DScrollView = JT3DScrollView()
@@ -436,6 +437,29 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 textField.delegate = self
             }
             
+            if(view.isKindOfClass(UILabel))
+            {
+                customAlertController.addTextFieldWithConfigurationHandler { textField in
+                    self.textField5 = textField
+                    textField.placeholder = "text"
+                    textField.frame.size = CGSizeMake(240.0, 30.0)
+                    textField.font = UIFont(name: "Avenir Next", size: 15.0)
+                    textField.keyboardAppearance = UIKeyboardAppearance.Dark
+                    textField.returnKeyType = UIReturnKeyType.Send
+                    let labelText = view as! UILabel
+                    textField.text = labelText.text
+                    
+                    
+                    let label:UILabel = UILabel(frame: CGRectMake(0, 0, 50, 30))
+                    label.text = "text"
+                    label.font = UIFont(name: "Avenir Next", size: 15.0)
+                    textField.leftView = label
+                    textField.leftViewMode = UITextFieldViewMode.Always
+                    
+                    textField.delegate = self
+                }
+            }
+            
             let deleteAction = DOAlertAction(title: deleteButtonTitle, style: .Destructive) { action in
                 NSLog("The \"Custom\" alert's other action occured.")
                 
@@ -453,6 +477,9 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 self.updateDic()
             }
             customAlertAction = confirmAction
+            
+            
+            customAlertController.addAction(confirmAction)
             
             let takePictureAction = DOAlertAction(title: pickPhotoTitle, style: .Default) { action in
                 
@@ -473,12 +500,10 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 
             }
             
-            customAlertController.addAction(confirmAction)
-            
-            
             if (view.isKindOfClass(UIImageView))
             {
-             customAlertController.addAction(takePictureAction)
+                
+                customAlertController.addAction(takePictureAction)
             }
             
             customAlertController.addAction(deleteAction)
@@ -514,6 +539,9 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                     case "height":
                         view.frame.size.height = value
                         break
+                    case "text":
+                        let label = view as! UILabel
+                        label.text = textField.text
                     default:
                         break;
                     }
