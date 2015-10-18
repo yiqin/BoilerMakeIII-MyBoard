@@ -26,7 +26,6 @@ class BMStoryboardDataManager: NSObject {
     
     override init() {
         super.init()
-        self.saveData()
         self.loadData()
         self.updateID()
     }
@@ -51,6 +50,7 @@ class BMStoryboardDataManager: NSObject {
     }
     
     func loadData() {
+        self.applications = NSMutableArray()
         
         // getting path to UIData.plist
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
@@ -105,10 +105,15 @@ class BMStoryboardDataManager: NSObject {
         
         let dict: NSMutableDictionary = NSMutableDictionary()
         
+        for app in self.applications {
+            let application = app as! BMApplication
+            dict.setObject(application.dictionary, forKey: String(application.id))
+        }
+        
         //writing to UIData.plist
         dict.writeToFile(path, atomically: false)
-        let resultArray = NSArray(contentsOfFile: path)
-        print("Saved UIData.plist file is --> \(resultArray)")
+        let result = NSDictionary(contentsOfFile: path)
+        print("Saved UIData.plist file is --> \(result)")
     }
     
     // MARK: Fake Data goes here.
