@@ -7,6 +7,8 @@
 //
 import UIKit
 
+var shakingIndex = 0
+
 class BMPanelViewController: UIViewController {
 
     // Play or Edit
@@ -16,6 +18,8 @@ class BMPanelViewController: UIViewController {
     // let identifier: String
     
     var app: BMApplication = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
+    
+    var hostNavigationController = UINavigationController(nibName: nil, bundle: nil)
     
     override func canBecomeFirstResponder() -> Bool {
         return true
@@ -40,15 +44,14 @@ class BMPanelViewController: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
         
         if app.viewControllers.count != 0 {
-            let navigationController = UINavigationController(nibName: nil, bundle: nil)
             
-            let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
+            let vc = app.viewControllers.objectAtIndex(shakingIndex) as! BMTemplateViewController
             
-            navigationController.viewControllers = [vc]
+            hostNavigationController.viewControllers = [vc]
             
-            navigationController.view.frame = CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))
-            self.addChildViewController(navigationController)
-            view.addSubview(navigationController.view)
+            hostNavigationController.view.frame = CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))
+            self.addChildViewController(hostNavigationController)
+            view.addSubview(hostNavigationController.view)
         }
         
         
@@ -76,8 +79,8 @@ class BMPanelViewController: UIViewController {
         {
 
             let title = "More"
-            let preButtonTitle = "Last"
-            let nextButtonTitle  = "Next"
+            let preButtonTitle = "Previous View Controller"
+            let nextButtonTitle  = "Next View Controller"
             let backButtonTitle = "Back"
             
             let alertController = DOAlertController(title: title, message: nil, preferredStyle: .Alert)
@@ -88,6 +91,15 @@ class BMPanelViewController: UIViewController {
                     
                     //TO-DO: to add the code lead to last view controller
                     
+                    shakingIndex = shakingIndex - 1
+                    if shakingIndex < 0 {
+                        shakingIndex = 0
+                    } else {
+                        let vc = self.app.viewControllers.objectAtIndex(shakingIndex) as! BMTemplateViewController
+                        self.hostNavigationController.viewControllers = [vc]
+                    }
+                    
+                    
                 })
             }
             
@@ -96,6 +108,15 @@ class BMPanelViewController: UIViewController {
                 alertController.dismissViewControllerAnimated(true, completion: { () -> Void in
                     
                     //TO-DO: to add the code lead to next view controller
+                    
+                    shakingIndex = shakingIndex + 1
+                    if shakingIndex > self.app.viewControllers.count-1 {
+                        shakingIndex = self.app.viewControllers.count-1
+                    } else {
+                        let vc = self.app.viewControllers.objectAtIndex(shakingIndex) as! BMTemplateViewController
+                        self.hostNavigationController.viewControllers = [vc]
+                    }
+                    
                     
                 })
                 
