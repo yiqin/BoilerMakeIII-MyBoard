@@ -1,17 +1,26 @@
 import UIKit
 
 class BMImageView: UIImageView, BMComponentProtocol {
-
+    
+    var storyboardState: State = .Play
+    
     var filename: String
     
     var type = BMComponentType.ImageView
     var id: Int
     
     var dictionary: NSDictionary {
-        let x: CGFloat = self.frame.origin.x / screenWidth
-        let y: CGFloat = self.frame.origin.y / screenHeight
-        let width: CGFloat = self.frame.width / screenWidth
-        let height: CGFloat = self.frame.height / screenHeight
+        var x: CGFloat = frame.origin.x / (screenWidth)
+        var y: CGFloat = frame.origin.y / (screenHeight)
+        var width: CGFloat = frame.width / (screenWidth)
+        var height: CGFloat = frame.height / (screenHeight)
+        
+        if storyboardState == .Edit {
+            x = x/scaleDownRatio
+            y = y/scaleDownRatio
+            width = width/scaleDownRatio
+            height = height/scaleDownRatio
+        }
         
         let dict: NSMutableDictionary = NSMutableDictionary()
         
@@ -44,6 +53,12 @@ class BMImageView: UIImageView, BMComponentProtocol {
         filename = ""
         super.init(frame: frame)
         backgroundColor = UIColor.blueColor()
+    }
+    
+    func setStoryboardState(newState:State) {
+        storyboardState = newState
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

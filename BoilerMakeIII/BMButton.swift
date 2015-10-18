@@ -7,14 +7,26 @@ enum BMButtonActionType {
 
 class BMButton: UIButton, BMComponentProtocol {
     
+    var storyboardState: State = .Play
+    
     var type = BMComponentType.Button
     var id: Int;
     
     var dictionary: NSDictionary {
-        let x: CGFloat = frame.origin.x / screenWidth
-        let y: CGFloat = frame.origin.y / screenHeight
-        let width: CGFloat = frame.width / screenWidth
-        let height: CGFloat = frame.height / screenHeight
+        var x: CGFloat = frame.origin.x / (screenWidth)
+        var y: CGFloat = frame.origin.y / (screenHeight)
+        var width: CGFloat = frame.width / (screenWidth)
+        var height: CGFloat = frame.height / (screenHeight)
+        
+        // var fontPointSize = font.pointSize
+        
+        if storyboardState == .Edit {
+            x = x/scaleDownRatio
+            y = y/scaleDownRatio
+            width = width/scaleDownRatio
+            height = height/scaleDownRatio
+            // fontPointSize = font.pointSize/scaleDownRatio
+        }
         
         let dict: NSMutableDictionary = NSMutableDictionary()
         
@@ -49,6 +61,12 @@ class BMButton: UIButton, BMComponentProtocol {
         setTitleColor(iosBlue, forState: .Normal)
         setTitleColor(iosSelectedBlue, forState: .Selected)
         setTitleColor(iosSelectedBlue, forState: .Highlighted)
+    }
+    
+    func setStoryboardState(newState:State) {
+        storyboardState = newState
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
