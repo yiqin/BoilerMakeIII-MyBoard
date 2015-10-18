@@ -29,6 +29,8 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     
     var currentLabel = UILabel()
     
+    var selectedView: UIView? = nil
+    
     var app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -148,9 +150,11 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         // let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
         
         for vc in app.viewControllers {
-            let tempVC = vc as!BMTemplateViewController
-            tempVC.changeToEdit()
-            createCard(tempVC)
+            if vc is BMTemplateViewController {
+                let tempVC = vc as! BMTemplateViewController
+                tempVC.changeToEdit()
+                createCard(tempVC)
+            }
         }
         
         
@@ -302,6 +306,8 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         
         if let view = currentView {
             
+            self.selectedView = view
+            
             let title = "Component Parameters"
             let message = "Input parameters you want to update"
             let cancelButtonTitle = "Cancel"
@@ -406,17 +412,17 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 NSLog("The \"Custom\" alert's cancel action occured.")
             }
             
-            let otherAction = DOAlertAction(title: otherButtonTitle, style: .Default) { action in
+            let confirmAction = DOAlertAction(title: otherButtonTitle, style: .Default) { action in
                 NSLog("The \"Custom\" alert's other action occured.")
                 
                 self.updateDic()
                 
             }
-            customAlertAction = otherAction
+            customAlertAction = confirmAction
             
             // Add the actions.
             customAlertController.addAction(cancelAction)
-            customAlertController.addAction(otherAction)
+            customAlertController.addAction(confirmAction)
             
             presentViewController(customAlertController, animated: true, completion: nil)
             
@@ -429,11 +435,25 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     func updateDic(){
         
         let textFields = self.customAlertController.textFields as? Array<UITextField>
-        if textFields != nil {
-            
+        if (textFields != nil) {
             for textField: UITextField in textFields! {
                 NSLog("  \(textField.placeholder!): \(textField.text)")
-                
+                if let fieldName = textField.placeholder, let view = self.selectedView {
+                    switch fieldName {
+                    case "x":
+                        view.frame.origin.x = CGFloat((textField.text! as NSString).floatValue)
+                        break;
+                    case "y":
+                        view.frame.origin.y = CGFloat((textField.text! as NSString).floatValue)
+                        break;
+                    case "width":
+                        break;
+                    case "height":
+                        break
+                    default:
+                        break;
+                    }
+                }
             }
         }
         
