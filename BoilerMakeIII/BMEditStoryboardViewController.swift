@@ -62,10 +62,11 @@ class BMEditStoryboardViewController: UIViewController {
         
         setupViewControllersScrollView()
         
-        createCard()
-        createCard()
-        createCard()
-        createCard()
+        
+        let appData = BMStoryboardDataManager.sharedInstance.data
+        
+        let vc = BMTemplateViewController(appID: 10, vcID: 8, state:.Edit)
+        createCard(vc)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -86,7 +87,7 @@ class BMEditStoryboardViewController: UIViewController {
         print("pressed Save Button")
         
         // FIXEDME: - test create the card.
-        createCard()
+        // createCard()
     }
     
     func pressedEmptyButton(sender:UIButton!) {
@@ -112,7 +113,7 @@ class BMEditStoryboardViewController: UIViewController {
     }
     
     
-    func createCard() {
+    func createCard(templateViewController:BMTemplateViewController) {
         let width = CGRectGetWidth(viewControllersScrollView.frame)
         let height = CGRectGetHeight(viewControllersScrollView.frame)
         
@@ -120,11 +121,11 @@ class BMEditStoryboardViewController: UIViewController {
         
         // MARK: - update TemplateViewController...
         
-        let firstVC = BMTemplateViewController(appID: 10, vcID: 8, state:.Edit)
-        firstVC.view.frame = CGRectMake(x, CGRectGetMinY(viewControllersScrollView.frame), width, height)
         
-        addChildViewController(firstVC)
-        viewControllersScrollView.addSubview(firstVC.view)
+        templateViewController.view.frame = CGRectMake(x, CGRectGetMinY(viewControllersScrollView.frame), width, height)
+        
+        addChildViewController(templateViewController)
+        viewControllersScrollView.addSubview(templateViewController.view)
         
         viewControllersScrollView.contentSize = CGSizeMake(x+width, height)
     }
