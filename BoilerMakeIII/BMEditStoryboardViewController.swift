@@ -25,7 +25,6 @@ class BMEditStoryboardViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
     }
     
     func createUILibrary() {
@@ -120,7 +119,7 @@ class BMEditStoryboardViewController: UIViewController {
         
         // MARK: - update TemplateViewController...
         
-        let firstVC = BMTemplateViewController(appID: 10, vcID: 8, state:.Edit)
+        let firstVC = BMTemplateViewController(appID: 10, vcID: 8, dict: nil, state:.Edit)
         firstVC.view.frame = CGRectMake(x, CGRectGetMinY(viewControllersScrollView.frame), width, height)
         
         addChildViewController(firstVC)

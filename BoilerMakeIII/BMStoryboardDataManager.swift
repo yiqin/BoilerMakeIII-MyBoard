@@ -232,7 +232,7 @@ class BMStoryboardDataManager: NSObject {
         
         let navigationController = UINavigationController(nibName: nil, bundle: nil)
         
-        let firstVC = BMTemplateViewController(appID: 10, vcID: 8)
+        let firstVC = BMTemplateViewController(appID: 10, vcID: 8, dict:nil)
         firstVC.title = "Hello world"
         
         
