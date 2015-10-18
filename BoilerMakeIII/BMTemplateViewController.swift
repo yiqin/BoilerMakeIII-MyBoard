@@ -28,12 +28,14 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     var id: Int
     
     // Reconstructor.
-    init(appID: Int, vcID: Int, dictionary: NSDictionary?, state: State = .Play) {
+    init(appID: Int, vcID: Int, dictionary: NSDictionary, state: State = .Play) {
         self.id = vcID
         
         super.init(nibName: nil, bundle: nil)
-
-        if let vcDict = dictionary {
+        
+        let vcDict = dictionary
+        
+        if true {
             self.title = vcDict["title"] as? String
             if let dict = vcDict["UIData"] as? NSDictionary {
                 for (_, comp) in dict {
@@ -105,9 +107,9 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     }
 
     // New ViewController
-    convenience init(appID: Int) {
-        self.init(appID: appID, vcID: BMStoryboardDataManager.sharedInstance.getNextID(), dictionary: nil)
-    }
+//    convenience init(appID: Int) {
+//        self.init(appID: appID, vcID: BMStoryboardDataManager.sharedInstance.getNextID(), dictionary: nil)
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -136,9 +138,11 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     
     @IBAction func tapButton(sender:UIButton!) {
         
-        let vc = BMTemplateViewController(appID: 10, vcID: 9, dictionary: nil)
+        let app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
         
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = app.viewControllers.objectAtIndex(0)
+        
+        navigationController?.pushViewController(vc as! UIViewController, animated: true)
     }
     
     func handleSingleTapElement(tapRecognizer: UITapGestureRecognizer) {

@@ -62,9 +62,11 @@ class BMEditStoryboardViewController: UIViewController {
         setupViewControllersScrollView()
         
         
-        let appData = BMStoryboardDataManager.sharedInstance.data
+        let app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
         
-        let vc = BMTemplateViewController(appID: 10, vcID: 8, dictionary: nil, state:.Edit)
+        let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
+        
+        
         createCard(vc)
     }
     

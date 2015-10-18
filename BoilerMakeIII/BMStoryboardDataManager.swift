@@ -238,11 +238,11 @@ class BMStoryboardDataManager: NSObject {
         
         let navigationController = UINavigationController(nibName: nil, bundle: nil)
         
-        let firstVC = BMTemplateViewController(appID: 10, vcID: 8, dictionary:nil)
-        firstVC.title = "Hello world"
+        let app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
         
+        var vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
         
-        navigationController.viewControllers = [firstVC]
+        navigationController.viewControllers = [vc]
         return navigationController
     }
     
