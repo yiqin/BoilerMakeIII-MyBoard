@@ -2,14 +2,26 @@ import UIKit
 
 class BMLabel: UILabel, BMComponentProtocol{
     
+    var state: State = .Play
+    
     var type = BMComponentType.Label
     var id: Int;
     
     var dictionary: NSDictionary {
-        let x: CGFloat = frame.origin.x / screenWidth
-        let y: CGFloat = frame.origin.y / screenHeight
-        let width: CGFloat = frame.width / screenWidth
-        let height: CGFloat = frame.height / screenHeight
+        var x: CGFloat = frame.origin.x / (screenWidth)
+        var y: CGFloat = frame.origin.y / (screenHeight)
+        var width: CGFloat = frame.width / (screenWidth)
+        var height: CGFloat = frame.height / (screenHeight)
+        
+        var fontPointSize = font.pointSize
+        
+        if state == .Edit {
+            x = x/scaleDownRatio
+            y = y/scaleDownRatio
+            width = width/scaleDownRatio
+            height = height/scaleDownRatio
+            fontPointSize = font.pointSize/scaleDownRatio
+        }
         
         let dict: NSMutableDictionary = NSMutableDictionary()
         
@@ -20,7 +32,7 @@ class BMLabel: UILabel, BMComponentProtocol{
         dict.setObject(width, forKey: "width")
         dict.setObject(height, forKey: "height")
         dict.setObject(font.fontName, forKey: "fontName")
-        dict.setObject(font.pointSize, forKey: "fontSize")
+        dict.setObject(fontPointSize, forKey: "fontSize")
         dict.setObject(self.text!, forKey: "text")
         return NSDictionary(dictionary: dict)
     }
@@ -47,6 +59,12 @@ class BMLabel: UILabel, BMComponentProtocol{
         //layer.cornerRadius = 4
         textColor = iosBlue
         textAlignment = NSTextAlignment.Center
+    }
+    
+    func setState(newState:State) {
+        state = newState
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
