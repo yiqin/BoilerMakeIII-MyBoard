@@ -29,6 +29,8 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     
     var currentLabel = UILabel()
     
+    var app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -110,9 +112,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         
         setupViewControllersScrollView()
         
-        
-        let app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
-        
+                
         // let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
         
         for vc in app.viewControllers {
