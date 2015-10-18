@@ -41,6 +41,11 @@ class BMApplication: NSObject, BMComponentProtocol {
                 viewControllers.addObject(BMTemplateViewController(appID: self.id, vcID: vcID.integerValue!, dictionary: dictionary))
             }
         }
-        
+    }
+    
+    override init() {
+        self.id = BMStoryboardDataManager.sharedInstance.getNextID()
+        self.title = "MyApp-\(self.id)"
+        super.init()
     }
 }

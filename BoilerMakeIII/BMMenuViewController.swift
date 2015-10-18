@@ -25,8 +25,21 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
         let dict = NSDictionary(contentsOfFile: path!)
         
         collectionData = dict!.objectForKey("iOSDevice") as! [String]
+        
+        let newAPPButton = UIBarButtonItem(title: "New APP", style: .Plain, target: self, action: "pressNewAppButton:")
+        navigationItem.rightBarButtonItem = newAPPButton
     }
 
+    func pressNewAppButton(sender: UIBarButtonItem) {
+        
+        /**
+         * Put pop up here.
+         */
+        
+        BMStoryboardDataManager.sharedInstance.applications.addObject(BMApplication())
+        menuCollectionView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -39,7 +52,7 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
         let app = BMStoryboardDataManager.sharedInstance.applications[indexPath.row] as! BMApplication
         
         cell.cellTextLabel.text = app.title as String
-        cell.cellImage.image = UIImage(named: "\(collectionData[0]).png")
+        cell.cellImage.image = UIImage(named: "\(collectionData[1]).png")
         
         cell.contentView.layer.cornerRadius = 12.0
         cell.contentView.layer.borderWidth = 1.0
@@ -50,7 +63,6 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return BMStoryboardDataManager.sharedInstance.applications.count;
     }
     
