@@ -170,9 +170,11 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         super.viewDidAppear(animated)
         
         // MARK: - Must be in the viewDidAppear
-
+        
         
     }
+    
+    
     
     override func viewDidDisappear(animated: Bool) {
         
@@ -196,7 +198,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        title = app.title as String
     }
     
     func pressedNewViewButton() {
