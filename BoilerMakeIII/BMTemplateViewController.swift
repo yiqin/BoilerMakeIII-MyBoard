@@ -237,7 +237,9 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         var tag = tapRecognizer.view?.tag
         print(tag)
         
+        NSNotificationCenter.defaultCenter().postNotificationName("BMEditComponentTapped", object: tag, userInfo: nil)
         // Add a setting view....
+      
         
     }
     

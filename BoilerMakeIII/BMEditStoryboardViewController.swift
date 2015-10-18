@@ -8,7 +8,14 @@
 
 import UIKit
 
-class BMEditStoryboardViewController: UIViewController {
+class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate {
+    
+    var customAlertController: DOAlertController!
+    weak var textField1: UITextField?
+    weak var textField2: UITextField?
+    weak var textField3: UITextField?
+    weak var textField4: UITextField?
+    weak var customAlertAction: DOAlertAction?
     
     let viewControllersScrollView: JT3DScrollView = JT3DScrollView()
     
@@ -22,6 +29,8 @@ class BMEditStoryboardViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleComponentTapped:", name: "BMEditComponentTapped", object: nil)
     }
     
     func createUILibrary() {
@@ -196,6 +205,133 @@ class BMEditStoryboardViewController: UIViewController {
             currentIndex = availableComponents.count-1
         }
         currentLabel.text = availableComponents[currentIndex].title
+    }
+    
+    func handleComponentTapped(sender: NSObject!)
+    {
+        self.showCustomAlert()
+    }
+    
+    func showCustomAlert() {
+        let title = "Component Parameters"
+        let message = "Input parameters you want to update"
+        let cancelButtonTitle = "Cancel"
+        let otherButtonTitle = "Comfirm"
+        
+        customAlertController = DOAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        // OverlayView
+        customAlertController.overlayColor = UIColor(red:235/255, green:245/255, blue:255/255, alpha:0.7)
+        // AlertView
+        customAlertController.alertViewBgColor = UIColor(red:44/255, green:62/255, blue:80/255, alpha:1)
+        // Title
+        customAlertController.titleFont = UIFont(name: "Avenir Next", size: 18.0)
+        customAlertController.titleTextColor = UIColor(red:241/255, green:196/255, blue:15/255, alpha:1)
+        // Message
+        customAlertController.messageFont = UIFont(name: "Avenir Next", size: 15.0)
+        customAlertController.messageTextColor = UIColor.whiteColor()
+        // Cancel Button
+        customAlertController.buttonFont[.Cancel] = UIFont(name: "Avenir Next", size: 16.0)
+        // Default Button
+        customAlertController.buttonFont[.Default] = UIFont(name: "Avenir Next", size: 16.0)
+        customAlertController.buttonTextColor[.Default] = UIColor(red:44/255, green:62/255, blue:80/255, alpha:1)
+        customAlertController.buttonBgColor[.Default] = UIColor(red: 46/255, green:204/255, blue:113/255, alpha:1)
+        customAlertController.buttonBgColorHighlighted[.Default] = UIColor(red:64/255, green:212/255, blue:126/255, alpha:1)
+        
+        
+        customAlertController.addTextFieldWithConfigurationHandler { textField in
+            self.textField1 = textField
+            textField.placeholder = "x"
+            textField.frame.size = CGSizeMake(240.0, 30.0)
+            textField.font = UIFont(name: "Avenir Next", size: 15.0)
+            textField.keyboardAppearance = UIKeyboardAppearance.Dark
+            textField.returnKeyType = UIReturnKeyType.Next
+            
+            let label:UILabel = UILabel(frame: CGRectMake(0, 0, 50, 30))
+            label.text = "x"
+            label.font = UIFont(name: "Avenir Next", size: 15.0)
+            textField.leftView = label
+            textField.leftViewMode = UITextFieldViewMode.Always
+            
+            textField.delegate = self
+        }
+        
+        customAlertController.addTextFieldWithConfigurationHandler { textField in
+            self.textField2 = textField
+            textField.secureTextEntry = true
+            textField.placeholder = "y"
+            textField.frame.size = CGSizeMake(240.0, 30.0)
+            textField.font = UIFont(name: "Avenir Next", size: 15.0)
+            textField.keyboardAppearance = UIKeyboardAppearance.Dark
+            textField.returnKeyType = UIReturnKeyType.Send
+            
+            let label:UILabel = UILabel(frame: CGRectMake(0, 0, 50, 30))
+            label.text = "y"
+            label.font = UIFont(name: "Avenir Next", size: 15.0)
+            textField.leftView = label
+            textField.leftViewMode = UITextFieldViewMode.Always
+            
+            textField.delegate = self
+        }
+        
+        customAlertController.addTextFieldWithConfigurationHandler { textField in
+            self.textField3 = textField
+            textField.secureTextEntry = true
+            textField.placeholder = "width"
+            textField.frame.size = CGSizeMake(240.0, 30.0)
+            textField.font = UIFont(name: "Avenir Next", size: 15.0)
+            textField.keyboardAppearance = UIKeyboardAppearance.Dark
+            textField.returnKeyType = UIReturnKeyType.Send
+            
+            let label:UILabel = UILabel(frame: CGRectMake(0, 0, 50, 30))
+            label.text = "width"
+            label.font = UIFont(name: "Avenir Next", size: 15.0)
+            textField.leftView = label
+            textField.leftViewMode = UITextFieldViewMode.Always
+            
+            textField.delegate = self
+        }
+        
+        customAlertController.addTextFieldWithConfigurationHandler { textField in
+            self.textField4 = textField
+            textField.secureTextEntry = true
+            textField.placeholder = "height"
+            textField.frame.size = CGSizeMake(240.0, 30.0)
+            textField.font = UIFont(name: "Avenir Next", size: 15.0)
+            textField.keyboardAppearance = UIKeyboardAppearance.Dark
+            textField.returnKeyType = UIReturnKeyType.Send
+            
+            let label:UILabel = UILabel(frame: CGRectMake(0, 0, 50, 30))
+            label.text = "height"
+            label.font = UIFont(name: "Avenir Next", size: 15.0)
+            textField.leftView = label
+            textField.leftViewMode = UITextFieldViewMode.Always
+            
+            textField.delegate = self
+        }
+        
+        // Create the actions.
+        let cancelAction = DOAlertAction(title: cancelButtonTitle, style: .Cancel) { action in
+            NSLog("The \"Custom\" alert's cancel action occured.")
+        }
+        
+        let otherAction = DOAlertAction(title: otherButtonTitle, style: .Default) { action in
+            NSLog("The \"Custom\" alert's other action occured.")
+            
+            let textFields = self.customAlertController.textFields as? Array<UITextField>
+            if textFields != nil {
+                for textField: UITextField in textFields! {
+                    NSLog("  \(textField.placeholder!): \(textField.text)")
+                }
+            }
+        }
+        customAlertAction = otherAction
+        
+        // Add the actions.
+        customAlertController.addAction(cancelAction)
+        customAlertController.addAction(otherAction)
+        
+        presentViewController(customAlertController, animated: true, completion: nil)
     }
     
 }
