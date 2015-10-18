@@ -17,6 +17,7 @@
 		8D90809E1BD2F1BF006E1111 /* ScrollViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90809D1BD2F1BF006E1111 /* ScrollViewContainer.swift */; settings = {ASSET_TAGS = (); }; };
 		8D9080A01BD2F584006E1111 /* UILibraryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90809F1BD2F584006E1111 /* UILibraryLabel.swift */; settings = {ASSET_TAGS = (); }; };
 		8D9080A41BD304B5006E1111 /* BMAddLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9080A31BD304B5006E1111 /* BMAddLibraryButton.swift */; settings = {ASSET_TAGS = (); }; };
+		8D9080A61BD3388D006E1111 /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9080A51BD3388D006E1111 /* FakeData.swift */; settings = {ASSET_TAGS = (); }; };
 		8DDA3F281BD211AD00323A48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDA3F271BD211AD00323A48 /* AppDelegate.swift */; };
 		8DDA3F2D1BD211AD00323A48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DDA3F2B1BD211AD00323A48 /* Main.storyboard */; };
 		8DDA3F2F1BD211AD00323A48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DDA3F2E1BD211AD00323A48 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		8D90809D1BD2F1BF006E1111 /* ScrollViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewContainer.swift; sourceTree = "<group>"; };
 		8D90809F1BD2F584006E1111 /* UILibraryLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILibraryLabel.swift; sourceTree = "<group>"; };
 		8D9080A31BD304B5006E1111 /* BMAddLibraryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMAddLibraryButton.swift; sourceTree = "<group>"; };
+		8D9080A51BD3388D006E1111 /* FakeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
 		8DDA3F241BD211AD00323A48 /* BoilerMakeIII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoilerMakeIII.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDA3F271BD211AD00323A48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DDA3F2C1BD211AD00323A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				8DDA3F551BD2871300323A48 /* BMStoryboardDataManager.swift */,
+				8D9080A51BD3388D006E1111 /* FakeData.swift */,
 			);
 			name = BMStoryboard;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				2DD8A8501BD25D8800E9B6F2 /* TestSerializeViewController.swift in Sources */,
 				2DD8A84B1BD25D6900E9B6F2 /* BMLabel.swift in Sources */,
 				8DDA3F5D1BD2878900323A48 /* BMViewControllerProtocol.swift in Sources */,
+				8D9080A61BD3388D006E1111 /* FakeData.swift in Sources */,
 				8D90809E1BD2F1BF006E1111 /* ScrollViewContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
