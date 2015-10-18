@@ -5,6 +5,8 @@ protocol BMComponentProtocol {
     var dictionary: NSDictionary { get }
     var id: Int { get }
     //var state: Int { get set }
+    
+    var isNew: Bool {get set}
 }
 
 enum BMComponentType: String {

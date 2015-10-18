@@ -15,6 +15,8 @@ enum State {
 
 class BMTemplateViewController: UIViewController, BMComponentProtocol {
     
+    var isNew = false
+    
     var type = BMComponentType.ViewController
     var dictionary: NSDictionary {
         let dict: NSMutableDictionary = NSMutableDictionary()
@@ -145,12 +147,13 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         if state == .Play {
                             
                         } else {
-                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                            label.addGestureRecognizer(singleTap)
-                            label.userInteractionEnabled = true
+                            bindAndAddSubview(label)
+//                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+//                            label.addGestureRecognizer(singleTap)
+//                            label.userInteractionEnabled = true
                         }
                         
-                        self.view.addSubview(label)
+                        //self.view.addSubview(label)
                         print(label.dictionary)
                         break
                     case BMComponentType.Button.rawValue:
@@ -162,14 +165,14 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         if state == .Play {
                             button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
                         } else {
-                            
-                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                            button.addGestureRecognizer(singleTap)
-                            button.userInteractionEnabled = true
+                            bindAndAddSubview(button)
+//                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+//                            button.addGestureRecognizer(singleTap)
+//                            button.userInteractionEnabled = true
                             
                         }
                         
-                        self.view.addSubview(button)
+                        //self.view.addSubview(button)
                         print(button.dictionary)
                         break;
                     case BMComponentType.ImageView.rawValue:
@@ -184,10 +187,10 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         if state == .Play {
                             
                         } else {
-                            
-                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                            imageView.addGestureRecognizer(singleTap)
-                            imageView.userInteractionEnabled = true
+                            bindAndAddSubview(imageView)
+//                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+//                            imageView.addGestureRecognizer(singleTap)
+//                            imageView.userInteractionEnabled = true
                             
                         }
                         
@@ -254,9 +257,51 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         subview.addGestureRecognizer(singleTap)
         subview.userInteractionEnabled = true
         
-        subview.tag = 10000
+        let pan = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        subview.addGestureRecognizer(pan)
+        
+        let pinch = UIPinchGestureRecognizer(target: self, action: "handlePinch:")
+        subview.addGestureRecognizer(pinch)
+        
+        var tmpView = subview as! BMComponentProtocol
+        tmpView.isNew = true
+        subview.tag = tmpView.id
         
         self.view.addSubview(subview)
+    }
+    
+    var lastScale: CGFloat = 1.0
+    func handlePinch(sender: UIPinchGestureRecognizer) {
+        if sender.numberOfTouches() == 2, let view = sender.view {
+            if sender.state == .Began {
+                lastScale = 1.0
+            }
+            
+            let scale = 1.0 - (lastScale - sender.scale)
+            view.layer.setAffineTransform(CGAffineTransformScale(view.layer.affineTransform(), scale, scale))
+            lastScale = sender.scale
+        }
+    }
+    
+    func handlePan(sender: UIPanGestureRecognizer) {
+        if let view = sender.view {
+            switch sender.state {
+            case .Began:
+                print("began")
+                break
+            case .Changed:
+                let offset: CGPoint = sender.translationInView(self.view)
+                view.center = CGPoint(x: view.center.x + offset.x, y: view.center.y + offset.y)
+                sender.setTranslation(CGPoint.zero, inView: self.view)
+                print("changed")
+                break
+            case .Ended:
+                print("ended")
+                break
+            default:
+                break
+            }
+        }
     }
     
     func handleSingleTapElement(tapRecognizer: UITapGestureRecognizer) {

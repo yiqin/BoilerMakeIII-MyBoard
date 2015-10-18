@@ -92,10 +92,16 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 break
             case .Ended:
                 if let moving = movingView {
-                    let currentViewController = app.viewControllers.objectAtIndex(Int(self.viewControllersScrollView.currentPage())) as! BMTemplateViewController
-                
+                    let pageIndex: Int = Int(self.viewControllersScrollView.currentPage())
+                    let currentViewController = app.viewControllers.objectAtIndex(pageIndex) as! BMTemplateViewController
+                    
+                    let updatedFrame: CGRect = CGRect(x: moving.frame.origin.x + screenWidth * CGFloat(pageIndex), y: moving.frame.origin.y, width: moving.frame.size.width, height: moving.frame.size.height)
+                    
+                    print(currentViewController.view.frame)
+                    print(updatedFrame)
+                    
                     // Check intersect
-                    if CGRectIntersectsRect(currentViewController.view.frame, moving.frame) {
+                    if CGRectIntersectsRect(currentViewController.view.frame, updatedFrame) {
                         let newCenter: CGPoint = self.view.convertPoint(moving.center, toView: currentViewController.view)
                         let newView: UIView = getCurrentComponent()
                         newView.center = newCenter
@@ -151,8 +157,6 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         
                 
         // let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
-        
-        
         
         for vc in app.viewControllers {
             if vc is BMTemplateViewController {

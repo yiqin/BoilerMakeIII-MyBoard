@@ -7,6 +7,8 @@ class BMLabel: UILabel, BMComponentProtocol{
     var type = BMComponentType.Label
     var id: Int;
     
+    var isNew = false
+    
     var dictionary: NSDictionary {
         var x: CGFloat = frame.origin.x / (screenWidth)
         var y: CGFloat = frame.origin.y / (screenHeight)
@@ -23,11 +25,13 @@ class BMLabel: UILabel, BMComponentProtocol{
             fontPointSize = font.pointSize/scaleDownRatio
         }
         
-        if tag == 10000 {
+        if isNew {
             x = x/scaleDownRatio
             y = y/scaleDownRatio
             width = width/scaleDownRatio
             height = height/scaleDownRatio
+            
+            isNew = false
         }
         
         let dict: NSMutableDictionary = NSMutableDictionary()

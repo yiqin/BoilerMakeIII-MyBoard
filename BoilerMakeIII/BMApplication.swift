@@ -14,6 +14,8 @@ class BMApplication: NSObject, BMComponentProtocol {
     var id: Int
     var type: BMComponentType = .Application
     
+    var isNew = false
+    
     var dictionary: NSDictionary {
         let dict: NSMutableDictionary = NSMutableDictionary()
         for case let viewController as BMComponentProtocol in self.viewControllers {
