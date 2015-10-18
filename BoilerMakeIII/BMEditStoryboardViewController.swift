@@ -516,8 +516,6 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         
     }
     
-
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let chosenImage: UIImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             let pngData: NSData = UIImagePNGRepresentation(chosenImage)!
