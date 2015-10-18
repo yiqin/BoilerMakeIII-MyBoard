@@ -32,13 +32,17 @@ class BMLabel: UILabel, BMComponentProtocol{
         
         text = dict["text"] as? String
         font = UIFont(name: dict["fontName"] as! String, size: dict["fontSize"] as! CGFloat)
-        backgroundColor = UIColor.brownColor()
+        backgroundColor = iosBlue
     }
     
     override init(frame: CGRect) {
         id = BMStoryboardDataManager.sharedInstance.getNextID()
         super.init(frame: frame)
-        backgroundColor = UIColor.brownColor()
+        text = "Label"
+        layer.borderColor = iosBlue.CGColor
+        layer.borderWidth = 1
+        layer.cornerRadius = 4
+        textColor = iosBlue
     }
     
     required init?(coder aDecoder: NSCoder) {

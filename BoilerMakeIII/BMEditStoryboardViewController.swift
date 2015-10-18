@@ -87,8 +87,18 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 print("changed")
                 break
             case .Ended:
-                movingView?.removeFromSuperview()
-                self.movingView = nil
+                if let moving = movingView {
+                    let currentViewController = app.viewControllers.objectAtIndex(Int(self.viewControllersScrollView.currentPage())) as! BMTemplateViewController
+                
+                    // Check intersect
+                    if CGRectIntersectsRect(currentViewController.view.frame, moving.frame) {
+                        print("interSect")
+                        currentViewController.view.addSubview(BMLabel(frame: CGRect(x: 20, y: 20, width: 100, height: 50)))
+                    }
+                
+                    moving.removeFromSuperview()
+                    self.movingView = nil
+                }
                 print("ended")
                 break
             default:
@@ -100,7 +110,9 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     func createMoving(center: CGPoint) {
         switch currentIndex {
         default:
-            movingView = BMLabel(frame: CGRect(x: center.x - 50, y: center.y - 50, width: 100, height: 100))
+            movingView = UIView(frame: CGRect(x: center.x - 50, y: center.y - 25, width: 100, height: 50))
+            movingView?.alpha = 0.5
+            movingView?.backgroundColor = iosBlue
             break;
         }
     }
