@@ -95,6 +95,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                         let newCenter: CGPoint = self.view.convertPoint(moving.center, toView: currentViewController.view)
                         let newView: UIView = getCurrentComponent()
                         newView.center = newCenter
+                        
                         currentViewController.bindAndAddSubview(newView)
                     }
                 
@@ -159,7 +160,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     override func viewDidDisappear(animated: Bool) {
         
         // Must hide in the view did disappear
-        viewControllersScrollView.hidden = true
+        
         
         super.viewDidDisappear(animated)
         
@@ -169,9 +170,16 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         BMStoryboardDataManager.sharedInstance.loadData()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewControllersScrollView.hidden = true
+    }
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        
     }
     
     func pressedNewViewButton() {
