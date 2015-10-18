@@ -64,7 +64,7 @@ class BMEditStoryboardViewController: UIViewController {
         
         let appData = BMStoryboardDataManager.sharedInstance.data
         
-        let vc = BMTemplateViewController(appID: 10, vcID: 8, state:.Edit)
+        let vc = BMTemplateViewController(appID: 10, vcID: 8, dict: nil, state:.Edit)
         createCard(vc)
     }
     
@@ -119,12 +119,6 @@ class BMEditStoryboardViewController: UIViewController {
         let x = CGFloat(viewControllersScrollView.subviews.count) * width
         
         // MARK: - update TemplateViewController...
-        
-<<<<<<< HEAD
-=======
-        let firstVC = BMTemplateViewController(appID: 10, vcID: 8, dict: nil, state:.Edit)
-        firstVC.view.frame = CGRectMake(x, CGRectGetMinY(viewControllersScrollView.frame), width, height)
->>>>>>> origin/master
         
         templateViewController.view.frame = CGRectMake(x, CGRectGetMinY(viewControllersScrollView.frame), width, height)
         
