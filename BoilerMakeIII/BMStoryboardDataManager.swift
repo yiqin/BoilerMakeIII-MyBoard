@@ -61,13 +61,13 @@ class BMStoryboardDataManager: NSObject {
         
         if let dict = NSDictionary(contentsOfFile: path) as? NSMutableDictionary {
             self.data = dict
+            print(data)
             
             for (_, value) in self.data {
                 let appDict: NSDictionary = value as! NSDictionary
                 applications.addObject(BMApplication(dict: appDict))
             }
             
-            print(data)
         } else {
             print("Cannot load UIData.plist")
         }

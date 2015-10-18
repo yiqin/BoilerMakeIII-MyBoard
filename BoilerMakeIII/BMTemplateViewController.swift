@@ -35,71 +35,69 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
 
         if let vcDict = dictionary {
             self.title = vcDict["title"] as? String
+            if let dict = vcDict["UIData"] as? NSDictionary {
+                for (_, comp) in dict {
+                    let compDict: NSDictionary = comp as! NSDictionary
+                    let frame = rectFromDict(compDict)
+                    
+                    switch compDict["type"] as! NSString {
+                    case BMComponentType.Label.rawValue:
+                        let label = BMLabel(frame: frame, dict: compDict)
+                        label.tag = label.id
+                        
+                        if state == .Play {
+                            
+                        } else {
+                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+                            label.addGestureRecognizer(singleTap)
+                            label.userInteractionEnabled = true
+                        }
+                        
+                        self.view.addSubview(label)
+                        print(label.dictionary)
+                        break
+                    case BMComponentType.Button.rawValue:
+                        let button = BMButton(frame: frame, dict: compDict)
+                        button.tag = button.id
+                        
+                        if state == .Play {
+                            button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
+                        } else {
+                            
+                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+                            button.addGestureRecognizer(singleTap)
+                            button.userInteractionEnabled = true
+                            
+                        }
+                        
+                        self.view.addSubview(button)
+                        print(button.dictionary)
+                        break;
+                    case BMComponentType.ImageView.rawValue:
+                        let imageView = BMImageView(frame: frame, dict: compDict)
+                        imageView.tag = imageView.id
+                        
+                        self.view.addSubview(imageView)
+                        
+                        if state == .Play {
+                            
+                        } else {
+                            
+                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+                            imageView.addGestureRecognizer(singleTap)
+                            imageView.userInteractionEnabled = true
+                            
+                        }
+                        
+                        break;
+                    default:
+                        break
+                    }
+                }
+            print(self.dictionary)
         } else {
             self.title = "ViewController-\(vcID)"
         }
-        
-        if let dict = BMStoryboardDataManager.sharedInstance.getComponentsData(appID, vcID: vcID) {
-            for (_, comp) in dict {
-                let compDict: NSDictionary = comp as! NSDictionary
-                let frame = rectFromDict(compDict)
-                
-                switch compDict["type"] as! NSString {
-                case BMComponentType.Label.rawValue:
-                    let label = BMLabel(frame: frame, dict: compDict)
-                    label.tag = label.id
-                    
-                    if state == .Play {
-                        
-                    } else {
-                        let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                        label.addGestureRecognizer(singleTap)
-                        label.userInteractionEnabled = true
-                    }
-                    
-                    self.view.addSubview(label)
-                    print(label.dictionary)
-                    break
-                case BMComponentType.Button.rawValue:
-                    let button = BMButton(frame: frame, dict: compDict)
-                    button.tag = button.id
-                    
-                    if state == .Play {
-                        button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
-                    } else {
-                        
-                        let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                        button.addGestureRecognizer(singleTap)
-                        button.userInteractionEnabled = true
-                        
-                    }
-                    
-                    self.view.addSubview(button)
-                    print(button.dictionary)
-                    break;
-                case BMComponentType.ImageView.rawValue:
-                    let imageView = BMImageView(frame: frame, dict: compDict)
-                    imageView.tag = imageView.id
-                    
-                    self.view.addSubview(imageView)
-                    
-                    if state == .Play {
-                        
-                    } else {
-                        
-                        let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                        imageView.addGestureRecognizer(singleTap)
-                        imageView.userInteractionEnabled = true
-                        
-                    }
-                    
-                    break;
-                default:
-                    break
-                }
-            }
-            
-            print(self.dictionary)
             
         } else {
             print("WARNING: Couldn't create dictionary from UIData.plist! Default values will be used!")
