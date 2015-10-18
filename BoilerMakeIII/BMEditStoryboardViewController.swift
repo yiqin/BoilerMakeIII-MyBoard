@@ -56,8 +56,8 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         
         view.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)
         
-        let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "pressedSaveButton")
-        navigationItem.rightBarButtonItem = saveButton
+        let newPageButton = UIBarButtonItem(title: "New View", style: .Plain, target: self, action: "pressedNewViewButton")
+        navigationItem.rightBarButtonItem = newPageButton
         
         setupLibraryView()
         
@@ -158,7 +158,6 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     
     override func viewDidDisappear(animated: Bool) {
         
-        
         // Must hide in the view did disappear
         viewControllersScrollView.hidden = true
         
@@ -175,12 +174,9 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
 
     }
     
-    func pressedSaveButton() {
-        
-        print("pressed Save Button")
-        
+    func pressedNewViewButton() {
         // FIXEDME: - test create the card.
-        // createCard()
+        createCard(BMTemplateViewController(appID: app.id, vcID: BMStoryboardDataManager.sharedInstance.getNextID(), dictionary: NSDictionary()))
     }
     
     func pressedEmptyButton(sender:UIButton!) {
@@ -217,6 +213,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         templateViewController.view.frame = CGRectMake(x, CGRectGetMinY(viewControllersScrollView.frame), width, height)
         
         addChildViewController(templateViewController)
+        app.viewControllers.addObject(templateViewController)
         viewControllersScrollView.addSubview(templateViewController.view)
         
         viewControllersScrollView.contentSize = CGSizeMake(x+width, height)
