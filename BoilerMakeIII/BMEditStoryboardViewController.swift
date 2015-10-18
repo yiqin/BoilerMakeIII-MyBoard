@@ -149,7 +149,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         // let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
         
         for vc in app.viewControllers {
-            let tempVC = vc as!BMTemplateViewController
+            let tempVC = vc as! BMTemplateViewController
             tempVC.changeToEdit()
             createCard(tempVC)
         }
@@ -312,6 +312,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
             
             let title = "Component Parameters"
             let message = "Input parameters you want to update"
+            let deleteButtonTitle = "Delete"
             let cancelButtonTitle = "Cancel"
             let otherButtonTitle = "Comfirm"
             
@@ -409,10 +410,18 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 textField.delegate = self
             }
             
+            let deleteAction = DOAlertAction(title: deleteButtonTitle, style: .Default) { action in
+                NSLog("The \"Custom\" alert's other action occured.")
+                
+                view.removeFromSuperview()
+                
+            }
+            
             // Create the actions.
             let cancelAction = DOAlertAction(title: cancelButtonTitle, style: .Cancel) { action in
                 NSLog("The \"Custom\" alert's cancel action occured.")
             }
+            
             
             let otherAction = DOAlertAction(title: otherButtonTitle, style: .Default) { action in
                 NSLog("The \"Custom\" alert's other action occured.")
@@ -423,6 +432,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
             customAlertAction = otherAction
             
             // Add the actions.
+            customAlertController.addAction(deleteAction)
             customAlertController.addAction(cancelAction)
             customAlertController.addAction(otherAction)
             
