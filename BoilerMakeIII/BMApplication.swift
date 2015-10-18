@@ -8,10 +8,25 @@
 
 import Foundation
 
-class BMApplication: NSObject {
+class BMApplication: NSObject, BMComponentProtocol {
     let viewControllers: NSMutableArray = NSMutableArray()
     var title: NSString
     var id: Int
+    var type: BMComponentType = .Application
+    
+    var dictionary: NSDictionary {
+        let dict: NSMutableDictionary = NSMutableDictionary()
+        for case let viewController as BMComponentProtocol in self.viewControllers {
+            let vcDict: NSDictionary = viewController.dictionary
+            dict.setObject(vcDict, forKey: String(vcDict.objectForKey("id")!))
+        }
+        let appDict: NSMutableDictionary = NSMutableDictionary()
+        appDict.setObject(dict, forKey: "viewControllers")
+        appDict.setObject(id, forKey: "id")
+        appDict.setObject(title, forKey: "title")
+        appDict.setObject(self.type.rawValue, forKey: "type")
+        return NSDictionary(dictionary: appDict)
+    }
     
     init(dict: NSDictionary) {
         self.title = dict["title"] as! NSString
@@ -24,5 +39,6 @@ class BMApplication: NSObject {
                 viewControllers.addObject(BMTemplateViewController(appID: self.id, vcID: vcID.integerValue!, dictionary: dictionary))
             }
         }
+        
     }
 }

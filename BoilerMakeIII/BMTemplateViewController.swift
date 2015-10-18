@@ -22,7 +22,12 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
             let compDict: NSDictionary = component.dictionary
             dict.setObject(compDict, forKey: String(compDict.objectForKey("id")!))
         }
-        return NSDictionary(dictionary: dict)
+        let vcDict: NSMutableDictionary = NSMutableDictionary()
+        vcDict.setObject(dict, forKey: "UIData")
+        vcDict.setObject(id, forKey: "id")
+        vcDict.setObject(title!, forKey: "title")
+        vcDict.setObject(self.type.rawValue, forKey: "type")
+        return NSDictionary(dictionary: vcDict)
     }
     
     var id: Int

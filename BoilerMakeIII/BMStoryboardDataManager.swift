@@ -240,7 +240,7 @@ class BMStoryboardDataManager: NSObject {
         
         let app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
         
-        var vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
+        let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
         
         navigationController.viewControllers = [vc]
         return navigationController
