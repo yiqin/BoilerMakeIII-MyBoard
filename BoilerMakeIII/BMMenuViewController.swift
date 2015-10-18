@@ -9,10 +9,12 @@
 import UIKit
 
 
-class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate{
     
     
 @IBOutlet weak var menuCollectionView: UICollectionView!
+    
+    weak var NameTextField: UITextField?
     
     var collectionData: [String] = []
 
@@ -32,9 +34,82 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     func pressNewAppButton(sender: UIBarButtonItem) {
         
-        /**
-         * Put pop up here.
-         */
+        /// Show a custom alert.
+        func showCustomAlert(_: NSIndexPath) {
+            let title = "Input New app name"
+            let cancelButtonTitle = "Cancel"
+            let otherButtonTitle = "Done"
+            
+            var customAlertController: DOAlertController!
+            
+            customAlertController = DOAlertController(title: title, message: nil, preferredStyle: .Alert)
+            
+            // OverlayView
+            customAlertController.overlayColor = UIColor(red:235/255, green:245/255, blue:255/255, alpha:0.7)
+            // AlertView
+            customAlertController.alertViewBgColor = UIColor(red:44/255, green:62/255, blue:80/255, alpha:1)
+            // Title
+            customAlertController.titleFont = UIFont(name: "GillSans-Bold", size: 18.0)
+            customAlertController.titleTextColor = UIColor(red:241/255, green:196/255, blue:15/255, alpha:1)
+            // Message
+            customAlertController.messageFont = UIFont(name: "GillSans-Italic", size: 15.0)
+            customAlertController.messageTextColor = UIColor.whiteColor()
+            // Cancel Button
+            customAlertController.buttonFont[.Cancel] = UIFont(name: "GillSans-Bold", size: 16.0)
+            // Default Button
+            customAlertController.buttonFont[.Default] = UIFont(name: "GillSans-Bold", size: 16.0)
+            customAlertController.buttonTextColor[.Default] = UIColor(red:44/255, green:62/255, blue:80/255, alpha:1)
+            customAlertController.buttonBgColor[.Default] = UIColor(red: 46/255, green:204/255, blue:113/255, alpha:1)
+            customAlertController.buttonBgColorHighlighted[.Default] = UIColor(red:64/255, green:212/255, blue:126/255, alpha:1)
+            
+            
+            customAlertController.addTextFieldWithConfigurationHandler { textField in
+                self.NameTextField = textField
+                textField.placeholder = "new name"
+                textField.frame.size = CGSizeMake(240.0, 30.0)
+                textField.font = UIFont(name: "Avenir Next", size: 15.0)
+                textField.keyboardAppearance = UIKeyboardAppearance.Dark
+                textField.returnKeyType = UIReturnKeyType.Next
+                
+                let label:UILabel = UILabel(frame: CGRectMake(0, 0, 50, 30))
+                label.text = "name"
+                label.font = UIFont(name: "GillSans-Bold", size: 15.0)
+                textField.leftView = label
+                textField.leftViewMode = UITextFieldViewMode.Always
+                
+                textField.delegate = self
+            }
+            
+                        
+            // Create the actions.
+            let cancelAction = DOAlertAction(title: cancelButtonTitle, style: .Cancel) { action in
+                NSLog("The \"Custom\" alert's cancel action occured.")
+            }
+            
+            let confirmAction = DOAlertAction(title: otherButtonTitle, style: .Default) { action in
+                NSLog("The \"Custom\" alert's other action occured.")
+                
+                let textFields = customAlertController.textFields as? Array<UITextField>
+                if textFields != nil {
+                    for textField: UITextField in textFields! {
+                       
+                        //TO-DO: The place to get the new app name
+                        
+                        
+                    }
+                }
+            }
+            
+            // Add the actions.
+            customAlertController.addAction(cancelAction)
+            customAlertController.addAction(confirmAction)
+            
+            presentViewController(customAlertController, animated: true, completion: nil)
+        }
+
+        
+        
+        
         
         BMStoryboardDataManager.sharedInstance.applications.addObject(BMApplication())
         menuCollectionView.reloadData()
