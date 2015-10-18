@@ -18,10 +18,7 @@ class BMEditStoryboardViewController: UIViewController {
     
     var currentIndex = 0
     
-    var previousLabel = UILabel()
     var currentLabel = UILabel()
-    var nextLabel = UILabel()
-    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -52,6 +49,9 @@ class BMEditStoryboardViewController: UIViewController {
         navigationItem.rightBarButtonItem = saveButton
         
         setupLibraryView()
+        
+        // Bind gesture recognizer
+        print(currentLabel)
     }
     
     override func viewDidAppear(animated: Bool) {
