@@ -179,7 +179,9 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         super.viewDidDisappear(animated)
         
         // MARK: Remove.....
-        
+    }
+    
+     deinit {
         BMStoryboardDataManager.sharedInstance.saveData()
         BMStoryboardDataManager.sharedInstance.loadData()
     }

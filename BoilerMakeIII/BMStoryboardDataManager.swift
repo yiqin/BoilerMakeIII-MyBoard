@@ -98,6 +98,9 @@ class BMStoryboardDataManager: NSObject {
         for app in self.applications {
             let application = app as! BMApplication
             dict.setObject(application.dictionary, forKey: String(application.id))
+            print("***************************")
+            print(application.dictionary)
+            print("***************************")
         }
         
         //writing to UIData.plist
