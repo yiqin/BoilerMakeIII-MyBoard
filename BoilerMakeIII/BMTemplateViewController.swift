@@ -130,8 +130,8 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         let state = State.Edit
                 
         if true {
-            self.title = vcDict["title"] as? String
-            if let dict = vcDict["UIData"] as? NSDictionary {
+            self.title = viewcontrollerDict["title"] as? String
+            if let dict = viewcontrollerDict["UIData"] as? NSDictionary {
                 
                 let navFrame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width * scaleDownRatio, height: 44 * scaleDownRatio)
                 let navLabel = UILabel.init(frame: navFrame)
