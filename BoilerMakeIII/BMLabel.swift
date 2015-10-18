@@ -44,7 +44,7 @@ class BMLabel: UILabel, BMComponentProtocol{
         text = "Label"
         layer.borderColor = iosBlue.CGColor
         layer.borderWidth = 1
-        layer.cornerRadius = 4
+        //layer.cornerRadius = 4
         textColor = iosBlue
         textAlignment = NSTextAlignment.Center
     }
