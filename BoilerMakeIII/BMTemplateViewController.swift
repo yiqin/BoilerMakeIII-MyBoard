@@ -34,14 +34,15 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     
     var id: Int
     
+    var state: State = .Play
+    
     // Reconstructor.
     init(appID: Int, vcID: Int, dictionary: NSDictionary, state: State = .Play) {
         self.id = vcID
         vcDict = dictionary
+        self.state = state
         
         super.init(nibName: nil, bundle: nil)
-        
-        
         
         if true {
             self.title = vcDict["title"] as? String
@@ -231,6 +232,13 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         let vc = app.viewControllers.objectAtIndex(1)
         
         navigationController?.pushViewController(vc as! UIViewController, animated: true)
+    }
+    
+    func bindAndAddSubview(subview: UIView) {
+        let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+        subview.addGestureRecognizer(singleTap)
+        subview.userInteractionEnabled = true
+        self.view.addSubview(subview)
     }
     
     func handleSingleTapElement(tapRecognizer: UITapGestureRecognizer) {
