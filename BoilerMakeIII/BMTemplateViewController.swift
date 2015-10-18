@@ -49,6 +49,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         if true {
             self.title = vcDict["title"] as? String
             if let dict = vcDict["UIData"] as? NSDictionary {
+                
                 for (_, comp) in dict {
                     let compDict: NSDictionary = comp as! NSDictionary
                     let frame = rectFromDict(compDict)
@@ -129,6 +130,16 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         if true {
             self.title = vcDict["title"] as? String
             if let dict = vcDict["UIData"] as? NSDictionary {
+                
+                let navFrame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width * scaleDownRatio, height: 44 * scaleDownRatio)
+                let navLabel = UILabel.init(frame: navFrame)
+                navLabel.text = "navigaton bar"
+                navLabel.backgroundColor = UIColor.lightGrayColor()
+                navLabel.font = UIFont(name: "Avenir Next", size: navLabel.font.pointSize*scaleDownRatio)
+                navLabel.textAlignment = .Center
+                self.view.addSubview(navLabel)
+                print(navLabel)
+                
                 for (_, comp) in dict {
                     let compDict: NSDictionary = comp as! NSDictionary
                     // let frame = rectFromDict(compDict)

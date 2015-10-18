@@ -252,7 +252,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         
         libraryView.frame = CGRectMake(0, CGRectGetHeight(view.frame)-64, screenWidth, 64)
         libraryView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleTopMargin]
-        libraryView.backgroundColor = iosRed
+        libraryView.backgroundColor = iosBlue
         
         view.addSubview(libraryView)
 
@@ -261,6 +261,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         let image1 = UIImage(named: "back") as UIImage?
         let previousButton   = UIButton(type: .System)
         previousButton.frame = CGRectMake(0, 0, 64, 64)
+        previousButton.tintColor = UIColor.whiteColor()
         previousButton.setImage(image1, forState: .Normal)
         previousButton.addTarget(self, action: "tappedPreviousButton:", forControlEvents:.TouchUpInside)
         libraryView.addSubview(previousButton)
@@ -270,6 +271,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         let image2 = UIImage(named: "forward") as UIImage?
         let nextButton   = UIButton(type: .System)
         nextButton.frame = CGRectMake(screenWidth-64, 0, 64, 64)
+        nextButton.tintColor = UIColor.whiteColor()
         nextButton.setImage(image2, forState: .Normal)
         nextButton.addTarget(self, action: "tappedNextButton:", forControlEvents:.TouchUpInside)
         libraryView.addSubview(nextButton)
@@ -277,9 +279,10 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         // Add currentLabel
         
         currentLabel.text = availableComponents[currentIndex].title
+        currentLabel.textColor = UIColor.whiteColor()
         currentLabel.textAlignment = NSTextAlignment.Center
         currentLabel.frame = CGRectMake(64, 0, screenWidth-64*2, 64)
-        
+        currentLabel.font = UIFont(name: "Avenir Next-Bold", size: 15.0)
         libraryView.addSubview(currentLabel)
         
     }

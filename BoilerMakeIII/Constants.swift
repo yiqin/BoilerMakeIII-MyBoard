@@ -38,7 +38,7 @@ let yPadding:CGFloat = 10.0
 
 let screenshotRatio:CGFloat = 0.5622188905547226
 
-let iosBlue: UIColor = UIColor(red: 0.0, green: 122.0 / 255.0, blue: 1.0, alpha: 1.0)
+let iosBlue: UIColor = UIColor(red: 52.0/255.0, green: 152.0 / 255.0, blue: 219.0/255.0, alpha: 1.0)
 let iosRed: UIColor = UIColor(red: 231.0 / 255.0, green: 76.0 / 255.0, blue: 60.0 / 255.0, alpha: 1.0)
 let iosYellow: UIColor = UIColor(red: 241.0 / 255.0, green: 196.0 / 255.0, blue: 15.0 / 255.0, alpha: 1.0)
 let iosGray: UIColor = UIColor(red: 84.0 / 255.0, green: 84.0 / 255.0, blue: 84.0 / 255.0, alpha: 1.0)
