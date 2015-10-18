@@ -69,6 +69,19 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         
         // Bind gesture recognizer
         bindGestureRecognizer()
+        
+        setupViewControllersScrollView()
+        
+        
+        // let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
+        
+        for vc in app.viewControllers {
+            if vc is BMTemplateViewController {
+                let tempVC = vc as! BMTemplateViewController
+                tempVC.changeToEdit()
+                createCard(tempVC, ableToAdd: false)
+            }
+        }
     }
 
     func bindGestureRecognizer() {
@@ -154,20 +167,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         super.viewDidAppear(animated)
         
         // MARK: - Must be in the viewDidAppear
-        
-        setupViewControllersScrollView()
-        
-                
-        // let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
-        
-        for vc in app.viewControllers {
-            if vc is BMTemplateViewController {
-                let tempVC = vc as! BMTemplateViewController
-                tempVC.changeToEdit()
-                createCard(tempVC, ableToAdd: false)
-            }
-        }
-        
+
         
     }
     
@@ -538,7 +538,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         
         picker.dismissViewControllerAnimated(true) { () -> Void in
             
-            self.setupViewControllersScrollView()
+            // self.setupViewControllersScrollView()
         }
     }
     
