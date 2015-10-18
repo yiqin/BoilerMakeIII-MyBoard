@@ -2,7 +2,7 @@ import UIKit
 
 class BMLabel: UILabel, BMComponentProtocol{
     
-    var state: State = .Play
+    var storyboardState: State = .Play
     
     var type = BMComponentType.Label
     var id: Int;
@@ -15,7 +15,7 @@ class BMLabel: UILabel, BMComponentProtocol{
         
         var fontPointSize = font.pointSize
         
-        if state == .Edit {
+        if storyboardState == .Edit {
             x = x/scaleDownRatio
             y = y/scaleDownRatio
             width = width/scaleDownRatio
@@ -61,8 +61,8 @@ class BMLabel: UILabel, BMComponentProtocol{
         textAlignment = NSTextAlignment.Center
     }
     
-    func setState(newState:State) {
-        state = newState
+    func setStoryboardState(newState:State) {
+        storyboardState = newState
         
         
     }

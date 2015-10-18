@@ -137,7 +137,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         let label = BMLabel(frame: frame, dict: compDict)
                         label.tag = label.id
                         
-                        label.setState(.Edit)
+                        label.setStoryboardState(.Edit)
                         
                         
                         label.font = UIFont(name: label.font.fontName, size: label.font.pointSize*scaleDownRatio)
@@ -157,7 +157,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         let button = BMButton(frame: frame, dict: compDict)
                         button.tag = button.id
                         
-                        
+                        button.setStoryboardState(.Edit)
                         
                         if state == .Play {
                             button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
@@ -175,6 +175,9 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                     case BMComponentType.ImageView.rawValue:
                         let imageView = BMImageView(frame: frame, dict: compDict)
                         imageView.tag = imageView.id
+                        
+                        imageView.setStoryboardState(.Edit)
+                        
                         
                         self.view.addSubview(imageView)
                         
