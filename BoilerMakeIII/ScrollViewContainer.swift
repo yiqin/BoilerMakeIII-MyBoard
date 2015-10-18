@@ -10,9 +10,7 @@ import UIKit
 
 class ScrollViewContainer: UIView {
     
-    
     var scrollView:UIScrollView = UIScrollView()
-    
     
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
         let view = super.hitTest(point, withEvent: event)

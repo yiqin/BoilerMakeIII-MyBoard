@@ -35,6 +35,8 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     
     var app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
     
+    var isChoosingPicture = false
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -175,19 +177,19 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         
         // Must hide in the view did disappear
         
-        
         super.viewDidDisappear(animated)
         
         // MARK: Remove.....
-        
-        BMStoryboardDataManager.sharedInstance.saveData()
-        BMStoryboardDataManager.sharedInstance.loadData()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
         // viewControllersScrollView.hidden = true
+        if (!isChoosingPicture) {
+            BMStoryboardDataManager.sharedInstance.saveData()
+            BMStoryboardDataManager.sharedInstance.loadData()
+        }
     }
     
     
@@ -454,6 +456,8 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
             
             let takePictureAction = DOAlertAction(title: pickPhotoTitle, style: .Default) { action in
                 
+                self.isChoosingPicture = true
+                
                 self.currentImageView = (self.selectedView as? UIImageView)!
                 
                 let picker: UIImagePickerController = UIImagePickerController()
@@ -542,6 +546,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         picker.dismissViewControllerAnimated(true) { () -> Void in
             
             // self.setupViewControllersScrollView()
+            self.isChoosingPicture = false
         }
     }
     

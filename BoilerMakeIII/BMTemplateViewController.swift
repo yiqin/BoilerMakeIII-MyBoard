@@ -32,7 +32,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         return NSDictionary(dictionary: vcDict)
     }
     
-    var vcDict: NSDictionary
+    var viewcontrollerDict: NSDictionary
     
     var id: Int
     
@@ -41,15 +41,16 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     // Reconstructor.
     init(appID: Int, vcID: Int, dictionary: NSDictionary, state: State = .Play) {
         self.id = vcID
-        vcDict = dictionary
+        self.viewcontrollerDict = dictionary
         self.state = state
         
         super.init(nibName: nil, bundle: nil)
         
         if true {
-            self.title = vcDict["title"] as? String
-            if let dict = vcDict["UIData"] as? NSDictionary {
-                
+
+            self.title = viewcontrollerDict["title"] as? String
+            if let dict = viewcontrollerDict["UIData"] as? NSDictionary {
+
                 for (_, comp) in dict {
                     let compDict: NSDictionary = comp as! NSDictionary
                     let frame = rectFromDict(compDict)
@@ -62,12 +63,13 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         if state == .Play {
                             
                         } else {
-                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                            label.addGestureRecognizer(singleTap)
-                            label.userInteractionEnabled = true
+//                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+//                            label.addGestureRecognizer(singleTap)
+//                            label.userInteractionEnabled = true
+                            bindAndAddSubview(label)
                         }
-                        
-                        self.view.addSubview(label)
+//                        
+//                        self.view.addSubview(label)
                         print(label.dictionary)
                         break
                     case BMComponentType.Button.rawValue:
@@ -78,10 +80,10 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                             button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
                         } else {
                             
-                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                            button.addGestureRecognizer(singleTap)
-                            button.userInteractionEnabled = true
-                            
+//                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+//                            button.addGestureRecognizer(singleTap)
+//                            button.userInteractionEnabled = true
+                            bindAndAddSubview(button)
                         }
                         
                         self.view.addSubview(button)
@@ -91,16 +93,16 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         let imageView = BMImageView(frame: frame, dict: compDict)
                         imageView.tag = imageView.id
                         
-                        self.view.addSubview(imageView)
+//                        self.view.addSubview(imageView)
                         
                         if state == .Play {
                             
                         } else {
-                            
-                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                            imageView.addGestureRecognizer(singleTap)
-                            imageView.userInteractionEnabled = true
-                            
+//                            
+//                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+//                            imageView.addGestureRecognizer(singleTap)
+//                            imageView.userInteractionEnabled = true
+                            bindAndAddSubview(imageView)
                         }
                         
                         break;
@@ -139,7 +141,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                 navLabel.textAlignment = .Center
                 self.view.addSubview(navLabel)
                 print(navLabel)
-                
+
                 for (_, comp) in dict {
                     let compDict: NSDictionary = comp as! NSDictionary
                     // let frame = rectFromDict(compDict)
@@ -193,7 +195,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         imageView.setStoryboardState(.Edit)
                         
                         
-                        self.view.addSubview(imageView)
+                        //self.view.addSubview(imageView)
                         
                         if state == .Play {
                             
@@ -219,8 +221,6 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
             print("WARNING: Couldn't create dictionary from UIData.plist! Default values will be used!")
         }
 
-        
-        
     }
 
     
@@ -321,10 +321,5 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         
         NSNotificationCenter.defaultCenter().postNotificationName("BMEditComponentTapped", object:nil, userInfo: ["viewTappedTag": tag as! AnyObject])
         // Add a setting view....
-      
-        
     }
-    
-    
-    
 }
