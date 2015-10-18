@@ -137,7 +137,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                 let navLabel = UILabel.init(frame: navFrame)
                 navLabel.text = "navigaton bar"
                 navLabel.backgroundColor = UIColor.lightGrayColor()
-                navLabel.font = UIFont(name: "Avenir Next", size: navLabel.font.pointSize*scaleDownRatio)
+                navLabel.font = UIFont(name: "Avenir Next", size: navLabel.font.pointSize * scaleDownRatio)
                 navLabel.textAlignment = .Center
                 self.view.addSubview(navLabel)
                 print(navLabel)
