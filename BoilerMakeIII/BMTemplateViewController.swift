@@ -234,10 +234,10 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     }
     
     func handleSingleTapElement(tapRecognizer: UITapGestureRecognizer) {
-        var tag = tapRecognizer.view?.tag
+        let tag = tapRecognizer.view?.tag
         print(tag)
         
-        NSNotificationCenter.defaultCenter().postNotificationName("BMEditComponentTapped", object: tag, userInfo: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("BMEditComponentTapped", object:nil, userInfo: ["viewTappedTag": tag as! AnyObject])
         // Add a setting view....
       
         
