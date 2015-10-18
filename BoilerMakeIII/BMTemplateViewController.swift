@@ -253,6 +253,9 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
         subview.addGestureRecognizer(singleTap)
         subview.userInteractionEnabled = true
+        
+        subview.tag = 10000
+        
         self.view.addSubview(subview)
     }
     
