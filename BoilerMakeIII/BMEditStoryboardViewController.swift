@@ -150,11 +150,13 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 
         // let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
         
+        
+        
         for vc in app.viewControllers {
             if vc is BMTemplateViewController {
                 let tempVC = vc as! BMTemplateViewController
                 tempVC.changeToEdit()
-                createCard(tempVC)
+                createCard(tempVC, ableToAdd: false)
             }
         }
         
@@ -188,7 +190,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     
     func pressedNewViewButton() {
         // FIXEDME: - test create the card.
-        createCard(BMTemplateViewController(appID: app.id, vcID: BMStoryboardDataManager.sharedInstance.getNextID(), dictionary: NSDictionary()))
+        createCard(BMTemplateViewController(appID: app.id, vcID: BMStoryboardDataManager.sharedInstance.getNextID(), dictionary: NSDictionary()), ableToAdd: true)
     }
     
     func pressedEmptyButton(sender:UIButton!) {
@@ -214,7 +216,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     }
     
     
-    func createCard(templateViewController:BMTemplateViewController) {
+    func createCard(templateViewController:BMTemplateViewController, ableToAdd: Bool) {
         let width = CGRectGetWidth(viewControllersScrollView.frame)
         let height = CGRectGetHeight(viewControllersScrollView.frame)
         
@@ -225,7 +227,11 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         templateViewController.view.frame = CGRectMake(x, CGRectGetMinY(viewControllersScrollView.frame), width, height)
         
         addChildViewController(templateViewController)
-        app.viewControllers.addObject(templateViewController)
+        
+        if ableToAdd {
+            app.viewControllers.addObject(templateViewController)
+        }
+        
         viewControllersScrollView.addSubview(templateViewController.view)
         
         viewControllersScrollView.contentSize = CGSizeMake(x+width, height)
