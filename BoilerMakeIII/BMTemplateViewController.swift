@@ -8,12 +8,12 @@
 
 import UIKit
 
+enum State {
+    case Play
+    case Edit
+}
+
 class BMTemplateViewController: UIViewController, BMComponentProtocol {
-    
-    enum State {
-        case Play
-        case Edit
-    }
     
     var type = BMComponentType.ViewController
     var dictionary: NSDictionary {
@@ -34,14 +34,15 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     
     var id: Int
     
+    var state: State = .Play
+    
     // Reconstructor.
     init(appID: Int, vcID: Int, dictionary: NSDictionary, state: State = .Play) {
         self.id = vcID
         vcDict = dictionary
+        self.state = state
         
         super.init(nibName: nil, bundle: nil)
-        
-        
         
         if true {
             self.title = vcDict["title"] as? String
@@ -128,12 +129,18 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
             if let dict = vcDict["UIData"] as? NSDictionary {
                 for (_, comp) in dict {
                     let compDict: NSDictionary = comp as! NSDictionary
-                    let frame = rectFromDict(compDict)
+                    // let frame = rectFromDict(compDict)
+                    let frame = scaleDown(compDict)
                     
                     switch compDict["type"] as! NSString {
                     case BMComponentType.Label.rawValue:
                         let label = BMLabel(frame: frame, dict: compDict)
                         label.tag = label.id
+                        
+                        label.setStoryboardState(.Edit)
+                        
+                        
+                        label.font = UIFont(name: label.font.fontName, size: label.font.pointSize*scaleDownRatio)
                         
                         if state == .Play {
                             
@@ -149,6 +156,8 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                     case BMComponentType.Button.rawValue:
                         let button = BMButton(frame: frame, dict: compDict)
                         button.tag = button.id
+                        
+                        button.setStoryboardState(.Edit)
                         
                         if state == .Play {
                             button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
@@ -166,6 +175,9 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                     case BMComponentType.ImageView.rawValue:
                         let imageView = BMImageView(frame: frame, dict: compDict)
                         imageView.tag = imageView.id
+                        
+                        imageView.setStoryboardState(.Edit)
+                        
                         
                         self.view.addSubview(imageView)
                         
@@ -224,6 +236,14 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         return CGRect(x: x, y: y, width: width, height: height)
     }
     
+    func scaleDown(dict: NSDictionary) -> CGRect {
+        let x: CGFloat = dict["x"] as! CGFloat * screenWidth * scaleDownRatio
+        let y: CGFloat = dict["y"] as! CGFloat * screenHeight * scaleDownRatio
+        let width: CGFloat = dict["width"] as! CGFloat * screenWidth * scaleDownRatio
+        let height: CGFloat = dict["height"] as! CGFloat * screenHeight * scaleDownRatio
+        return CGRect(x: x, y: y, width: width, height: height)
+    }
+    
     @IBAction func tapButton(sender:UIButton!) {
         
         let app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
@@ -231,6 +251,13 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         let vc = app.viewControllers.objectAtIndex(1)
         
         navigationController?.pushViewController(vc as! UIViewController, animated: true)
+    }
+    
+    func bindAndAddSubview(subview: UIView) {
+        let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+        subview.addGestureRecognizer(singleTap)
+        subview.userInteractionEnabled = true
+        self.view.addSubview(subview)
     }
     
     func handleSingleTapElement(tapRecognizer: UITapGestureRecognizer) {

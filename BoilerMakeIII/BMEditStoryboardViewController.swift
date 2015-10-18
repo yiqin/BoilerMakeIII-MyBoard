@@ -92,10 +92,10 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 
                     // Check intersect
                     if CGRectIntersectsRect(currentViewController.view.frame, moving.frame) {
-                        print(movingView?.center)
-                        
-                        //let frame = CGRect(x: moving.center.x , y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)
-                        //currentViewController.view.addSubview(BMLabel(frame: CGRect(x: 20, y: 20, width: 100, height: 50)))
+                        let newCenter: CGPoint = self.view.convertPoint(moving.center, toView: currentViewController.view)
+                        let newView: UIView = getCurrentComponent()
+                        newView.center = newCenter
+                        currentViewController.bindAndAddSubview(newView)
                     }
                 
                     moving.removeFromSuperview()
@@ -109,14 +109,32 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         }
     }
     
+    func getCurrentComponent() -> UIView {
+        switch currentIndex {
+        case 0:
+            // label
+            return BMLabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        case 1:
+            // button
+            return BMButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        case 2:
+            // imageView
+            return BMImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        default:
+            return BMLabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        }
+    }
+    
     func createMoving(center: CGPoint) {
         switch currentIndex {
+        case 2:
+            movingView = UIView(frame: CGRect(x: center.x - 50, y: center.y - 50, width: 100, height: 100))
         default:
             movingView = UIView(frame: CGRect(x: center.x - 50, y: center.y - 25, width: 100, height: 50))
-            movingView?.alpha = 0.5
-            movingView?.backgroundColor = iosBlue
             break;
         }
+        movingView?.alpha = 0.5
+        movingView?.backgroundColor = iosBlue
     }
     
     override func viewDidAppear(animated: Bool) {
