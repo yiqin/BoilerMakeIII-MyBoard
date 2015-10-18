@@ -97,6 +97,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                         let newCenter: CGPoint = self.view.convertPoint(moving.center, toView: currentViewController.view)
                         let newView: UIView = getCurrentComponent()
                         newView.center = newCenter
+                        
                         currentViewController.bindAndAddSubview(newView)
                     }
                 
@@ -163,7 +164,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     override func viewDidDisappear(animated: Bool) {
         
         // Must hide in the view did disappear
-        viewControllersScrollView.hidden = true
+        
         
         super.viewDidDisappear(animated)
         
@@ -173,9 +174,16 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         BMStoryboardDataManager.sharedInstance.loadData()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewControllersScrollView.hidden = true
+    }
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        
     }
     
     func pressedNewViewButton() {
@@ -310,6 +318,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
             
             let title = "Component Parameters"
             let message = "Input parameters you want to update"
+            let deleteButtonTitle = "Delete"
             let cancelButtonTitle = "Cancel"
             let otherButtonTitle = "Comfirm"
             
@@ -407,20 +416,25 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 textField.delegate = self
             }
             
+            let deleteAction = DOAlertAction(title: deleteButtonTitle, style: .Default) { action in
+                NSLog("The \"Custom\" alert's other action occured.")
+                
+                view.removeFromSuperview()
+                
+            }
+            
             // Create the actions.
             let cancelAction = DOAlertAction(title: cancelButtonTitle, style: .Cancel) { action in
                 NSLog("The \"Custom\" alert's cancel action occured.")
             }
             
             let confirmAction = DOAlertAction(title: otherButtonTitle, style: .Default) { action in
-                NSLog("The \"Custom\" alert's other action occured.")
-                
                 self.updateDic()
-                
             }
             customAlertAction = confirmAction
             
             // Add the actions.
+            customAlertController.addAction(deleteAction)
             customAlertController.addAction(cancelAction)
             customAlertController.addAction(confirmAction)
             

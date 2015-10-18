@@ -209,10 +209,6 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         
     }
 
-    // New ViewController
-//    convenience init(appID: Int) {
-//        self.init(appID: appID, vcID: BMStoryboardDataManager.sharedInstance.getNextID(), dictionary: nil)
-//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
