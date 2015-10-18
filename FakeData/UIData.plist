@@ -15,7 +15,126 @@
 			<key>17</key>
 			<dict>
 				<key>UIData</key>
-				<dict/>
+				<dict>
+					<key>26</key>
+					<dict>
+						<key>fontName</key>
+						<string>Lato-SemiboldItalic</string>
+						<key>fontSize</key>
+						<real>28.00000190734863</real>
+						<key>height</key>
+						<real>0.1052844364334687</real>
+						<key>id</key>
+						<integer>26</integer>
+						<key>text</key>
+						<string>Geology 101 Report</string>
+						<key>type</key>
+						<string>BMLabel</string>
+						<key>width</key>
+						<real>0.6741573033707865</real>
+						<key>x</key>
+						<real>0.1835205992509363</real>
+						<key>y</key>
+						<real>0.06527635058875057</real>
+					</dict>
+					<key>27</key>
+					<dict>
+						<key>fontName</key>
+						<string>Lato-HairlineItalic</string>
+						<key>fontSize</key>
+						<real>20</real>
+						<key>height</key>
+						<real>0.05264221821673434</real>
+						<key>id</key>
+						<integer>27</integer>
+						<key>text</key>
+						<string>Richard McClintock</string>
+						<key>type</key>
+						<string>BMLabel</string>
+						<key>width</key>
+						<real>0.7490636704119851</real>
+						<key>x</key>
+						<real>0.1329588014981274</real>
+						<key>y</key>
+						<real>0.1621380321075417</real>
+					</dict>
+					<key>28</key>
+					<dict>
+						<key>filename</key>
+						<string>2015-10-18-09-39-26.png</string>
+						<key>height</key>
+						<real>0.4211377457338747</real>
+						<key>id</key>
+						<integer>28</integer>
+						<key>type</key>
+						<string>BMImageView</string>
+						<key>width</key>
+						<real>0.9363295880149812</real>
+						<key>x</key>
+						<real>0.03932584269662925</real>
+						<key>y</key>
+						<real>0.2316257601536311</real>
+					</dict>
+					<key>29</key>
+					<dict>
+						<key>fontName</key>
+						<string>Lato-Medium</string>
+						<key>fontSize</key>
+						<real>17</real>
+						<key>height</key>
+						<real>0.105284436433469</real>
+						<key>id</key>
+						<integer>29</integer>
+						<key>text</key>
+						<string>Urna Semper</string>
+						<key>type</key>
+						<string>BMLabel</string>
+						<key>width</key>
+						<real>0.5617977528089888</real>
+						<key>x</key>
+						<real>0.2284644194756554</real>
+						<key>y</key>
+						<real>0.6569748833448444</real>
+					</dict>
+					<key>32</key>
+					<dict>
+						<key>fontName</key>
+						<string>Lato-Medium</string>
+						<key>fontSize</key>
+						<real>15</real>
+						<key>height</key>
+						<real>0.105284436433469</real>
+						<key>id</key>
+						<integer>32</integer>
+						<key>text</key>
+						<string>Fall 2014</string>
+						<key>type</key>
+						<string>BMLabel</string>
+						<key>width</key>
+						<real>0.3745318352059925</real>
+						<key>x</key>
+						<real>0.3202247191011236</real>
+						<key>y</key>
+						<real>0.7064585684685747</real>
+					</dict>
+					<key>33</key>
+					<dict>
+						<key>filename</key>
+						<string></string>
+						<key>height</key>
+						<real>0.004211377457338746</real>
+						<key>id</key>
+						<integer>33</integer>
+						<key>type</key>
+						<string>BMImageView</string>
+						<key>width</key>
+						<real>0.9363295880149812</real>
+						<key>x</key>
+						<real>0.04119850187265919</real>
+						<key>y</key>
+						<real>0.6622391051665178</real>
+					</dict>
+				</dict>
 				<key>id</key>
 				<integer>17</integer>
 				<key>title</key>
@@ -32,7 +151,7 @@
 						<key>fontName</key>
 						<string>.SFUIText-Regular</string>
 						<key>fontSize</key>
-						<real>24.999998928455824</real>
+						<real>24.99999809265137</real>
 						<key>height</key>
 						<real>0.1052844364334687</real>
 						<key>id</key>
@@ -42,18 +161,18 @@
 						<key>type</key>
 						<string>BMLabel</string>
 						<key>width</key>
-						<real>0.93632958801498123</real>
+						<real>0.9363295880149812</real>
 						<key>x</key>
-						<real>0.0037453183520599251</real>
+						<real>0.003745318352059939</real>
 						<key>y</key>
-						<real>0.052642218216734343</real>
+						<real>0.05264221821673433</real>
 					</dict>
 					<key>13</key>
 					<dict>
 						<key>fontName</key>
 						<string>.SFUIText-Regular</string>
 						<key>fontSize</key>
-						<real>17.000000128585302</real>
+						<real>17</real>
 						<key>height</key>
 						<real>0.1052844364334687</real>
 						<key>id</key>
@@ -63,66 +182,66 @@
 						<key>type</key>
 						<string>BMLabel</string>
 						<key>width</key>
-						<real>0.82397003745318353</real>
+						<real>0.8239700374531835</real>
 						<key>x</key>
-						<real>0.080524344569288392</real>
+						<real>0.08052434456928836</real>
 						<key>y</key>
-						<real>0.096861681518791209</real>
+						<real>0.0968616815187912</real>
 					</dict>
 					<key>14</key>
 					<dict>
 						<key>filename</key>
 						<string>2015-10-18-08-39-10.png</string>
 						<key>height</key>
-						<real>0.46325152030726213</real>
+						<real>0.4632515203072621</real>
 						<key>id</key>
 						<integer>14</integer>
 						<key>type</key>
 						<string>BMImageView</string>
 						<key>width</key>
-						<real>0.93632958801498123</real>
+						<real>0.9363295880149812</real>
 						<key>x</key>
-						<real>0.029962546816479453</real>
+						<real>0.02996254681647944</real>
 						<key>y</key>
-						<real>0.52326364907433931</real>
+						<real>0.5232636490743393</real>
 					</dict>
 					<key>15</key>
 					<dict>
 						<key>fontName</key>
 						<string>.SFUIText-Regular</string>
 						<key>fontSize</key>
-						<real>17.000000128585302</real>
+						<real>17</real>
 						<key>height</key>
 						<real>0.315853309300406</real>
 						<key>id</key>
 						<integer>15</integer>
 						<key>text</key>
-						<string>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+						<string>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
 						<key>type</key>
 						<string>BMLabel</string>
 						<key>width</key>
-						<real>0.93632958801498123</real>
+						<real>0.9363295880149812</real>
 						<key>x</key>
-						<real>0.031835205992509365</real>
+						<real>0.03745318352059932</real>
 						<key>y</key>
-						<real>0.19372336303758234</real>
+						<real>0.1821420750299007</real>
 					</dict>
 					<key>16</key>
 					<dict>
 						<key>filename</key>
 						<string></string>
 						<key>height</key>
-						<real>0.0042113774573387464</real>
+						<real>0.004211377457338746</real>
 						<key>id</key>
 						<integer>16</integer>
 						<key>type</key>
 						<string>BMImageView</string>
 						<key>width</key>
-						<real>0.93632958801498123</real>
+						<real>0.9363295880149812</real>
 						<key>x</key>
-						<real>0.035580524344569341</real>
+						<real>0.03558052434456931</real>
 						<key>y</key>
-						<real>0.17582500884389271</real>
+						<real>0.1758250088438927</real>
 					</dict>
 				</dict>
 				<key>id</key>
