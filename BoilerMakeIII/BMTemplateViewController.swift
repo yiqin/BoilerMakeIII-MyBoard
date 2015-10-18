@@ -15,6 +15,8 @@ enum State {
 
 class BMTemplateViewController: UIViewController, BMComponentProtocol {
     
+    var isNew = false
+    
     var type = BMComponentType.ViewController
     var dictionary: NSDictionary {
         let dict: NSMutableDictionary = NSMutableDictionary()
@@ -255,7 +257,8 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         subview.addGestureRecognizer(singleTap)
         subview.userInteractionEnabled = true
         
-        subview.tag = 10000
+        var tmpView = subview as! BMComponentProtocol
+        tmpView.isNew = true
         
         self.view.addSubview(subview)
     }
