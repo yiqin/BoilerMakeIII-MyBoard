@@ -66,7 +66,9 @@ class BMEditStoryboardViewController: UIViewController {
         // let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
         
         for vc in app.viewControllers {
-            createCard(vc as! BMTemplateViewController)
+            let tempVC = vc as!BMTemplateViewController
+            tempVC.changeToEdit()
+            createCard(tempVC)
         }
         
         
@@ -74,10 +76,16 @@ class BMEditStoryboardViewController: UIViewController {
     
     override func viewDidDisappear(animated: Bool) {
         
+        
         // Must hide in the view did disappear
         viewControllersScrollView.hidden = true
         
         super.viewDidDisappear(animated)
+        
+        // MARK: Remove.....
+        
+        BMStoryboardDataManager.sharedInstance.saveData()
+        BMStoryboardDataManager.sharedInstance.loadData()
     }
     
     override func viewWillAppear(animated: Bool) {
