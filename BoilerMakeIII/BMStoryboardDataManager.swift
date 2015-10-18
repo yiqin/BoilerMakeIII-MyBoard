@@ -71,7 +71,21 @@ class BMStoryboardDataManager: NSObject {
             
         } else {
             print("Cannot load UIData.plist")
+            
+            saveFakeData()
+            
         }
+    }
+    
+    func saveFakeData() {
+        
+        let dict: NSMutableDictionary = NSMutableDictionary()
+        
+        self.applications.addObject(FakeData.app1())
+        
+        saveData()
+        loadData()
+        
     }
     
     func saveData() {
@@ -116,119 +130,6 @@ class BMStoryboardDataManager: NSObject {
         print("Saved UIData.plist file is --> \(result)")
     }
     
-    // MARK: Fake Data goes here.
-    
-    func saveUIData() -> NSDictionary {
-        
-        let label1Dict: NSDictionary =
-        ["type": BMComponentType.Label.rawValue,
-            "id": 0,
-            "x": 0,
-            "y": 0 + 64.0/screenHeight,
-            "width": 100.0/screenWidth,
-            "height": 30.0/screenHeight,
-            "text": "Label1 - hello world......",
-            "fontName": "Futura-CondensedMedium",
-            "fontSize": 15,
-        ]
-        
-        let label2Dict: NSDictionary =
-        ["type": BMComponentType.Label.rawValue,
-            "id": 1,
-            "x": 150/screenWidth,
-            "y": 0 + 64.0/screenHeight,
-            "width": 100.0/screenWidth,
-            "height": 30.0/screenHeight,
-            "text": "Label2",
-            "fontName": "Futura-Medium",
-            "fontSize": 12
-        ]
-        
-        let button1Dict: NSDictionary =
-        ["type": BMComponentType.Button.rawValue,
-            "id": 2,
-            "x": 100/screenWidth,
-            "y": 30.0/screenHeight + 64.0/screenHeight,
-            "width": 100.0/screenWidth,
-            "height": 30.0/screenHeight,
-            "title": "Click me!",
-        ]
-        
-        let image1Dict: NSDictionary =
-        ["type": BMComponentType.ImageView.rawValue,
-            "id": 3,
-            "x": 100/screenWidth,
-            "y": 100/screenHeight + 64.0/screenHeight,
-            "width": 50/screenWidth,
-            "height": 50/screenHeight,
-            "filename": "background.png",
-        ]
-        
-        let dict: NSDictionary =
-            ["0": label1Dict,
-                "1": label2Dict,
-                "2": button1Dict,
-                "3": image1Dict,
-            ]
-        
-        return dict
-    }
-
-    func saveUIData2() -> NSDictionary {
-        
-        let label1Dict: NSDictionary =
-        ["type": BMComponentType.Label.rawValue,
-            "id": 4,
-            "x": 0,
-            "y": 0 + 64.0/screenHeight,
-            "width": 100.0/screenWidth,
-            "height": 30.0/screenHeight,
-            "text": "Label1",
-            "fontName": "Futura-CondensedMedium",
-            "fontSize": 15,
-        ]
-        
-        let label2Dict: NSDictionary =
-        ["type": BMComponentType.Label.rawValue,
-            "id": 5,
-            "x": 150/screenWidth,
-            "y": 0 + 64.0/screenHeight,
-            "width": 100.0/screenWidth,
-            "height": 30.0/screenHeight,
-            "text": "Label2",
-            "fontName": "Futura-Medium",
-            "fontSize": 12
-        ]
-        
-        let button1Dict: NSDictionary =
-        ["type": BMComponentType.Button.rawValue,
-            "id": 6,
-            "x": 100/screenWidth,
-            "y": 30.0/screenHeight + 64.0/screenHeight,
-            "width": 100.0/screenWidth,
-            "height": 30.0/screenHeight,
-            "title": "Click me!",
-        ]
-        
-        let image1Dict: NSDictionary =
-        ["type": BMComponentType.ImageView.rawValue,
-            "id": 7,
-            "x": 100/screenWidth,
-            "y": 100/screenHeight + 64.0/screenHeight,
-            "width": 50/screenWidth,
-            "height": 50/screenHeight,
-            "filename": "background.png",
-        ]
-        
-        let dict: NSDictionary =
-        ["4": label1Dict,
-            "5": label2Dict,
-            "6": button1Dict,
-            "7": image1Dict,
-        ]
-        
-        return dict
-    }
     
     
     func getComponentsData(appID: Int, vcID: Int) -> NSDictionary? {
