@@ -210,7 +210,7 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
                 }
                 else {
                     
-                    // Empty view controllers in App....
+                    self.showSimpleAlert()
                     
                 }
                 
@@ -230,6 +230,24 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
         alertCotroller.addAction(cancelAction)
         
         presentViewController(alertCotroller, animated: true, completion: nil)
+    }
+    
+    func showSimpleAlert() {
+        let title = "Tips"
+        let message = "Use Edit mode to give your app the first view"
+        let cancelButtonTitle = "OK"
+        
+        let alertController = DOAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        // Create the action.
+        let cancelAction = DOAlertAction(title: cancelButtonTitle, style: .Cancel) { action in
+            NSLog("The simple alert's cancel action occured.")
+        }
+        
+        // Add the action.
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 
     /*
