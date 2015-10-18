@@ -51,6 +51,9 @@ class BMImageView: UIImageView, BMComponentProtocol {
         id = (dict["id"]?.integerValue)!
         super.init(frame: frame)
         
+        contentMode = UIViewContentMode.ScaleAspectFill
+        clipsToBounds = true
+        
         backgroundColor = iosYellow
         
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
