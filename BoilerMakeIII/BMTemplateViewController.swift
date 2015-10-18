@@ -30,15 +30,18 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         return NSDictionary(dictionary: vcDict)
     }
     
+    var vcDict: NSDictionary
+    
     var id: Int
     
     // Reconstructor.
     init(appID: Int, vcID: Int, dictionary: NSDictionary, state: State = .Play) {
         self.id = vcID
+        vcDict = dictionary
         
         super.init(nibName: nil, bundle: nil)
         
-        let vcDict = dictionary
+        
         
         if true {
             self.title = vcDict["title"] as? String
@@ -109,6 +112,89 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         } else {
             print("WARNING: Couldn't create dictionary from UIData.plist! Default values will be used!")
         }
+    }
+    
+    func changeToEdit() {
+        
+        let viewsToRemove = view.subviews
+        for v in viewsToRemove {
+            v.removeFromSuperview()
+        }
+        
+        let state = State.Edit
+                
+        if true {
+            self.title = vcDict["title"] as? String
+            if let dict = vcDict["UIData"] as? NSDictionary {
+                for (_, comp) in dict {
+                    let compDict: NSDictionary = comp as! NSDictionary
+                    let frame = rectFromDict(compDict)
+                    
+                    switch compDict["type"] as! NSString {
+                    case BMComponentType.Label.rawValue:
+                        let label = BMLabel(frame: frame, dict: compDict)
+                        label.tag = label.id
+                        
+                        if state == .Play {
+                            
+                        } else {
+                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+                            label.addGestureRecognizer(singleTap)
+                            label.userInteractionEnabled = true
+                        }
+                        
+                        self.view.addSubview(label)
+                        print(label.dictionary)
+                        break
+                    case BMComponentType.Button.rawValue:
+                        let button = BMButton(frame: frame, dict: compDict)
+                        button.tag = button.id
+                        
+                        if state == .Play {
+                            button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
+                        } else {
+                            
+                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+                            button.addGestureRecognizer(singleTap)
+                            button.userInteractionEnabled = true
+                            
+                        }
+                        
+                        self.view.addSubview(button)
+                        print(button.dictionary)
+                        break;
+                    case BMComponentType.ImageView.rawValue:
+                        let imageView = BMImageView(frame: frame, dict: compDict)
+                        imageView.tag = imageView.id
+                        
+                        self.view.addSubview(imageView)
+                        
+                        if state == .Play {
+                            
+                        } else {
+                            
+                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+                            imageView.addGestureRecognizer(singleTap)
+                            imageView.userInteractionEnabled = true
+                            
+                        }
+                        
+                        break;
+                    default:
+                        break
+                    }
+                }
+                print(self.dictionary)
+            } else {
+                // self.title = "ViewController-\(vcID)"
+            }
+            
+        } else {
+            print("WARNING: Couldn't create dictionary from UIData.plist! Default values will be used!")
+        }
+
+        
+        
     }
 
     // New ViewController

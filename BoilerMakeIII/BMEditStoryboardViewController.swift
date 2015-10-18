@@ -67,7 +67,9 @@ class BMEditStoryboardViewController: UIViewController {
         // let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
         
         for vc in app.viewControllers {
-            createCard(vc as! BMTemplateViewController)
+            let tempVC = vc as!BMTemplateViewController
+            tempVC.changeToEdit()
+            createCard(tempVC)
         }
         
         
