@@ -70,6 +70,7 @@ class BMLabel: UILabel, BMComponentProtocol{
         //layer.cornerRadius = 4
         textColor = iosBlue
         textAlignment = NSTextAlignment.Center
+        numberOfLines = 0
     }
     
     func setStoryboardState(newState:State) {

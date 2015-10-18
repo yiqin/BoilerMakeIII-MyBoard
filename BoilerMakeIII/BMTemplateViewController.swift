@@ -69,7 +69,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                             bindAndAddSubview(label)
                         }
 //                        
-//                        self.view.addSubview(label)
+                        self.view.addSubview(label)
                         print(label.dictionary)
                         break
                     case BMComponentType.Button.rawValue:
@@ -93,7 +93,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         let imageView = BMImageView(frame: frame, dict: compDict)
                         imageView.tag = imageView.id
                         
-//                        self.view.addSubview(imageView)
+                        self.view.addSubview(imageView)
                         
                         if state == .Play {
                             
@@ -166,7 +166,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
 //                            label.userInteractionEnabled = true
                         }
                         
-                        //self.view.addSubview(label)
+                        self.view.addSubview(label)
                         print(label.dictionary)
                         break
                     case BMComponentType.Button.rawValue:
@@ -185,7 +185,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                             
                         }
                         
-                        //self.view.addSubview(button)
+                        self.view.addSubview(button)
                         print(button.dictionary)
                         break;
                     case BMComponentType.ImageView.rawValue:
@@ -195,7 +195,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         imageView.setStoryboardState(.Edit)
                         
                         
-                        //self.view.addSubview(imageView)
+                        self.view.addSubview(imageView)
                         
                         if state == .Play {
                             
