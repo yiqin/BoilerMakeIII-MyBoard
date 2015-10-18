@@ -48,6 +48,8 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         self.viewcontrollerDict = dictionary
         self.state = state
         
+        // nextViewControllerID = 1
+        
         super.init(nibName: nil, bundle: nil)
         
         if true {
@@ -236,7 +238,6 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         
         view.backgroundColor = UIColor.whiteColor()
     }
-    
     
     
     // MARK: Helper Functions

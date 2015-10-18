@@ -30,6 +30,7 @@ class BMPanelViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "removeViewController", name: SVProgressHUDDidDisappearNotification, object: nil)
         
+        shakingIndex = 0
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -126,7 +127,8 @@ class BMPanelViewController: UIViewController {
             let backAction = DOAlertAction(title: backButtonTitle, style: .Cancel) { action in
                 
                 alertController.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    
+                    nextViewControllerID = 1
+                    shakingIndex = 0
                     self.removeViewController()
                 })
                 
