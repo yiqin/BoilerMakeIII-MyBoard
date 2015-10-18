@@ -34,7 +34,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     
     var selectedView: UIView? = nil
     
-    var app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
+    var app: BMApplication = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
     
     var isChoosingPicture = false
     

@@ -13,6 +13,8 @@ enum State {
     case Edit
 }
 
+var nextViewControllerID = 1
+
 class BMTemplateViewController: UIViewController, BMComponentProtocol {
     
     var isNew = false
@@ -35,11 +37,13 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     var viewcontrollerDict: NSDictionary
     
     var id: Int
+    var appID: Int
     
     var state: State = .Play
     
     // Reconstructor.
     init(appID: Int, vcID: Int, dictionary: NSDictionary, state: State = .Play) {
+        self.appID = appID
         self.id = vcID
         self.viewcontrollerDict = dictionary
         self.state = state
@@ -154,7 +158,6 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         
                         label.setStoryboardState(.Edit)
                         
-                        
                         label.font = UIFont(name: label.font.fontName, size: label.font.pointSize*scaleDownRatio)
                         
                         if state == .Play {
@@ -256,11 +259,16 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
     
     @IBAction func tapButton(sender:UIButton!) {
         
-        let app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
+        for tmpApp in BMStoryboardDataManager.sharedInstance.applications {
+            if let app = tmpApp as? BMApplication {
+                if app.id == self.appID && nextViewControllerID <= app.viewControllers.count-1 {
+                    let vc = app.viewControllers.objectAtIndex(nextViewControllerID)
+                    navigationController?.pushViewController(vc as! UIViewController, animated: true)
+                    nextViewControllerID++
+                }
+            }
+        }
         
-        let vc = app.viewControllers.objectAtIndex(1)
-        
-        navigationController?.pushViewController(vc as! UIViewController, animated: true)
     }
     
     func bindAndAddSubview(subview: UIView) {

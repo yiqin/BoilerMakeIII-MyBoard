@@ -173,7 +173,7 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
-    func showOkayCancelAlert(_: NSIndexPath) {
+    func showOkayCancelAlert(indexPath: NSIndexPath) {
         let title = "Select the action"
         let editButtonTitle = "Edit"
         let playButtonTitle = "Play"
@@ -188,6 +188,7 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
                 // FIXEDME: Push or pop?
                 
                 let vc = BMEditStoryboardViewController()
+                vc.app = BMStoryboardDataManager.sharedInstance.applications[indexPath.row] as! BMApplication
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             })
