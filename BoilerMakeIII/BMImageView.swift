@@ -22,6 +22,13 @@ class BMImageView: UIImageView, BMComponentProtocol {
             height = height/scaleDownRatio
         }
         
+        if tag == 10000 {
+            x = x/scaleDownRatio
+            y = y/scaleDownRatio
+            width = width/scaleDownRatio
+            height = height/scaleDownRatio
+        }
+        
         let dict: NSMutableDictionary = NSMutableDictionary()
         
         dict.setObject(type.rawValue, forKey: "type")
