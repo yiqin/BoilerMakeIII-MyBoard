@@ -11,17 +11,19 @@ import Foundation
 class FakeData {
     class func app1() -> BMApplication {
         
+        // View Controller 1...
+        
         func saveUIData() -> NSDictionary {
             
             let label1Dict: NSDictionary =
             ["type": BMComponentType.Label.rawValue,
                 "id": 0,
-                "x": 0,
-                "y": 0 + 64.0/screenHeight,
-                "width": 100.0/screenWidth,
+                "x": xPadding/screenWidth,
+                "y": (yPadding+64)/screenHeight,
+                "width": (screenWidth-2*xPadding)/screenWidth,
                 "height": 30.0/screenHeight,
                 "text": "Label1 - hello world......",
-                "fontName": "Futura-CondensedMedium",
+                "fontName": "Lato-Semibold",
                 "fontSize": 15,
             ]
             
@@ -66,6 +68,8 @@ class FakeData {
             
             return dict
         }
+        
+        // View Controller 2...
         
         func saveUIData2() -> NSDictionary {
             

@@ -32,6 +32,7 @@ class BMLabel: UILabel, BMComponentProtocol{
         
         text = dict["text"] as? String
         font = UIFont(name: dict["fontName"] as! String, size: dict["fontSize"] as! CGFloat)
+        textAlignment = NSTextAlignment.Center
         backgroundColor = UIColor.brownColor()
     }
     
