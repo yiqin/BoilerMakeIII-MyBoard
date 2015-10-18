@@ -25,7 +25,6 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
         let dict = NSDictionary(contentsOfFile: path!)
         
         collectionData = dict!.objectForKey("iOSDevice") as! [String]
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,8 +36,10 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(mainCellReuseIdentifier, forIndexPath: indexPath) as! BMMenuCollectionViewCell
         
-        cell.cellTextLabel.text = collectionData[indexPath.row]
-        cell.cellImage.image = UIImage(named: "\(collectionData[indexPath.row]).png")
+        let app = BMStoryboardDataManager.sharedInstance.applications[indexPath.row] as! BMApplication
+        
+        cell.cellTextLabel.text = app.title as String
+        cell.cellImage.image = UIImage(named: "\(collectionData[0]).png")
         
         cell.contentView.layer.cornerRadius = 12.0
         cell.contentView.layer.borderWidth = 1.0
@@ -50,7 +51,7 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 5;
+        return BMStoryboardDataManager.sharedInstance.applications.count;
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
