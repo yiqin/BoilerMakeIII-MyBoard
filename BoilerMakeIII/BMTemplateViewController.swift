@@ -145,12 +145,13 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         if state == .Play {
                             
                         } else {
-                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                            label.addGestureRecognizer(singleTap)
-                            label.userInteractionEnabled = true
+                            bindAndAddSubview(label)
+//                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+//                            label.addGestureRecognizer(singleTap)
+//                            label.userInteractionEnabled = true
                         }
                         
-                        self.view.addSubview(label)
+                        //self.view.addSubview(label)
                         print(label.dictionary)
                         break
                     case BMComponentType.Button.rawValue:
@@ -162,14 +163,14 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         if state == .Play {
                             button.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
                         } else {
-                            
-                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                            button.addGestureRecognizer(singleTap)
-                            button.userInteractionEnabled = true
+                            bindAndAddSubview(button)
+//                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+//                            button.addGestureRecognizer(singleTap)
+//                            button.userInteractionEnabled = true
                             
                         }
                         
-                        self.view.addSubview(button)
+                        //self.view.addSubview(button)
                         print(button.dictionary)
                         break;
                     case BMComponentType.ImageView.rawValue:
@@ -184,10 +185,10 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         if state == .Play {
                             
                         } else {
-                            
-                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
-                            imageView.addGestureRecognizer(singleTap)
-                            imageView.userInteractionEnabled = true
+                            bindAndAddSubview(imageView)
+//                            let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapElement:")
+//                            imageView.addGestureRecognizer(singleTap)
+//                            imageView.userInteractionEnabled = true
                             
                         }
                         
