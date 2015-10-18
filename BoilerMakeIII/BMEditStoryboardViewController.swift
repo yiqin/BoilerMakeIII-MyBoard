@@ -452,17 +452,20 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         if (textFields != nil) {
             for textField: UITextField in textFields! {
                 NSLog("  \(textField.placeholder!): \(textField.text)")
+                let value: CGFloat = CGFloat((textField.text! as NSString).floatValue)
                 if let fieldName = textField.placeholder, let view = self.selectedView {
                     switch fieldName {
                     case "x":
-                        view.frame.origin.x = CGFloat((textField.text! as NSString).floatValue)
+                        view.frame.origin.x = value
                         break;
                     case "y":
-                        view.frame.origin.y = CGFloat((textField.text! as NSString).floatValue)
+                        view.frame.origin.y = value
                         break;
                     case "width":
+                        view.frame.size.width = value
                         break;
                     case "height":
+                        view.frame.size.height = value
                         break
                     default:
                         break;
