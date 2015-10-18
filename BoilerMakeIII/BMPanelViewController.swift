@@ -15,6 +15,8 @@ class BMPanelViewController: UIViewController {
     // Identifier which page or which view in the storyboard.
     // let identifier: String
     
+    var app: BMApplication = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
+    
     override func canBecomeFirstResponder() -> Bool {
         return true
     }
@@ -35,10 +37,21 @@ class BMPanelViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        let firstOne = BMStoryboardDataManager.sharedInstance.testData()
-        firstOne.view.frame = CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))
-        self.addChildViewController(firstOne)
-        view.addSubview(firstOne.view)
+        view.backgroundColor = UIColor.whiteColor()
+        
+        if app.viewControllers.count != 0 {
+            let navigationController = UINavigationController(nibName: nil, bundle: nil)
+            
+            let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
+            
+            navigationController.viewControllers = [vc]
+            
+            navigationController.view.frame = CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))
+            self.addChildViewController(navigationController)
+            view.addSubview(navigationController.view)
+        }
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {

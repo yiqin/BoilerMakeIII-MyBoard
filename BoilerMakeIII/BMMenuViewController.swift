@@ -125,8 +125,20 @@ class BMMenuViewController: UIViewController, UICollectionViewDelegate, UICollec
             
             alertCotroller.dismissViewControllerAnimated(true, completion: { () -> Void in
                
-                let vc = BMPanelViewController()
-                self.presentViewController(vc, animated: true, completion: nil)
+                
+                let readyApp = BMStoryboardDataManager.sharedInstance.applications[indexPath.row] as! BMApplication
+                
+                if readyApp.viewControllers.count != 0 {
+                    let vc = BMPanelViewController()
+                    vc.app = readyApp
+                    self.presentViewController(vc, animated: true, completion: nil)
+                }
+                else {
+                    
+                    // Empty view controllers in App....
+                    
+                }
+                
          
             })
             
