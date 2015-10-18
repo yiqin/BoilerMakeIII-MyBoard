@@ -8,11 +8,13 @@
 
 import UIKit
 
-class BMEditStoryboardViewController: UIViewController {
+class BMEditStoryboardViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let viewControllersScrollView: JT3DScrollView = JT3DScrollView()
     
     let libraryView: UIView = UIView()
+    
+    var movingView: UIView? = nil
     
     var availableComponents = [UILibraryComponent]()
     
@@ -32,8 +34,6 @@ class BMEditStoryboardViewController: UIViewController {
         availableComponents = [label, button, imageView]
     }
     
-    
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -51,6 +51,47 @@ class BMEditStoryboardViewController: UIViewController {
         setupLibraryView()
         
         // Bind gesture recognizer
+        bindGestureRecognizer()
+    }
+
+    func bindGestureRecognizer() {
+        currentLabel.userInteractionEnabled = true
+        let gestureRecognizer: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        gestureRecognizer.delegate = self
+        currentLabel.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    func handlePan(sender: UIPanGestureRecognizer) {
+        if let view = sender.view {
+            switch sender.state {
+            case .Began:
+                createMoving(sender.locationInView(self.view))
+                self.view.addSubview(movingView!)
+                print("began")
+                break
+            case .Changed:
+                let offset: CGPoint = sender.translationInView(self.view)
+                movingView?.center = CGPoint(x: (movingView?.center.x)! + offset.x, y: (movingView?.center.y)! + offset.y)
+                sender.setTranslation(CGPoint.zero, inView: self.view)
+                print("changed")
+                break
+            case .Ended:
+                movingView?.removeFromSuperview()
+                self.movingView = nil
+                print("ended")
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    func createMoving(center: CGPoint) {
+        switch currentIndex {
+        default:
+            movingView = BMLabel(frame: CGRect(x: center.x - 50, y: center.y - 50, width: 100, height: 100))
+            break;
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
