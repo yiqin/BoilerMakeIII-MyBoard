@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D04BA001BD3EA2F00A69F5B /* UIData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D04B9FF1BD3EA2F00A69F5B /* UIData.plist */; settings = {ASSET_TAGS = (); }; };
 		2D4E9BC91BD2F754000E73BA /* BMApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4E9BC81BD2F754000E73BA /* BMApplication.swift */; settings = {ASSET_TAGS = (); }; };
 		2DD8A84B1BD25D6900E9B6F2 /* BMLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8A8471BD25D6900E9B6F2 /* BMLabel.swift */; settings = {ASSET_TAGS = (); }; };
 		2DD8A84C1BD25D6900E9B6F2 /* BMComponentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8A8481BD25D6900E9B6F2 /* BMComponentProtocol.swift */; settings = {ASSET_TAGS = (); }; };
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D04B9FF1BD3EA2F00A69F5B /* UIData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = UIData.plist; path = FakeData/UIData.plist; sourceTree = "<group>"; };
 		2D4E9BC81BD2F754000E73BA /* BMApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMApplication.swift; sourceTree = "<group>"; };
 		2DD8A8471BD25D6900E9B6F2 /* BMLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMLabel.swift; sourceTree = "<group>"; };
 		2DD8A8481BD25D6900E9B6F2 /* BMComponentProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMComponentProtocol.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 		8DDA3F1B1BD211AD00323A48 = {
 			isa = PBXGroup;
 			children = (
+				2D04B9FF1BD3EA2F00A69F5B /* UIData.plist */,
 				8DDA3F261BD211AD00323A48 /* BoilerMakeIII */,
 				8DDA3F3B1BD211AD00323A48 /* BoilerMakeIIITests */,
 				8DDA3F461BD211AD00323A48 /* BoilerMakeIIIUITests */,
@@ -447,6 +450,7 @@
 				8D9080CE1BD34273006E1111 /* Lato-SemiboldItalic.ttf in Resources */,
 				8D9080D31BD34273006E1111 /* OpenSans-Italic.ttf in Resources */,
 				8DDA3F321BD211AD00323A48 /* LaunchScreen.storyboard in Resources */,
+				2D04BA001BD3EA2F00A69F5B /* UIData.plist in Resources */,
 				8D9080D71BD34273006E1111 /* OpenSans-Semibold.ttf in Resources */,
 				8D9080D21BD34273006E1111 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8DDA3F2F1BD211AD00323A48 /* Assets.xcassets in Resources */,

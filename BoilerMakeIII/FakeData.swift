@@ -114,32 +114,44 @@ class FakeData {
             return dict
         }
 
+//        
+//        let viewControllerData1: NSDictionary =
+//        ["UIData": saveUIData(),
+//            "title": "view controller 1",
+//            "id": 8,
+//            "type": BMViewControllerType.ViewController.rawValue,
+//        ]
+//        
+//        let viewControllerData2: NSDictionary =
+//        ["UIData": saveUIData2(),
+//            "title": "view controller 2",
+//            "id": 9,
+//            "type": BMViewControllerType.ViewController.rawValue,
+//        ]
+//        
+//        let appData1: NSDictionary =
+//        ["id": 10,
+//            "viewControllers":
+//                ["8": viewControllerData1,
+//                    "9": viewControllerData2,
+//            ],
+//            "title": "I Love Design"
+//        ]
+
+        let path: NSString = (NSBundle.mainBundle().resourcePath?.stringByAppendingString("/UIData.plist"))!;
         
-        let viewControllerData1: NSDictionary =
-        ["UIData": saveUIData(),
-            "title": "view controller 1",
-            "id": 8,
-            "type": BMViewControllerType.ViewController.rawValue,
-        ]
+        print("First load: \(path)")
         
-        let viewControllerData2: NSDictionary =
-        ["UIData": saveUIData2(),
-            "title": "view controller 2",
-            "id": 9,
-            "type": BMViewControllerType.ViewController.rawValue,
-        ]
+        if let dict = NSDictionary(contentsOfFile: path as String) as? NSMutableDictionary {
+            
+            for (_, value) in dict {
+                let appDict: NSDictionary = value as! NSDictionary
+                return BMApplication(dict: appDict)
+            }
+            
+        }
         
-        let appData1: NSDictionary =
-        ["id": 10,
-            "viewControllers":
-                ["8": viewControllerData1,
-                    "9": viewControllerData2,
-            ],
-            "title": "I Love Design"
-        ]
-        
-        return BMApplication(dict: appData1)
-        
+        return BMApplication()
     }
     
 }
