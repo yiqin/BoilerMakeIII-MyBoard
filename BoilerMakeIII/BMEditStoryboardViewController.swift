@@ -51,7 +51,6 @@ class BMEditStoryboardViewController: UIViewController {
         setupLibraryView()
         
         // Bind gesture recognizer
-        print(currentLabel)
     }
     
     override func viewDidAppear(animated: Bool) {
