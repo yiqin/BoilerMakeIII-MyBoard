@@ -262,6 +262,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         
         var tmpView = subview as! BMComponentProtocol
         tmpView.isNew = true
+        subview.tag = tmpView.id
         
         self.view.addSubview(subview)
     }
