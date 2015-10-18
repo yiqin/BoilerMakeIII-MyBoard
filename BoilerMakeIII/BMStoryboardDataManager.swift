@@ -26,6 +26,7 @@ class BMStoryboardDataManager: NSObject {
     
     override init() {
         super.init()
+        self.saveData()
         self.loadData()
         self.updateID()
     }
