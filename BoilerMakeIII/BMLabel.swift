@@ -61,8 +61,8 @@ class BMLabel: UILabel, BMComponentProtocol{
     
     func setStyle() {
         text = "Label"
-        layer.borderColor = iosBlue.CGColor
-        layer.borderWidth = 1
+        // layer.borderColor = iosBlue.CGColor
+        // layer.borderWidth = 1
         //layer.cornerRadius = 4
         textColor = iosBlue
         textAlignment = NSTextAlignment.Center
