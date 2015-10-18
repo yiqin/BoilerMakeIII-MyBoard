@@ -154,7 +154,6 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
                         
                         label.setStoryboardState(.Edit)
                         
-                        
                         label.font = UIFont(name: label.font.fontName, size: label.font.pointSize*scaleDownRatio)
                         
                         if state == .Play {
