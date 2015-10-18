@@ -126,10 +126,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         view.backgroundColor = UIColor.whiteColor()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
     // MARK: Helper Functions
     
@@ -157,4 +154,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         // Add a setting view....
         
     }
+    
+    
+    
 }

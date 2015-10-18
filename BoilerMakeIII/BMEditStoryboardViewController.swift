@@ -75,10 +75,16 @@ class BMEditStoryboardViewController: UIViewController {
     
     override func viewDidDisappear(animated: Bool) {
         
+        
         // Must hide in the view did disappear
         viewControllersScrollView.hidden = true
         
         super.viewDidDisappear(animated)
+        
+        // MARK: Remove.....
+        
+        BMStoryboardDataManager.sharedInstance.saveData()
+        BMStoryboardDataManager.sharedInstance.loadData()
     }
     
     override func viewWillAppear(animated: Bool) {
