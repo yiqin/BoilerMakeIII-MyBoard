@@ -56,6 +56,8 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.clipsToBounds = true
+        
         createUILibrary()
         
         view.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)
@@ -185,7 +187,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        viewControllersScrollView.hidden = true
+        // viewControllersScrollView.hidden = true
     }
     
     
