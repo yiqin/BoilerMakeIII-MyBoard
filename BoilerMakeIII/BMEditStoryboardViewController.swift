@@ -92,8 +92,10 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
                 
                     // Check intersect
                     if CGRectIntersectsRect(currentViewController.view.frame, moving.frame) {
-                        print("interSect")
-                        currentViewController.view.addSubview(BMLabel(frame: CGRect(x: 20, y: 20, width: 100, height: 50)))
+                        print(movingView?.center)
+                        
+                        //let frame = CGRect(x: moving.center.x , y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+                        //currentViewController.view.addSubview(BMLabel(frame: CGRect(x: 20, y: 20, width: 100, height: 50)))
                     }
                 
                     moving.removeFromSuperview()
@@ -209,7 +211,7 @@ class BMEditStoryboardViewController: UIViewController, UITextFieldDelegate, UIG
         
         libraryView.frame = CGRectMake(0, CGRectGetHeight(view.frame)-64, screenWidth, 64)
         libraryView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleTopMargin]
-        libraryView.backgroundColor = UIColor.redColor()
+        libraryView.backgroundColor = iosRed
         
         view.addSubview(libraryView)
 
