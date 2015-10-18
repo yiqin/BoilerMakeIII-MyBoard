@@ -64,10 +64,13 @@ class BMEditStoryboardViewController: UIViewController {
         
         let app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
         
-        let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
+        // let vc = app.viewControllers.objectAtIndex(0) as! BMTemplateViewController
+        
+        for vc in app.viewControllers {
+            createCard(vc as! BMTemplateViewController)
+        }
         
         
-        createCard(vc)
     }
     
     override func viewDidDisappear(animated: Bool) {

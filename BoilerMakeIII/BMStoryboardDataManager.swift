@@ -121,7 +121,7 @@ class BMStoryboardDataManager: NSObject {
             "y": 0 + 64.0/screenHeight,
             "width": 100.0/screenWidth,
             "height": 30.0/screenHeight,
-            "text": "Label1",
+            "text": "Label1 - hello world......",
             "fontName": "Futura-CondensedMedium",
             "fontSize": 15,
         ]

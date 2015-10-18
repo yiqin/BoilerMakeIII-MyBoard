@@ -145,7 +145,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
         
         let app = BMStoryboardDataManager.sharedInstance.applications.objectAtIndex(0) as! BMApplication
         
-        let vc = app.viewControllers.objectAtIndex(0)
+        let vc = app.viewControllers.objectAtIndex(1)
         
         navigationController?.pushViewController(vc as! UIViewController, animated: true)
     }
