@@ -4,7 +4,7 @@ class BMImageView: UIImageView, BMComponentProtocol {
     
     var storyboardState: State = .Play
     
-    var filename: String
+    var filename: NSString
     
     var type = BMComponentType.ImageView
     var id: Int
@@ -41,7 +41,7 @@ class BMImageView: UIImageView, BMComponentProtocol {
         dict.setObject(y, forKey: "y")
         dict.setObject(width, forKey: "width")
         dict.setObject(height, forKey: "height")
-        dict.setObject(self.filename, forKey: "filename")
+        dict.setObject(filename, forKey: "filename")
         return NSDictionary(dictionary: dict)
     }
     
@@ -51,11 +51,11 @@ class BMImageView: UIImageView, BMComponentProtocol {
         id = (dict["id"]?.integerValue)!
         super.init(frame: frame)
         
-        backgroundColor = UIColor.blueColor()
+        backgroundColor = iosYellow
         
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
         let documentsDirectory = paths.objectAtIndex(0) as! NSString
-        let path = documentsDirectory.stringByAppendingPathComponent(filename)
+        let path = documentsDirectory.stringByAppendingPathComponent(filename as String)
         image = UIImage(contentsOfFile: path)
     }
     
@@ -63,13 +63,11 @@ class BMImageView: UIImageView, BMComponentProtocol {
         id = BMStoryboardDataManager.sharedInstance.getNextID()
         filename = ""
         super.init(frame: frame)
-        backgroundColor = UIColor.blueColor()
+        backgroundColor = iosYellow
     }
     
     func setStoryboardState(newState:State) {
         storyboardState = newState
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
