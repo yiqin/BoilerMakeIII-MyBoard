@@ -137,7 +137,7 @@ class BMTemplateViewController: UIViewController, BMComponentProtocol {
             self.title = viewcontrollerDict["title"] as? String
             if let dict = viewcontrollerDict["UIData"] as? NSDictionary {
                 
-                let navFrame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width * scaleDownRatio, height: 44 * scaleDownRatio)
+                let navFrame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width * scaleDownRatio, height: 64 * scaleDownRatio)
                 let navLabel = UILabel.init(frame: navFrame)
                 navLabel.text = "navigaton bar"
                 navLabel.backgroundColor = iosGray
